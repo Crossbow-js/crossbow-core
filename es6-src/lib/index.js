@@ -1,12 +1,6 @@
 import nodes from './nodes';
 import parser from '../src/parser';
 
-function getId (item, ctx) {
-    if (ctx.data[item.id]) {
-        return ctx.data[item.id];
-    }
-}
-
 function process(ast, ctx) {
     return ast.reduce(function (all, item) {
         if (item.skip) {
@@ -40,5 +34,6 @@ function firstPass (ast) {
 export default function (input, ctx = {}) {
     var ast = parser.parse(input);
     ast = firstPass(ast);
-    return process(ast, ctx);
+
+    return process(ast, {data: ctx});
 }

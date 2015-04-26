@@ -1,5 +1,11 @@
 import _filters from './filters';
 
+function getId (item, ctx) {
+    if (ctx.data[item.id]) {
+        return ctx.data[item.id];
+    }
+}
+
 export default {
     buffer: function (item, ctx) {
         return item.value;
