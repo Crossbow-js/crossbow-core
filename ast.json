@@ -1,6 +1,27 @@
 [
   {
-    "type": "buffer",
-    "value": "{shane|anohter|lodash:trunc|upper|concat|}"
+    "type": "reference",
+    "identifier": {
+      "type": "key",
+      "value": "shane"
+    },
+    "modifiers": [
+      {
+        "type": "filter",
+        "value": "upper"
+      },
+      {
+        "type": "modifier",
+        "namespace": "lodash",
+        "method": "trunc",
+        "args": [
+          "qw"
+        ]
+      },
+      {
+        "type": "filter",
+        "value": "shane"
+      }
+    ]
   }
 ]

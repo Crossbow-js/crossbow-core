@@ -94,27 +94,30 @@ bodies "bodies"
    reference is defined as matching a opening brace followed by an identifier plus one or more filters and a closing brace
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 reference "reference"
-  = ld n:identifier m:modz* rd
+  = ld n:identifier m:modifiers* rd
   //{ return withPosition(["reference", n, f]) }
-  { return withPosition({type: 'reference', identifier: n, filters: f, modifiers: m}) }
+  { return withPosition({type: 'reference', identifier: n, modifiers: m}) }
 
-modz
-    = filters
-     / modifiers
+modifiers
+     = m:inline_modifiers { return m }
+     / f:filters { return {type: 'filter', value: f}}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    filters is defined as matching a pipe character followed by anything that matches the key
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 filters "filters"
-  = f:("|" n:key {return n})*
+  = f:("|" n:key {return n})
   { return f }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    modifiers are defined as matching a colon character followed by anything that matches the key
 ---------------------------------------------------------------------------------------------------------------------------------------*/
-modifiers "modifiers"
-  = m:("|" ns:key ":" v:key {return {namespace: ns, value: v}})*
+inline_modifiers "inline_modifiers"
+  = m:("|" ns:key ":" method:key k:key_sep* {return {type: 'modifier', namespace: ns, method: method, args: k}})
   { return m }
+
+key_sep
+  = ":" v:key {return v}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    identifier is defined as matching a path or key

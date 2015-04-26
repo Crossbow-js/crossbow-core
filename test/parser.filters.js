@@ -25,8 +25,9 @@ describe('Filters', function () {
         _assert.assert.equal(output[0].type, 'reference');
         _assert.assert.equal(output[0].identifier.type, 'key');
         _assert.assert.equal(output[0].identifier.value, 'shane');
-        _assert.assert.equal(output[0].filters.length, 1);
-        _assert.assert.equal(output[0].filters[0], 'upper');
+        _assert.assert.equal(output[0].modifiers.length, 1);
+        _assert.assert.equal(output[0].modifiers[0].type, 'filter');
+        _assert.assert.equal(output[0].modifiers[0].value, 'upper');
     });
     it('1 modifier', function () {
         var input = '{shane|lodash:upper}';
@@ -37,7 +38,7 @@ describe('Filters', function () {
         _assert.assert.equal(output[0].identifier.value, 'shane');
         _assert.assert.equal(output[0].modifiers.length, 1);
         _assert.assert.equal(output[0].modifiers[0].namespace, 'lodash');
-        _assert.assert.equal(output[0].modifiers[0].value, 'upper');
+        _assert.assert.equal(output[0].modifiers[0].method, 'upper');
     });
     it('2 modifiers', function () {
         var input = '{shane|lodash:upper|moment:kill}';
@@ -57,22 +58,28 @@ describe('Filters', function () {
         _assert.assert.equal(output[0].type, 'reference');
         _assert.assert.equal(output[0].identifier.type, 'key');
         _assert.assert.equal(output[0].identifier.value, 'shane');
-        _assert.assert.equal(output[0].modifiers.length, 2);
+        _assert.assert.equal(output[0].modifiers.length, 3);
         _assert.assert.equal(output[0].modifiers[0].namespace, 'lodash');
         _assert.assert.equal(output[0].modifiers[1].namespace, 'moment');
-        _assert.assert.equal(output[0].filters[0], 'truncate');
+        _assert.assert.equal(output[0].modifiers[2].type, 'filter');
+        _assert.assert.equal(output[0].modifiers[2].value, 'truncate');
     });
-    it.only('filter first + 2 modifiers', function () {
+    it('filter first + 2 modifiers', function () {
         var input = '{shane|upper|lodash:upper|moment:kill}';
         var output = _parse.parse(input);
         _assert.assert.equal(output.length, 1);
         _assert.assert.equal(output[0].type, 'reference');
         _assert.assert.equal(output[0].identifier.type, 'key');
         _assert.assert.equal(output[0].identifier.value, 'shane');
-        _assert.assert.equal(output[0].modifiers.length, 2);
-        _assert.assert.equal(output[0].modifiers[0].namespace, 'lodash');
-        _assert.assert.equal(output[0].modifiers[1].namespace, 'moment');
-        _assert.assert.equal(output[0].filters[0], 'upper');
+        _assert.assert.equal(output[0].modifiers.length, 3);
+        _assert.assert.equal(output[0].modifiers[0].type, 'filter');
+        _assert.assert.equal(output[0].modifiers[0].value, 'upper');
+        _assert.assert.equal(output[0].modifiers[1].type, 'modifier');
+        _assert.assert.equal(output[0].modifiers[1].namespace, 'lodash');
+        _assert.assert.equal(output[0].modifiers[1].method, 'upper');
+        _assert.assert.equal(output[0].modifiers[2].type, 'modifier');
+        _assert.assert.equal(output[0].modifiers[2].namespace, 'moment');
+        _assert.assert.equal(output[0].modifiers[2].method, 'kill');
     });
     it('2 filters', function () {
         var input = '{shane|upper|other}';
@@ -81,8 +88,8 @@ describe('Filters', function () {
         _assert.assert.equal(output[0].type, 'reference');
         _assert.assert.equal(output[0].identifier.type, 'key');
         _assert.assert.equal(output[0].identifier.value, 'shane');
-        _assert.assert.equal(output[0].filters.length, 2);
-        _assert.assert.equal(output[0].filters[0], 'upper');
-        _assert.assert.equal(output[0].filters[1], 'other');
+        _assert.assert.equal(output[0].modifiers.length, 2);
+        _assert.assert.equal(output[0].modifiers[0].value, 'upper');
+        _assert.assert.equal(output[0].modifiers[1].value, 'other');
     });
 });
