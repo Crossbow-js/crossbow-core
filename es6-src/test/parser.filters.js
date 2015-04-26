@@ -84,4 +84,9 @@ describe('Filters', () => {
         assert.equal(output[0].modifiers[0].value, 'upper');
         assert.equal(output[0].modifiers[1].value, 'other');
     });
+    it('using external module + filter', () => {
+        const input = `{shane|ucfirst|lodash:pad~11,-}`;
+        const output = cblang(input, {shane: 'shane'});
+        assert.equal(output, '---Shane---');
+    });
 });

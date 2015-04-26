@@ -98,26 +98,32 @@ reference "reference"
   //{ return withPosition(["reference", n, f]) }
   { return withPosition({type: 'reference', identifier: n, modifiers: m}) }
 
+/*-------------------------------------------------------------------------------------------------------------------------------------
+   Modifiers are filters/inline_modifiers that act on a value
+---------------------------------------------------------------------------------------------------------------------------------------*/
 modifiers
      = m:inline_modifiers { return m }
-     / f:filters { return {type: 'filter', value: f}}
+     / f:filters { return f }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    filters is defined as matching a pipe character followed by anything that matches the key
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 filters "filters"
-  = f:("|" n:key {return n})
+  = f:("|" n:key args:key_sep* {return {type: 'filter', value: n, args: args[0]}})
   { return f }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    modifiers are defined as matching a colon character followed by anything that matches the key
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 inline_modifiers "inline_modifiers"
-  = m:("|" ns:key ":" method:key k:key_sep* {return {type: 'modifier', namespace: ns, method: method, args: k}})
+  = m:("|" ns:key ":" method:key args:key_sep* {return {type: 'modifier', namespace: ns, method: method, args: args[0]}})
   { return m }
 
 key_sep
-  = ":" v:key {return v}
+  = "~" v:arg_list {return v}
+
+arg_list
+  = b:(!rd !'|' a:. {return a})+ {return b.join('').split(',')}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    identifier is defined as matching a path or key

@@ -1,4 +1,5 @@
 import _filters from './filters';
+import {process} from './';
 
 function getId (item, ctx) {
     if (ctx.data[item.id]) {
@@ -66,8 +67,7 @@ export default {
         }
     },
     reference: function (item, ctx) {
-
-        var filters = item.filters;
+        var modifiers = item.modifiers || [];
         var value;
 
         if (item.identifier.type === 'key') {
@@ -78,10 +78,25 @@ export default {
             }
         }
 
-        if (filters.length) {
-            filters.forEach(function (filter) {
-                if (_filters[filter]) {
-                    value = _filters[filter](value, ctx);
+        if (modifiers.length) {
+            modifiers.forEach(function (item) {
+                if (item.type === 'filter') {
+                    if (_filters[item.value]) {
+                        value = _filters[item.value](value, ctx);
+                    }
+                }
+                if (item.type === 'modifier') {
+                    try {
+                        var mod = require(item.namespace);
+                        var method = mod[item.method];
+                        if (typeof method === 'function') {
+                            value = method(...[value].concat(item.args));
+                        } else {
+                            console.error(`\`${item.method}\` method could not be found in module \`${item.namespace}\``);
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
             })
         }

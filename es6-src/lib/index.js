@@ -1,18 +1,6 @@
 import nodes from './nodes';
 import parser from '../src/parser';
 
-function process(ast, ctx) {
-    return ast.reduce(function (all, item) {
-        if (item.skip) {
-            return all;
-        }
-        if (nodes[item.type]) {
-            all += nodes[item.type](item, ctx.data);
-        }
-        return all;
-    }, '');
-}
-
 function firstPass (ast) {
     return ast.map(function (item, i, all) {
         if (item.type === '#') {
@@ -36,4 +24,16 @@ export default function (input, ctx = {}) {
     ast = firstPass(ast);
 
     return process(ast, {data: ctx});
+}
+
+export function process(ast, ctx) {
+    return ast.reduce(function (all, item) {
+        if (item.skip) {
+            return all;
+        }
+        if (nodes[item.type]) {
+            all += nodes[item.type](item, ctx.data);
+        }
+        return all;
+    }, '');
 }

@@ -7,20 +7,9 @@
     },
     "modifiers": [
       {
-        "type": "filter",
-        "value": "upper"
-      },
-      {
         "type": "modifier",
         "namespace": "lodash",
-        "method": "trunc",
-        "args": [
-          "qw"
-        ]
-      },
-      {
-        "type": "filter",
-        "value": "shane"
+        "method": "snakecase"
       }
     ]
   }
