@@ -90,7 +90,7 @@ export default {
                         var mod = require(item.namespace);
                         var method = mod[item.method];
                         if (typeof method === 'function') {
-                            value = method(...[value].concat(item.args));
+                            value = method(...[value].concat(item.args.map(x => x.value)));
                         } else {
                             console.error(`\`${item.method}\` method could not be found in module \`${item.namespace}\``);
                         }

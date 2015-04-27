@@ -123,7 +123,10 @@ key_sep
   = "~" v:arg_list {return v}
 
 arg_list
-  = b:(!rd !'|' a:. {return a})+ {return b.join('').split(',')}
+  = b:(!rd !'|' a:single_arg* {return a})* {return b[0]}
+
+single_arg
+  = ','? a:(number / identifier / inline) {return a}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    identifier is defined as matching a path or key
@@ -145,7 +148,7 @@ identifier "identifier"
   }
 
 number "number"
-  = n:(float / integer) { return ['literal', n]; }
+  = n:(float / integer) { return {type: 'number', value: n} }
 
 float "float"
   = l:integer "." r:unsigned_integer { return parseFloat(l + "." + r); }
@@ -198,8 +201,8 @@ array_part "array_part"
    double quotes plus inline_part followed by the closing double quotes
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 inline "inline"
-  = '"' '"'                 { return withPosition(["literal", ""]) }
-  / '"' l:literal '"'       { return withPosition({type: 'literal', value: l}) }
+  = '"' '"'                 { return withPosition({type: 'string', value: ''}) }
+  / '"' l:literal '"'       { return withPosition({type: 'string', value: l}) }
   / '"' p:inline_part+ '"'  { return withPosition(["body"].concat(p)) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------

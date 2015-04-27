@@ -9,7 +9,17 @@
       {
         "type": "modifier",
         "namespace": "lodash",
-        "method": "snakecase"
+        "method": "pad",
+        "args": [
+          {
+            "type": "number",
+            "value": 100
+          },
+          {
+            "type": "string",
+            "value": "hi"
+          }
+        ]
       }
     ]
   }
