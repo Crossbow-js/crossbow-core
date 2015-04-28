@@ -1,26 +1,28 @@
 [
-  {
-    "type": "reference",
-    "identifier": {
-      "type": "key",
-      "value": "shane"
-    },
-    "modifiers": [
-      {
-        "type": "modifier",
-        "namespace": "lodash",
-        "method": "pad",
-        "args": [
-          {
-            "type": "number",
-            "value": 100
-          },
-          {
-            "type": "string",
-            "value": "hi"
-          }
+    {
+        "type": "@",
+        "identifier": {
+            "type": "key",
+            "value": "hl"
+        },
+        "params": [],
+        "bodies": [
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "",
+                "raw": "\n"
+            },
+            {
+                "type": "buffer",
+                "value": "Yo there"
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "",
+                "raw": "\n"
+            }
         ]
-      }
-    ]
-  }
+    }
 ]

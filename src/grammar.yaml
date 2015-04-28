@@ -203,13 +203,13 @@ array_part "array_part"
 inline "inline"
   = '"' '"'                 { return withPosition({type: 'string', value: ''}) }
   / '"' l:literal '"'       { return withPosition({type: 'string', value: l}) }
-  / '"' p:inline_part+ '"'  { return withPosition(["body"].concat(p)) }
+  / '"' p:inline_part+ '"'  { return withPosition({type: 'body', value: p}) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
   inline_part is defined as matching a special or reference or literal
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 inline_part
-  = reference / l:literal { return ["buffer", l] }
+  = reference / l:literal { return {type: 'buffer', value: l} }
 
 buffer "buffer"
   = e:eol w:ws*
