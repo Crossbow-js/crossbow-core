@@ -51,6 +51,7 @@ export default class Compiler {
      * @returns {*}
      */
     parse ({content, opts = {}, ctx = {}}) {
+
         let compiler = this;
         let ast = parser.parse(content);
         ast = compiler.firstPass(ast);
@@ -74,6 +75,7 @@ export default class Compiler {
             if (compiler.nodes[node.type]) {
                 all += compiler.nodes[node.type]({node, ctx, compiler});
             }
+
             return all;
         }, '');
     }

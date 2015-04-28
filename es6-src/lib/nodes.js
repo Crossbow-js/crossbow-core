@@ -7,17 +7,17 @@ function getId (item, ctx) {
 }
 
 export default {
-    buffer: function (item, ctx) {
-        return item.value;
+    buffer: function bufferNode({node, ctx, compiler}) {
+        return node.value;
     },
-    tag: function (item, ctx) {
-        var replacement = getId(item, ctx);
+    tag: function tagNode ({node, ctx, compiler}) {
+        var replacement = getId(node, ctx);
         return replacement;
     },
-    format: function (item) {
-        return item.raw;
+    format: function formatNode({node, ctx, compiler}) {
+        return node.raw;
     },
-    "@" ({node, ctx, compiler}) {
+    "@": function atNode({node, ctx, compiler}) {
         if (node.raw) {
             if (compiler.helpers[node.identifier.value]) {
                 return compiler.helpers[node.identifier.value]({node, ctx, compiler});
@@ -25,7 +25,7 @@ export default {
         }
         return '';
     },
-    "#": function ({node, ctx, compiler}) {
+    "#": function lookupNode({node, ctx, compiler}) {
 
         if (item.bodies) {
 
@@ -73,7 +73,7 @@ export default {
             }
         }
     },
-    reference: function ({node, ctx, compiler}) {
+    reference: function referenceNode({node, ctx, compiler}) {
         var modifiers = node.modifiers || [];
         var value;
 
