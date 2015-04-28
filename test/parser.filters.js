@@ -92,10 +92,14 @@ describe('Filters', function () {
         _assert.assert.equal(output[0].modifiers[0].value, 'upper');
         _assert.assert.equal(output[0].modifiers[1].value, 'other');
     });
-    it.only('using external module + filter', function () {
-        var input = '{shane|ucfirst|lodash:pad~10,"hey"}';
+    it('using external module + filter', function () {
+        var input = '{shane|ucfirst|lodash:pad~15,"--"}';
         var output = _cblang2['default'](input, { shane: 'shane' });
-        console.log(output);
-        //assert.equal(output, '---Shane---');
+        _assert.assert.equal(output, '-----Shane-----');
+    });
+    it('Does not blow up/hang with whitespace inbetween params', function () {
+        var input = '{shane|ucfirst|lodash:pad~ 15 , "--"  }';
+        var output = _cblang2['default'](input, { shane: 'shane' });
+        _assert.assert.equal(output, '-----Shane-----');
     });
 });

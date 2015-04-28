@@ -126,7 +126,7 @@ arg_list
   = b:(!rd !'|' a:single_arg* {return a})* {return b[0]}
 
 single_arg
-  = ','? a:(number / identifier / inline) {return a}
+  = ws* ','? ws* a:(number / identifier / inline) ws* {return a}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    identifier is defined as matching a path or key
