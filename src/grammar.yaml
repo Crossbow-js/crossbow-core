@@ -33,7 +33,7 @@ part
    plus bodies plus end_tag or sec_tag_start followed by a slash and closing brace
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 section "section"
-  = t:sec_tag_start ws* rd b:body e:bodies n:end_tag?
+  = t:sec_tag_start ws* rd r:raw_block* n:end_tag?
 // non-self-closing format
    &{
      if ( !n || (t.identifier.value !== n.value) ) {
@@ -42,7 +42,7 @@ section "section"
      return true;
    }
    {
-    t.bodies = b;
+    t.raw = r[0];
     return withPosition(t)
    }
   // self-closing format
@@ -51,6 +51,9 @@ section "section"
     t.push(["bodies"]);
     return withPosition(t)
   }
+
+raw_block "raw block"
+    = r:(!end_tag a:. {return a})+ {return r.join('')}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    sec_tag_start is defined as matching an opening brace followed by one of #?^<+@% plus identifier plus context plus param
@@ -123,7 +126,7 @@ key_sep
   = "~" v:arg_list {return v}
 
 arg_list
-  = b:(!rd !'|' a:single_arg* {return a})* {return b[0]}
+  = b:(!rd !'|' a:single_arg* {return a}) {return b}
 
 single_arg
   = ws* ','? ws* a:(number / identifier / inline) ws* {return a}

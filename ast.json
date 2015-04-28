@@ -5,24 +5,15 @@
             "type": "key",
             "value": "hl"
         },
-        "params": [],
-        "bodies": [
+        "params": [
             {
-                "type": "format",
-                "eol": "\n",
-                "ws": "",
-                "raw": "\n"
-            },
-            {
-                "type": "buffer",
-                "value": "Yo there"
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "",
-                "raw": "\n"
+                "key": "lang",
+                "value": {
+                    "type": "string",
+                    "value": "js"
+                }
             }
-        ]
+        ],
+        "raw": "Hey there"
     }
 ]

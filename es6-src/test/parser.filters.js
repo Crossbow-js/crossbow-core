@@ -85,13 +85,15 @@ describe('Filters', () => {
         assert.equal(output[0].modifiers[1].value, 'other');
     });
     it('using external module + filter', () => {
-        const input = `{shane|ucfirst|lodash:pad~15,"--"}`;
-        const output = cblang(input, {shane: 'shane'});
+        const content = `{shane|ucfirst|lodash:pad~15,"--"}`;
+        const ctx     = {shane: 'shane'};
+        const output  = cblang({content, ctx});
         assert.equal(output, '-----Shane-----');
     });
     it('Does not blow up/hang with whitespace inbetween params', () => {
-        const input = `{shane|ucfirst|lodash:pad~ 15 , "--"  }`;
-        const output = cblang(input, {shane: 'shane'});
+        const content = `{shane|ucfirst|lodash:pad~ 15 , "--"  }`;
+        const ctx     = {shane: 'shane'};
+        const output = cblang({content, ctx});
         assert.equal(output, '-----Shane-----');
     });
 });

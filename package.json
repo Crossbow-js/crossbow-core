@@ -9,6 +9,7 @@
   "devDependencies": {
     "babel": "^5.0.10",
     "chai": "^2.2.0",
+    "d-logger": "^1.0.1",
     "jshint": "^2.6.3",
     "lodash": "^3.7.0",
     "mocha": "^2.2.4",
@@ -23,5 +24,8 @@
     "build": "node src/builder.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pegjs": "git://github.com/pegjs/pegjs.git"
+  }
 }

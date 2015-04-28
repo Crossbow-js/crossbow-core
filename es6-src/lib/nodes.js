@@ -1,4 +1,3 @@
-import _filters from './filters';
 import {process} from './';
 
 function getId (item, ctx) {
@@ -18,7 +17,15 @@ export default {
     format: function (item) {
         return item.raw;
     },
-    "#": function (item, ctx) {
+    "@" ({node, ctx, compiler}) {
+        if (node.raw) {
+            if (compiler.helpers[node.identifier.value]) {
+                return compiler.helpers[node.identifier.value]({node, ctx, compiler});
+            }
+        }
+        return '';
+    },
+    "#": function ({node, ctx, compiler}) {
 
         if (item.bodies) {
 
@@ -66,23 +73,23 @@ export default {
             }
         }
     },
-    reference: function (item, ctx) {
-        var modifiers = item.modifiers || [];
+    reference: function ({node, ctx, compiler}) {
+        var modifiers = node.modifiers || [];
         var value;
 
-        if (item.identifier.type === 'key') {
-            if (item.identifier.paths) {
-                value = require('object-path').get(ctx, item.identifier.value);
+        if (node.identifier.type === 'key') {
+            if (node.identifier.paths) {
+                value = require('object-path').get(ctx, node.identifier.value);
             } else {
-                value = ctx[item.identifier.value] || '';
+                value = ctx[node.identifier.value] || '';
             }
         }
 
         if (modifiers.length) {
             modifiers.forEach(function (item) {
                 if (item.type === 'filter') {
-                    if (_filters[item.value]) {
-                        value = _filters[item.value](value, ctx);
+                    if (compiler.filters[item.value]) {
+                        value = compiler.filters[item.value](value, ctx);
                     }
                 }
                 if (item.type === 'modifier') {
