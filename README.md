@@ -1,18 +1,42 @@
-##Minimal es6 starter project
+## crossbow template engine
 
-Just enough to get you started with the next version of Javascript.
+> for learning & specific templating requirements not available else where.
 
-###Includes
+### Design goals
 
-1. *Babel*  - for compiling your es6 code back into es5
-2. *jshint* - preconfigured for es6
-2. *mocha*  - for writing tests in es6 also
+Create a powerful, low-level templating language. Node/iojs only, avoiding the browser means 
+there's no worry about deliverable code size going over the network.
 
-###Usage.
+Traditional helper blocks should be more powerful. Give them access to the AST + Compiler
+and always allow access to the raw, un-processed content. 
+ 
+```
+{@hl}
+var shane = 'human';
+{/hl}
+```
 
-1. Clone this repo
-2. run `npm install`
-3. work from the `src` directory only - files will be compiled back out into `lib` & `test`
-3. use `npm run es6-watch` to have your files auto-compiled when you save
-4. use `npm test` to lint your files, compile them, and run the unit test.
+Filter / Modifiers should accept arguments inline. I just like the way Angular does this
+ and want this
+ 
+```
+{post.excerpt|trunc~200}
+```
+ 
+As it's node only, allow `namespace` `:` `method` `:` `arg` signature for filters to leveage
+any module. For example, to process a variable by passing it through the lodash 
+function `pad` with the args `10` & `-`;
+  
+```
+{tag|lodash:trunc~10, '-'}
+```
 
+## Todo - Parser
+[x] - Helpers blocks must have access RAW input.
+[x] - Filters/modifiers should accept params eg: `{post.excerpt|trunc~200}`.
+[ ] - left / right delimiters should be configurable.
+[ ] - every node should report detailed location info
+
+## Todo - Compiler
+[x] - Helper blocks have access to AST & compiler.
+[ ] - Loop blocks can traverse data for lookups
