@@ -32,11 +32,13 @@ function `pad` with the args `10` & `-`;
 ```
 
 ## Todo - Parser
-[x] - Helpers blocks must have access RAW input.
-[x] - Filters/modifiers should accept params eg: `{post.excerpt|trunc~200}`.
-[ ] - left / right delimiters should be configurable.
-[ ] - every node should report detailed location info
+
+- [x] Helpers blocks must have access RAW input.
+- [x] Filters/modifiers should accept params eg: `{post.excerpt|trunc~200}`.
+- [ ] left / right delimiters should be configurable.
+- [ ] every node should report detailed location info
 
 ## Todo - Compiler
-[x] - Helper blocks have access to AST & compiler.
-[ ] - Loop blocks can traverse data for lookups
+
+- [x] Helper blocks have access to AST & compiler.
+- [ ] Loop blocks can traverse data for lookups
