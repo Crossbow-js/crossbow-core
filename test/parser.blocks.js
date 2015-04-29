@@ -23,7 +23,6 @@ describe('Blocks', function () {
         _assert.assert.equal(ast[0].identifier.value, 'hl');
         //writeFileSync('./ast.json', JSON.stringify(ast, null, 4));
         _assert.assert.equal(ast[0].raw, input);
-
         var output = _cblang$process2['default']({ content: '{@hl}-{shane}-{/hl}', ctx: { shane: 'awesome' } });
     });
 });
