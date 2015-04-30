@@ -1,8 +1,8 @@
 export default {
-    upper (string, ctx) {
-        return string.toUpperCase();
+    upper ({value, ctx}) {
+        return value.toUpperCase();
     },
-    ucfirst (value, ctx) {
+    ucfirst ({value, ctx}) {
         return value.charAt(0).toUpperCase() + value.slice(1);
     }
 }

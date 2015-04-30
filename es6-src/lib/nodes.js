@@ -93,13 +93,14 @@ export default {
         if (typeof value === 'undefined') {
             compiler.error(`Failed to access ${node.identifier.value}. An empty string will be used instead`);
             value = '';
+            return value;
         }
 
         if (modifiers.length) {
             modifiers.forEach(function (item) {
                 if (item.type === 'filter') {
                     if (compiler.filters[item.value]) {
-                        value = compiler.filters[item.value](value, ctx);
+                        value = compiler.filters[item.value]({value, args: item.args, ctx, node, compiler});
                     }
                 }
                 if (item.type === 'modifier') {

@@ -23,7 +23,6 @@ describe('Compiling references', () => {
     });
     it('can remove unknown from ctx path', () => {
         const ctx = {person: {name: 'shane'}};
-
         let compiler = builder();
         let spy = sinon.spy(compiler, 'error');
         let out = compiler.parse({content: 'hello {person.surname}', ctx});

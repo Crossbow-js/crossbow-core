@@ -35,7 +35,6 @@ describe('Compiling references', function () {
     });
     it('can remove unknown from ctx path', function () {
         var ctx = { person: { name: 'shane' } };
-
         var compiler = _cblang$builder.builder();
         var spy = _sinon2['default'].spy(compiler, 'error');
         var out = compiler.parse({ content: 'hello {person.surname}', ctx: ctx });
