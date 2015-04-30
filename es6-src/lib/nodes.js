@@ -32,9 +32,9 @@ export default {
     },
     "#": function lookupNode({node, ctx, compiler}) {
 
-        if (item.bodies) {
+        if (node.bodies) {
 
-            var curr = ctx[item.identifier.value];
+            var curr = ctx[node.identifier.value];
 
             if (typeof curr === 'undefined') {
                 return ''; // no context
@@ -51,7 +51,7 @@ export default {
                     _ctx.$index   = i;
                     _ctx.$length  = _ctx.length;
 
-                    all += process(item.bodies, {data: _ctx});
+                    all += process(node.bodies, {data: _ctx});
 
                     return all;
                 }, '');
@@ -67,7 +67,7 @@ export default {
                             $this:   String(curr[key]),
                             $index:  String(i)
                         };
-                        all += process(item.bodies, {
+                        all += process(node.bodies, {
                                 data: currContext
                             }
                         );
@@ -79,6 +79,7 @@ export default {
         }
     },
     reference: function referenceNode({node, ctx, compiler}) {
+
         var modifiers = node.modifiers || [];
         var value;
 
@@ -86,7 +87,7 @@ export default {
             if (node.identifier.paths) {
                 value = objpath.get(ctx, node.identifier.value);
             } else {
-                value = ctx[node.identifier.value] || '';
+                value = ctx[node.identifier.value];
             }
         }
 
