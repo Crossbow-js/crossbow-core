@@ -1,9 +1,14 @@
 import {process} from './';
+import objpath   from 'object-path';
 
 function getId (item, ctx) {
     if (ctx.data[item.id]) {
         return ctx.data[item.id];
     }
+}
+
+function lookup (value, ctx) {
+
 }
 
 export default {
@@ -79,10 +84,15 @@ export default {
 
         if (node.identifier.type === 'key') {
             if (node.identifier.paths) {
-                value = require('object-path').get(ctx, node.identifier.value);
+                value = objpath.get(ctx, node.identifier.value);
             } else {
                 value = ctx[node.identifier.value] || '';
             }
+        }
+
+        if (typeof value === 'undefined') {
+            compiler.error(`Failed to access ${node.identifier.value}. An empty string will be used instead`);
+            value = '';
         }
 
         if (modifiers.length) {
