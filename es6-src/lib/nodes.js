@@ -50,7 +50,6 @@ export default {
                     currContext.$this    = currContext;
                     currContext.$index   = i;
                     currContext.$length  = currContext.length;
-
                     all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
 
                     return all;

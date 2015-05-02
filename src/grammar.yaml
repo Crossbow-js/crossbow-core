@@ -3,7 +3,11 @@
     return parseInt(arr.join(''), 10);
   }
   function withPosition(arr) {
+
+    arr.loc = location();
     return arr;
+
+
     return arr.concat([['line', line()], ['col', column()]]);
   }
   function logger () {
@@ -33,7 +37,7 @@ part
    plus bodies plus end_tag or sec_tag_start followed by a slash and closing brace
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 section "section"
-  = eol:eol? w:ws* t:sec_tag_start ws* rd b:body e:bodies n:end_tag?
+  = t:sec_tag_start ws* rd b:body e:bodies n:end_tag?
 // non-self-closing format
    &{
      if ( !n || (t.identifier.value !== n.value) ) {
@@ -43,6 +47,7 @@ section "section"
    }
    {
     t.bodies = b;
+    t.end    = n;
     return withPosition(t)
    }
   // self-closing format
@@ -80,7 +85,7 @@ raw_sec_tag_start
 
 sec_tag_start
   = ld t:[#?^<+@%] ws* n:identifier c:context p:params
-  { return {type: t, identifier: n, params: p} }
+  { return withPosition({type: t, identifier: n, params: p}) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    end_tag is defined as matching an opening brace followed by a slash plus 0 or more white spaces plus identifier followed
@@ -88,7 +93,7 @@ sec_tag_start
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 end_tag "end tag"
   = ld "/" ws* n:identifier ws* rd
-  { return n }
+  { return withPosition(n) }
 
 raw_end_tag "raw end tag"
   = ld "/@" ws* n:identifier ws* rd
@@ -237,9 +242,11 @@ inline_part
   = reference / l:literal { return {type: 'buffer', value: l} }
 
 buffer "buffer"
-  =
-  b:(!tag c:. {return c})+
-  { return withPosition({type: 'buffer', value: b.join('')}) }
+  = eol:eol ws:ws*
+  { return {type: 'format', eol: eol, ws: ws.join(''), raw: eol + ws.join('')} }
+  /
+  b:(!tag !eol c:. {return c})+
+  { return {type: 'buffer', value: b.join('')} }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    literal is defined as matching esc or any character except the double quotes and it cannot be a tag

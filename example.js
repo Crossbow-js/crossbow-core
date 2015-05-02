@@ -8,7 +8,7 @@ var out = parser.parse(md);
 console.log('cb micro time:', microtime.now() - start);
 console.timeEnd('cb time:     ');
 
-require("fs").writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 2));
+require("fs").writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 4));
 
 var cb = require('./');
 var builder = cb.builder();
@@ -16,11 +16,23 @@ var ctx = {
     names: [
         {
             first: 'shane',
-            last: 'osbourne'
+            last: 'osbourne',
+            pets: [
+                {
+                    name: 'alfred',
+                    url: 'awe, yeah'
+                }
+            ]
         },
         {
             first: 'kittie',
-            last: 'osbourne'
+            last: 'osbourne',
+            pets: [
+                {
+                    name: 'another Animal thing',
+                    url: 'awe, yeah'
+                }
+            ]
         }
     ]
 };

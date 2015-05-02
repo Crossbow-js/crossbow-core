@@ -1,5 +1,5 @@
 export default {
     hl ({node, ctx, compiler}) {
-        return node.raw + ' awyeah';
+        return `<script src="${node.params[0]}">${node.raw}</script>`;
     }
 }
