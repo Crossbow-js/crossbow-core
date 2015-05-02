@@ -45,13 +45,13 @@ export default {
             }
 
             if (Array.isArray(curr)) {
-                return curr.reduce(function (all, _ctx, i) {
+                return curr.reduce(function (all, currContext, i) {
 
-                    _ctx.$this    = _ctx;
-                    _ctx.$index   = i;
-                    _ctx.$length  = _ctx.length;
+                    currContext.$this    = currContext;
+                    currContext.$index   = i;
+                    currContext.$length  = currContext.length;
 
-                    all += process(node.bodies, {data: _ctx});
+                    all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
 
                     return all;
                 }, '');
@@ -67,10 +67,7 @@ export default {
                             $this:   String(curr[key]),
                             $index:  String(i)
                         };
-                        all += process(node.bodies, {
-                                data: currContext
-                            }
-                        );
+                        all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
                         return all;
                     }, '');
                     return out;

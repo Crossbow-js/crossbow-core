@@ -33,7 +33,7 @@ part
    plus bodies plus end_tag or sec_tag_start followed by a slash and closing brace
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 section "section"
-  = t:sec_tag_start ws* rd b:body e:bodies n:end_tag?
+  = eol:eol? w:ws* t:sec_tag_start ws* rd b:body e:bodies n:end_tag?
 // non-self-closing format
    &{
      if ( !n || (t.identifier.value !== n.value) ) {
@@ -54,7 +54,6 @@ section "section"
 
 raw_section "raw section"
   = t:raw_sec_tag_start ws* rd r:raw_block* n:raw_end_tag
-// non-self-closing format
    &{
      if ( !n || (t.identifier.value !== n.value) ) {
         error('Expected end tag for ' + t.identifier.value);
@@ -65,12 +64,6 @@ raw_section "raw section"
     t.raw = r[0];
     return withPosition(t)
    }
-  // self-closing format
-  / t:sec_tag_start ws* "/" rd
-  {
-    t.push(["bodies"]);
-    return withPosition(t)
-  }
 
 raw_block "raw block"
     = r:(!raw_end_tag a:. {return a})+ {return r.join('')}
@@ -244,10 +237,8 @@ inline_part
   = reference / l:literal { return {type: 'buffer', value: l} }
 
 buffer "buffer"
-  = e:eol w:ws*
-  //{ return withPosition(["format", e, w.join('')]) }
-  { return withPosition({type: 'format', eol: e, ws: w.join(''), raw: e + w.join('')})}
-  / b:(!tag !eol c:. {return c})+
+  =
+  b:(!tag c:. {return c})+
   { return withPosition({type: 'buffer', value: b.join('')}) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
