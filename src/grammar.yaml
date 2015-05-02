@@ -26,14 +26,34 @@ body
    part is defined as anything that matches with raw or comment or section or partial or special or reference or buffer
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 part
-  = raw / section / reference / buffer
+  = raw / raw_section / section / reference / buffer
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    section is defined as matching with with sec_tag_start followed by 0 or more white spaces plus a closing brace plus body
    plus bodies plus end_tag or sec_tag_start followed by a slash and closing brace
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 section "section"
-  = t:sec_tag_start ws* rd r:raw_block* n:end_tag?
+  = t:sec_tag_start ws* rd b:body e:bodies n:end_tag?
+// non-self-closing format
+   &{
+     if ( !n || (t.identifier.value !== n.value) ) {
+        error('Expected end tag for ' + t.identifier.value);
+     }
+     return true;
+   }
+   {
+    t.bodies = b;
+    return withPosition(t)
+   }
+  // self-closing format
+  / t:sec_tag_start ws* "/" rd
+  {
+    t.push(["bodies"]);
+    return withPosition(t)
+  }
+
+raw_section "raw section"
+  = t:raw_sec_tag_start ws* rd r:raw_block* n:raw_end_tag
 // non-self-closing format
    &{
      if ( !n || (t.identifier.value !== n.value) ) {
@@ -53,15 +73,20 @@ section "section"
   }
 
 raw_block "raw block"
-    = r:(!end_tag a:. {return a})+ {return r.join('')}
+    = r:(!raw_end_tag a:. {return a})+ {return r.join('')}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    sec_tag_start is defined as matching an opening brace followed by one of #?^<+@% plus identifier plus context plus param
    followed by 0 or more white spaces
 ---------------------------------------------------------------------------------------------------------------------------------------*/
+raw_sec_tag_start
+  = ld '@' ws* n:identifier c:context p:params
+  {
+    return {type: '@', identifier: n, params: p}
+  }
+
 sec_tag_start
   = ld t:[#?^<+@%] ws* n:identifier c:context p:params
-  //{ return [t, n, c, p] }
   { return {type: t, identifier: n, params: p} }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
@@ -70,6 +95,10 @@ sec_tag_start
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 end_tag "end tag"
   = ld "/" ws* n:identifier ws* rd
+  { return n }
+
+raw_end_tag "raw end tag"
+  = ld "/@" ws* n:identifier ws* rd
   { return n }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
