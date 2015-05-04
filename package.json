@@ -31,6 +31,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "immutable": "^3.7.2",
     "pegjs": "git://github.com/pegjs/pegjs.git"
   }
 }

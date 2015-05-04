@@ -3,6 +3,7 @@ import filters from './filters';
 import nodes   from './nodes';
 import {formattingPass} from './ast-transforms';
 import parser  from '../src/parser';
+import Immutable  from 'immutable';
 
 export default class Compiler {
     constructor (opts) {
@@ -21,9 +22,11 @@ export default class Compiler {
      */
     parse ({content, opts = {}, ctx = {}}) {
 
-        let compiler = this;
-        let ast = parser.parse(content);
+        let compiler       = this;
+        let ast            = parser.parse(content);
         compiler._original = content;
+        compiler._ctx      = Immutable.fromJS(ctx);
+        compiler._ctxPath  = [];
         return compiler.process({ast, ctx, compiler});
     }
 
@@ -35,7 +38,9 @@ export default class Compiler {
      * @param compiler
      * @returns {*}
      */
-    process ({ast, ctx, compiler}) {
+    process ({ast, ctx}) {
+
+        let compiler = this;
 
         ast = formattingPass({ast, compiler, ctx});
 
@@ -49,6 +54,30 @@ export default class Compiler {
 
             return all;
         }, '');
+    }
+
+    getValue (paths, advancePointer) {
+
+        let compiler = this;
+
+        if (!Array.isArray(paths)) {
+            paths = [paths];
+        }
+
+        let newpath = compiler._ctxPath.concat(paths);
+
+        if (advancePointer) {
+            compiler._ctxPath = newpath;
+        }
+
+        let curr = compiler._ctx.getIn(newpath);
+
+        if (typeof curr !== 'undefined') {
+            if (Immutable.Map.isMap(curr) || Immutable.List.isList(curr)) {
+                return curr.toJS();
+            }
+            return curr;
+        }
     }
 
     /**

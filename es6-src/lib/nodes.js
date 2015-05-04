@@ -28,11 +28,20 @@ export default {
             }
         return '';
     },
-    "#": function lookupNode({node, ctx, compiler}) {
+    "#": function referenceBlock({node, ctx, compiler}) {
 
         if (node.bodies) {
 
-            var curr = ctx[node.identifier.value];
+            let curr;
+
+            // Path?
+            if (node.identifier.paths) {
+                console.log('paths', node.identifier.paths);
+            } else {
+                curr = compiler.getValue(node.identifier.value, true);
+            }
+
+            console.log(curr);
 
             if (typeof curr === 'undefined') {
                 return ''; // no context
@@ -42,48 +51,52 @@ export default {
                 return curr;
             }
 
-            if (Array.isArray(curr)) {
-
-                return curr.reduce(function (all, currContext, i) {
-
-                    currContext.$this    = currContext;
-                    currContext.$index   = i;
-                    currContext.$length  = currContext.length;
-                    all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
-
-                    return all;
-                }, '');
-
-            }
-
+            //if (Array.isArray(curr)) {
+            //
+            //    return curr.reduce(function (all, currContext, i) {
+            //
+            //        currContext.$this    = currContext;
+            //        currContext.$index   = i;
+            //        currContext.$length  = currContext.length;
+            //        all += compiler.process({ast: node.bodies, ctx: currContext});
+            //
+            //        return all;
+            //    }, '');
+            //}
 
             if (typeof curr === 'object') {
-                if (Object.keys(curr).length) {
-                    var out = Object.keys(curr).reduce(function (all, key, i) {
-                        var currContext = {
-                            $key:    String(key),
-                            $value:  String(curr[key]),
-                            $this:   String(curr[key]),
-                            $index:  String(i)
-                        };
-                        all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
-                        return all;
-                    }, '');
-                    return out;
-                }
+
+                //console.log(compiler._ctx);
+                //console.log(compiler._ctxPath);
+                //console.log(node);
+                //if (Object.keys(curr).length) {
+                //    var out = Object.keys(curr).reduce(function (all, key, i) {
+                //        var currContext = {
+                //            $key:    String(key),
+                //            $value:  String(curr[key]),
+                //            $this:   String(curr[key]),
+                //            $index:  String(i)
+                //        };
+                //        all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
+                //        return all;
+                //    }, '');
+                //    return out;
+                //}
+                return compiler.process({ast: node.bodies});
             }
         }
     },
     reference: function referenceNode({node, ctx, compiler}) {
 
         var modifiers = node.modifiers || [];
-        var value;
+        let value;
 
         if (node.identifier.type === 'key') {
+            
             if (node.identifier.paths) {
-                value = objpath.get(ctx, node.identifier.value);
+                //console.log('paths', node.identifier.paths);
             } else {
-                value = ctx[node.identifier.value];
+                value = compiler.getValue(node.identifier.value);
             }
         }
 

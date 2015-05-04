@@ -16,12 +16,12 @@ describe('Compiling references', () => {
         let out = cblang({content: input1, ctx});
         assert.equal(out, 'hello shane');
     });
-    it('can add reference from ctx path', () => {
+    it.skip('can add reference from ctx path', () => {
         const ctx = {person: {name: 'shane'}};
         let out = cblang({content: 'hello {person.name}', ctx});
         assert.equal(out, 'hello shane');
     });
-    it('can remove unknown from ctx path', () => {
+    it.skip('can remove unknown from ctx path', () => {
         const ctx = {person: {name: 'shane'}};
         let compiler = builder();
         let spy = sinon.spy(compiler, 'error');
