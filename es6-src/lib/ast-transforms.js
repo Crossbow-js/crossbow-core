@@ -16,7 +16,10 @@ function formattingPass ({ast, ctx, compiler}) {
         if (item.type === "#") {
             let start = item.loc.start.column;
             let prev = all[i-1];
-            prev.raw = prev.raw.slice(0, prev.raw.length - start);
+
+            if (prev && prev.type === 'format') {
+                prev.raw = prev.raw.slice(0, prev.raw.length - start);
+            }
 
             if (item.end) {
                 let start = item.end.loc.start.column;

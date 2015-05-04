@@ -18,11 +18,11 @@ var _sinon2 = _interopRequireDefault(_sinon);
 
 describe('Compiling references blocks', function () {
     it.only('can render basic block', function () {
-        var input = '{#names}\n{this}\n{/names}';
+        var input = '{#person}-{name}-{/person}';
         var ctx = { person: { name: 'shane' } };
         var compiler = _cblang$builder.builder();
         var out = compiler.parse({ content: input, ctx: ctx });
-        console.log(out);
+        console.log([out]);
         //assert.equal(out, 'hello ');
     });
 });
