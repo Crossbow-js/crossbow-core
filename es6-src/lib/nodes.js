@@ -23,9 +23,9 @@ export default {
         return node.raw;
     },
     "@": function atNode({node, ctx, compiler}) {
-        if (compiler.helpers[node.identifier.value]) {
-            return compiler.helpers[node.identifier.value]({node, ctx, compiler});
-        }
+            if (compiler.helpers[node.identifier.value]) {
+                return compiler.helpers[node.identifier.value]({node, ctx, compiler});
+            }
         return '';
     },
     "#": function lookupNode({node, ctx, compiler}) {
@@ -43,6 +43,7 @@ export default {
             }
 
             if (Array.isArray(curr)) {
+
                 return curr.reduce(function (all, currContext, i) {
 
                     currContext.$this    = currContext;

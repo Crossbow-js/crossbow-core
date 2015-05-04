@@ -438,19 +438,19 @@
                 }
             }
         ],
-        "raw": "line 1\nline 2\nline 3\nline 4\nline 5\nqw\n",
+        "raw": "line 1\nline 2\nline 3\nline 4\nline 5\n",
         "end": {
             "type": "key",
             "value": "hl",
             "loc": {
                 "start": {
-                    "offset": 529,
-                    "line": 34,
+                    "offset": 526,
+                    "line": 33,
                     "column": 1
                 },
                 "end": {
-                    "offset": 535,
-                    "line": 34,
+                    "offset": 532,
+                    "line": 33,
                     "column": 7
                 }
             }
@@ -462,8 +462,8 @@
                 "column": 1
             },
             "end": {
-                "offset": 535,
-                "line": 34,
+                "offset": 532,
+                "line": 33,
                 "column": 7
             }
         }
