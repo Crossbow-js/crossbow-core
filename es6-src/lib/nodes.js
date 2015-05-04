@@ -23,10 +23,8 @@ export default {
         return node.raw;
     },
     "@": function atNode({node, ctx, compiler}) {
-        if (node.raw) {
-            if (compiler.helpers[node.identifier.value]) {
-                return compiler.helpers[node.identifier.value]({node, ctx, compiler});
-            }
+        if (compiler.helpers[node.identifier.value]) {
+            return compiler.helpers[node.identifier.value]({node, ctx, compiler});
         }
         return '';
     },

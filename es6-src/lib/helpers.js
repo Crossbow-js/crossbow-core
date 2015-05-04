@@ -1,5 +1,10 @@
 export default {
     hl ({node, ctx, compiler}) {
-        return `<script src="${node.params[0]}">${node.raw}</script>`;
+        if (!node.raw) {
+            compiler.error('@hl helper expects a raw block, an empty string will be used in stead');
+            compiler.error('eg: {@hl}var name = "shane"{/@hl}');
+            return '';
+        }
+        return `<pre class="highlight"><code>${node.raw}</code></pre>`;
     }
 }

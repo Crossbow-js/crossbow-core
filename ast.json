@@ -333,6 +333,10 @@
         }
     },
     {
+        "type": "buffer",
+        "value": "a"
+    },
+    {
         "type": "format",
         "eol": "\n",
         "ws": "",
