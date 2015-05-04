@@ -16,10 +16,10 @@ describe('Compiling references', () => {
         let out = cblang({content: input1, ctx});
         assert.equal(out, 'hello shane');
     });
-    it.skip('can add reference from ctx path', () => {
-        const ctx = {person: {name: 'shane'}};
-        let out = cblang({content: 'hello {person.name}', ctx});
-        assert.equal(out, 'hello shane');
+    it.only('can add reference from ctx path', () => {
+        const ctx = {person: {name: 'shane', age: 20}};
+        let out = cblang({content: 'hello {person.name} {person.age}', ctx});
+        assert.equal(out, 'hello shane 20');
     });
     it.skip('can remove unknown from ctx path', () => {
         const ctx = {person: {name: 'shane'}};

@@ -92,8 +92,13 @@ export default {
         let value;
 
         if (node.identifier.type === 'key') {
-            
+
             if (node.identifier.paths) {
+                //console.log(node.identifier.paths.slice(1)[0]);
+                if (node.identifier.paths[0] === false) {
+                    // todo - change grammer/ast to have better descriptions for this path
+                    value = compiler.getValue(node.identifier.paths.slice(1)[0]);
+                }
                 //console.log('paths', node.identifier.paths);
             } else {
                 value = compiler.getValue(node.identifier.value);
