@@ -1,23 +1,36 @@
-<ul>
-    {#names}
-    <li>{first|ucfirst} - {last|ucfirst}
-        <ul>
-            {#pets}
-            <li>
-                <a href="{url}">{name}</a>
-            </li>
-            {/pets}
-        </ul>
-    </li>
-    {/names}
-</ul>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        pre {
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        {#names}
+        <li>{first|ucfirst} - {last|ucfirst}
+            <ul>
+                {#pets}
+                <li>
+                    <a href="{url}">{name}</a>
+                </li>
+                {/pets}
+            </ul>
+        </li>
+        {/names}
+    </ul>
 
 {@hl lang="js"}
-var resecpt = this whitespace
+line 1
+line 2
+line 3
+line 4
+line 5
+{/@hl}
+</body>
+</html>
 
-shane
-                -
-wef  as
-
-ew
-{/@hl}a

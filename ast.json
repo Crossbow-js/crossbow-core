@@ -1,13 +1,133 @@
 [
     {
         "type": "buffer",
-        "value": "<ul>"
+        "value": "<!doctype html>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "<html lang=\"en\">"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "<head>"
     },
     {
         "type": "format",
         "eol": "\n",
         "ws": "    ",
         "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<meta charset=\"UTF-8\">"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<title>Document</title>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<style>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "        ",
+        "raw": "\n        "
+    },
+    {
+        "type": "buffer",
+        "value": "pre {"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "            ",
+        "raw": "\n            "
+    },
+    {
+        "type": "buffer",
+        "value": "background: grey;"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "        ",
+        "raw": "\n        "
+    },
+    {
+        "type": "buffer",
+        "value": "}"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "</style>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "</head>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "<body>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<ul>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "        ",
+        "raw": "\n        "
     },
     {
         "type": "#",
@@ -18,22 +138,22 @@
         "params": [],
         "loc": {
             "start": {
-                "offset": 9,
-                "line": 2,
-                "column": 5
+                "offset": 206,
+                "line": 14,
+                "column": 9
             },
             "end": {
-                "offset": 226,
-                "line": 12,
-                "column": 13
+                "offset": 463,
+                "line": 24,
+                "column": 17
             }
         },
         "bodies": [
             {
                 "type": "format",
                 "eol": "\n",
-                "ws": "    ",
-                "raw": "\n    "
+                "ws": "        ",
+                "raw": "\n        "
             },
             {
                 "type": "buffer",
@@ -53,14 +173,14 @@
                 ],
                 "loc": {
                     "start": {
-                        "offset": 26,
-                        "line": 3,
-                        "column": 9
+                        "offset": 227,
+                        "line": 15,
+                        "column": 13
                     },
                     "end": {
-                        "offset": 41,
-                        "line": 3,
-                        "column": 24
+                        "offset": 242,
+                        "line": 15,
+                        "column": 28
                     }
                 }
             },
@@ -82,22 +202,22 @@
                 ],
                 "loc": {
                     "start": {
-                        "offset": 44,
-                        "line": 3,
-                        "column": 27
+                        "offset": 245,
+                        "line": 15,
+                        "column": 31
                     },
                     "end": {
-                        "offset": 58,
-                        "line": 3,
-                        "column": 41
+                        "offset": 259,
+                        "line": 15,
+                        "column": 45
                     }
                 }
             },
             {
                 "type": "format",
                 "eol": "\n",
-                "ws": "        ",
-                "raw": "\n        "
+                "ws": "            ",
+                "raw": "\n            "
             },
             {
                 "type": "buffer",
@@ -106,8 +226,8 @@
             {
                 "type": "format",
                 "eol": "\n",
-                "ws": "            ",
-                "raw": "\n            "
+                "ws": "                ",
+                "raw": "\n                "
             },
             {
                 "type": "#",
@@ -118,22 +238,22 @@
                 "params": [],
                 "loc": {
                     "start": {
-                        "offset": 84,
-                        "line": 5,
-                        "column": 13
+                        "offset": 293,
+                        "line": 17,
+                        "column": 17
                     },
                     "end": {
-                        "offset": 189,
-                        "line": 9,
-                        "column": 20
+                        "offset": 414,
+                        "line": 21,
+                        "column": 24
                     }
                 },
                 "bodies": [
                     {
                         "type": "format",
                         "eol": "\n",
-                        "ws": "            ",
-                        "raw": "\n            "
+                        "ws": "                ",
+                        "raw": "\n                "
                     },
                     {
                         "type": "buffer",
@@ -142,8 +262,8 @@
                     {
                         "type": "format",
                         "eol": "\n",
-                        "ws": "                ",
-                        "raw": "\n                "
+                        "ws": "                    ",
+                        "raw": "\n                    "
                     },
                     {
                         "type": "buffer",
@@ -158,14 +278,14 @@
                         "modifiers": [],
                         "loc": {
                             "start": {
-                                "offset": 134,
-                                "line": 7,
-                                "column": 26
+                                "offset": 351,
+                                "line": 19,
+                                "column": 30
                             },
                             "end": {
-                                "offset": 139,
-                                "line": 7,
-                                "column": 31
+                                "offset": 356,
+                                "line": 19,
+                                "column": 35
                             }
                         }
                     },
@@ -182,14 +302,14 @@
                         "modifiers": [],
                         "loc": {
                             "start": {
-                                "offset": 141,
-                                "line": 7,
-                                "column": 33
+                                "offset": 358,
+                                "line": 19,
+                                "column": 37
                             },
                             "end": {
-                                "offset": 147,
-                                "line": 7,
-                                "column": 39
+                                "offset": 364,
+                                "line": 19,
+                                "column": 43
                             }
                         }
                     },
@@ -200,8 +320,8 @@
                     {
                         "type": "format",
                         "eol": "\n",
-                        "ws": "            ",
-                        "raw": "\n            "
+                        "ws": "                ",
+                        "raw": "\n                "
                     },
                     {
                         "type": "buffer",
@@ -210,8 +330,8 @@
                     {
                         "type": "format",
                         "eol": "\n",
-                        "ws": "            ",
-                        "raw": "\n            "
+                        "ws": "                ",
+                        "raw": "\n                "
                     }
                 ],
                 "end": {
@@ -219,17 +339,27 @@
                     "value": "pets",
                     "loc": {
                         "start": {
-                            "offset": 182,
-                            "line": 9,
-                            "column": 13
+                            "offset": 407,
+                            "line": 21,
+                            "column": 17
                         },
                         "end": {
-                            "offset": 189,
-                            "line": 9,
-                            "column": 20
+                            "offset": 414,
+                            "line": 21,
+                            "column": 24
                         }
                     }
                 }
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "            ",
+                "raw": "\n            "
+            },
+            {
+                "type": "buffer",
+                "value": "</ul>"
             },
             {
                 "type": "format",
@@ -239,23 +369,13 @@
             },
             {
                 "type": "buffer",
-                "value": "</ul>"
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "    ",
-                "raw": "\n    "
-            },
-            {
-                "type": "buffer",
                 "value": "</li>"
             },
             {
                 "type": "format",
                 "eol": "\n",
-                "ws": "    ",
-                "raw": "\n    "
+                "ws": "        ",
+                "raw": "\n        "
             }
         ],
         "end": {
@@ -263,14 +383,14 @@
             "value": "names",
             "loc": {
                 "start": {
-                    "offset": 218,
-                    "line": 12,
-                    "column": 5
+                    "offset": 455,
+                    "line": 24,
+                    "column": 9
                 },
                 "end": {
-                    "offset": 226,
-                    "line": 12,
-                    "column": 13
+                    "offset": 463,
+                    "line": 24,
+                    "column": 17
                 }
             }
         }
@@ -278,8 +398,8 @@
     {
         "type": "format",
         "eol": "\n",
-        "ws": "",
-        "raw": "\n"
+        "ws": "    ",
+        "raw": "\n    "
     },
     {
         "type": "buffer",
@@ -305,41 +425,73 @@
                     "value": "js",
                     "loc": {
                         "start": {
-                            "offset": 244,
-                            "line": 15,
+                            "offset": 485,
+                            "line": 27,
                             "column": 11
                         },
                         "end": {
-                            "offset": 248,
-                            "line": 15,
+                            "offset": 489,
+                            "line": 27,
                             "column": 15
                         }
                     }
                 }
             }
         ],
-        "raw": "\nvar resecpt = this whitespace\n\nshane\n                -\nwef  as\n\new\n",
+        "raw": "line 1\nline 2\nline 3\nline 4\nline 5\nqw\n",
+        "end": {
+            "type": "key",
+            "value": "hl",
+            "loc": {
+                "start": {
+                    "offset": 529,
+                    "line": 34,
+                    "column": 1
+                },
+                "end": {
+                    "offset": 535,
+                    "line": 34,
+                    "column": 7
+                }
+            }
+        },
         "loc": {
             "start": {
-                "offset": 234,
-                "line": 15,
+                "offset": 475,
+                "line": 27,
                 "column": 1
             },
             "end": {
-                "offset": 323,
-                "line": 23,
+                "offset": 535,
+                "line": 34,
                 "column": 7
             }
         }
-    },
-    {
-        "type": "buffer",
-        "value": "a"
     },
     {
         "type": "format",
         "eol": "\n",
         "ws": "",
         "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "</body>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "</html>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "\n",
+        "raw": "\n\n"
     }
 ]

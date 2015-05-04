@@ -58,7 +58,7 @@ section "section"
   }
 
 raw_section "raw section"
-  = t:raw_sec_tag_start ws* rd r:raw_block* n:raw_end_tag
+  = t:raw_sec_tag_start ws* rd f:eol? r:raw_block* n:raw_end_tag
    &{
      if ( !n || (t.identifier.value !== n.value) ) {
         error('Expected end tag for ' + t.identifier.value);
@@ -67,6 +67,7 @@ raw_section "raw section"
    }
    {
     t.raw = r[0];
+    t.end = n;
     return withPosition(t)
    }
 
@@ -97,7 +98,7 @@ end_tag "end tag"
 
 raw_end_tag "raw end tag"
   = ld "/@" ws* n:identifier ws* rd
-  { return n }
+  { return withPosition(n) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    context is defined as matching a colon followed by an identifier
