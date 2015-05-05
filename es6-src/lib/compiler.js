@@ -80,6 +80,23 @@ export default class Compiler {
         }
     }
 
+    resolveValue ({ctx, node}) {
+        let compiler = this;
+        let lookup;
+        if (node.identifier.type === 'key') {
+
+            if (node.identifier.paths) {
+                if (node.identifier.paths[0] === false) {
+                    // todo - change grammer/ast to have better descriptions for this path
+                    lookup = node.identifier.paths.slice(1)[0];
+                }
+            } else {
+                lookup = node.identifier.value;
+            }
+        }
+        return compiler.getValue(ctx.concat(lookup));
+    }
+
     /**
      * Error handling
      * @param err

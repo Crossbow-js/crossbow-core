@@ -32,14 +32,7 @@ export default {
 
         if (node.bodies) {
 
-            let curr;
-
-            // Path?
-            if (node.identifier.paths) {
-                console.log('paths', node.identifier.paths);
-            } else {
-                curr = compiler.getValue(ctx.concat(node.identifier.value), true);
-            }
+            let curr = compiler.resolveValue({node, ctx});
 
             if (typeof curr === 'undefined') {
                 return ''; // no context
@@ -87,20 +80,7 @@ export default {
     reference: function referenceNode({node, ctx, compiler}) {
 
         var modifiers = node.modifiers || [];
-        let value;
-
-        if (node.identifier.type === 'key') {
-
-            if (node.identifier.paths) {
-                //console.log(node.identifier.paths.slice(1)[0]);
-                if (node.identifier.paths[0] === false) {
-                    // todo - change grammer/ast to have better descriptions for this path
-                    value = compiler.getValue(ctx.concat(node.identifier.paths.slice(1)[0]));
-                }
-            } else {
-                value = compiler.getValue(ctx.concat(node.identifier.value));
-            }
-        }
+        let value = compiler.resolveValue(ctx, node);
 
         if (typeof value === 'undefined') {
             compiler.error(`Failed to access ${node.identifier.value}. An empty string will be used instead`);

@@ -64,4 +64,18 @@ describe('Compiling references blocks', () => {
         let out = compiler.parse({content: input, ctx});
         assert.equal(out, 'shane - osbourne');
     });
+    it.only('can render block from a path lookup', () => {
+        const input = `{#person.names}{first} - {last}{/person.names}`;
+        const ctx = {
+            person: {
+                names: {
+                    first: 'shane',
+                    last: 'osbourne'
+                }
+            }
+        };
+        let compiler = builder();
+        let out = compiler.parse({content: input, ctx});
+        assert.equal(out, 'shane - osbourne');
+    });
 });
