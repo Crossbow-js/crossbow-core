@@ -28,17 +28,9 @@ describe('Compiling references', function () {
         var out = _cblang$builder2['default']({ content: input1, ctx: ctx });
         _assert.assert.equal(out, 'hello shane');
     });
-    it.only('can add reference from ctx path', function () {
+    it('can add reference from ctx path', function () {
         var ctx = { person: { name: 'shane', age: 20 } };
         var out = _cblang$builder2['default']({ content: 'hello {person.name} {person.age}', ctx: ctx });
         _assert.assert.equal(out, 'hello shane 20');
-    });
-    it.skip('can remove unknown from ctx path', function () {
-        var ctx = { person: { name: 'shane' } };
-        var compiler = _cblang$builder.builder();
-        var spy = _sinon2['default'].spy(compiler, 'error');
-        var out = compiler.parse({ content: 'hello {person.surname}', ctx: ctx });
-        _assert.assert.equal(out, 'hello ');
-        _sinon2['default'].assert.called(spy);
     });
 });

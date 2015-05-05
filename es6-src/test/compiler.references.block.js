@@ -33,4 +33,21 @@ describe('Compiling references blocks', () => {
         let out = compiler.parse({content: input, ctx});
         console.log([out]);
     });
+    it.only('can render multiple nested reference blocks', () => {
+        const input = `{#person}{#names}{first} - {last}{/names}{/person}{#address}{town}{/address}`;
+        const ctx = {
+            person: {
+                names: {
+                    first: 'shane',
+                    last: 'osbourne'
+                }
+            },
+            address: {
+                town: 'Mansfield'
+            }
+        };
+        let compiler = builder();
+        let out = compiler.parse({content: input, ctx});
+        console.log([out]);
+    });
 });

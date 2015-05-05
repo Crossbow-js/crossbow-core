@@ -45,4 +45,21 @@ describe('Compiling references blocks', function () {
         var out = compiler.parse({ content: input, ctx: ctx });
         console.log([out]);
     });
+    it.only('can render multiple nested reference blocks', function () {
+        var input = '{#person}{#names}{first} - {last}{/names}{/person}{#address}{town}{/address}';
+        var ctx = {
+            person: {
+                names: {
+                    first: 'shane',
+                    last: 'osbourne'
+                }
+            },
+            address: {
+                town: 'Mansfield'
+            }
+        };
+        var compiler = _cblang$builder.builder();
+        var out = compiler.parse({ content: input, ctx: ctx });
+        console.log([out]);
+    });
 });
