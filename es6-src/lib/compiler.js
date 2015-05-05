@@ -80,11 +80,18 @@ export default class Compiler {
         }
     }
 
+    /**
+     * Take an array of paths and try to resolve a value
+     * @param ctx
+     * @param node
+     * @returns {{value: *, ctx: Array}}
+     */
     resolveValue ({ctx, node}) {
+
         let compiler = this;
         let lookup;
-        if (node.identifier.type === 'key') {
 
+        if (node.identifier.type === 'key') {
             if (node.identifier.paths) {
                 if (node.identifier.paths[0] === false) {
                     // todo - change grammer/ast to have better descriptions for this path
@@ -94,7 +101,13 @@ export default class Compiler {
                 lookup = node.identifier.value;
             }
         }
-        return compiler.getValue(ctx.concat(lookup));
+
+        ctx = ctx.concat(lookup);
+
+        return {
+            value: compiler.getValue(ctx),
+            ctx
+        }
     }
 
     /**

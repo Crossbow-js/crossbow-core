@@ -33,4 +33,18 @@ describe('Adding filters to the compiler', () => {
 
         assert.equal(out, 'kittie - osbourne');
     });
+
+    it('using external module + filter', () => {
+        const content = `{shane|ucfirst|lodash:pad~15,"--"}`;
+        const ctx     = {shane: 'shane'};
+        const output  = cblang({content, ctx});
+        assert.equal(output, '-----Shane-----');
+    });
+
+    it('Does not blow up/hang with whitespace inbetween params', () => {
+        const content = `{shane|ucfirst|lodash:pad~ 15 , "--"  }`;
+        const ctx     = {shane: 'shane'};
+        const output = cblang({content, ctx});
+        assert.equal(output, '-----Shane-----');
+    });
 });

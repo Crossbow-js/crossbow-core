@@ -76,7 +76,7 @@ describe('Compiling references blocks', function () {
         var out = compiler.parse({ content: input, ctx: ctx });
         _assert.assert.equal(out, 'shane - osbourne');
     });
-    it.only('can render block from a path lookup', function () {
+    it('can render block from a path lookup', function () {
         var input = '{#person.names}{first} - {last}{/person.names}';
         var ctx = {
             person: {

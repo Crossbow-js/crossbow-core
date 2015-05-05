@@ -34,12 +34,12 @@ export default {
 
             let curr = compiler.resolveValue({node, ctx});
 
-            if (typeof curr === 'undefined') {
+            if (typeof curr.value === 'undefined') {
                 return ''; // no context
             }
 
-            if (typeof curr === 'number' || typeof curr === 'string') {
-                return curr;
+            if (typeof curr.value === 'number' || typeof curr.value === 'string') {
+                return curr.value;
             }
 
             //if (Array.isArray(curr)) {
@@ -55,44 +55,27 @@ export default {
             //    }, '');
             //}
 
-            if (typeof curr === 'object') {
-
-                //console.log(compiler._ctx);
-                //console.log(compiler._ctxPath);
-                //console.log(node);
-                //if (Object.keys(curr).length) {
-                //    var out = Object.keys(curr).reduce(function (all, key, i) {
-                //        var currContext = {
-                //            $key:    String(key),
-                //            $value:  String(curr[key]),
-                //            $this:   String(curr[key]),
-                //            $index:  String(i)
-                //        };
-                //        all += compiler.process({ast: node.bodies, ctx: currContext, compiler});
-                //        return all;
-                //    }, '');
-                //    return out;
-                //}
-                return compiler.process({ast: node.bodies, ctx: ctx.concat(node.identifier.value)});
+            if (typeof curr.value === 'object') {
+                return compiler.process({ast: node.bodies, ctx: curr.ctx});
             }
         }
     },
     reference: function referenceNode({node, ctx, compiler}) {
 
         var modifiers = node.modifiers || [];
-        let value = compiler.resolveValue(ctx, node);
+        let curr = compiler.resolveValue({ctx, node});
+        let outValue = curr.value;
 
-        if (typeof value === 'undefined') {
+        if (typeof curr.value === 'undefined') {
             compiler.error(`Failed to access ${node.identifier.value}. An empty string will be used instead`);
-            value = '';
-            return value;
+            return '';
         }
 
         if (modifiers.length) {
             modifiers.forEach(function (item) {
                 if (item.type === 'filter') {
                     if (compiler.filters[item.value]) {
-                        value = compiler.filters[item.value]({value, args: item.args, ctx, node, compiler});
+                        outValue = compiler.filters[item.value]({value: curr.value, args: item.args, ctx, node, compiler});
                     }
                 }
                 if (item.type === 'modifier') {
@@ -100,7 +83,7 @@ export default {
                         var mod = require(item.namespace);
                         var method = mod[item.method];
                         if (typeof method === 'function') {
-                            value = method(...[value].concat(item.args.map(x => x.value)));
+                            outValue = method(...[outValue].concat(item.args.map(x => x.value)));
                         } else {
                             console.error(`\`${item.method}\` method could not be found in module \`${item.namespace}\``);
                         }
@@ -108,9 +91,9 @@ export default {
                         console.error(e);
                     }
                 }
-            })
+            });
         }
 
-        return value;
+        return outValue;
     }
 }
