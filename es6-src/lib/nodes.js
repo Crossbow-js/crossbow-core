@@ -42,18 +42,13 @@ export default {
                 return curr.value;
             }
 
-            //if (Array.isArray(curr)) {
-            //
-            //    return curr.reduce(function (all, currContext, i) {
-            //
-            //        currContext.$this    = currContext;
-            //        currContext.$index   = i;
-            //        currContext.$length  = currContext.length;
-            //        all += compiler.process({ast: node.bodies, ctx: currContext});
-            //
-            //        return all;
-            //    }, '');
-            //}
+            if (Array.isArray(curr.value)) {
+
+                return curr.value.reduce(function (all, item, i) {
+                    all += compiler.process({ast: node.bodies, ctx: curr.ctx.concat(i)});
+                    return all;
+                }, '');
+            }
 
             if (typeof curr.value === 'object') {
                 return compiler.process({ast: node.bodies, ctx: curr.ctx});
