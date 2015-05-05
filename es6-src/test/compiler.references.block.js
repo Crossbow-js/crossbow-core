@@ -31,9 +31,9 @@ describe('Compiling references blocks', () => {
         const ctx = {person: {names: {first: 'shane', last: 'osbourne'}}};
         let compiler = builder();
         let out = compiler.parse({content: input, ctx});
-        console.log([out]);
+        assert.equal(out, 'shane - osbourne')
     });
-    it.only('can render multiple nested reference blocks', () => {
+    it('can render multiple nested reference blocks', () => {
         const input = `{#person}{#names}{first} - {last}{/names}{/person} - {#address}{town}{/address}`;
         const ctx = {
             person: {
@@ -49,5 +49,19 @@ describe('Compiling references blocks', () => {
         let compiler = builder();
         let out = compiler.parse({content: input, ctx});
         assert.equal(out, 'shane - osbourne - Mansfield');
+    });
+    it('can render multiple nested references in blocks', () => {
+        const input = `{#person}{names.first} - {names.last}{/person}`;
+        const ctx = {
+            person: {
+                names: {
+                    first: 'shane',
+                    last: 'osbourne'
+                }
+            }
+        };
+        let compiler = builder();
+        let out = compiler.parse({content: input, ctx});
+        assert.equal(out, 'shane - osbourne');
     });
 });

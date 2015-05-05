@@ -43,9 +43,9 @@ describe('Compiling references blocks', function () {
         var ctx = { person: { names: { first: 'shane', last: 'osbourne' } } };
         var compiler = _cblang$builder.builder();
         var out = compiler.parse({ content: input, ctx: ctx });
-        console.log([out]);
+        _assert.assert.equal(out, 'shane - osbourne');
     });
-    it.only('can render multiple nested reference blocks', function () {
+    it('can render multiple nested reference blocks', function () {
         var input = '{#person}{#names}{first} - {last}{/names}{/person} - {#address}{town}{/address}';
         var ctx = {
             person: {
@@ -61,5 +61,19 @@ describe('Compiling references blocks', function () {
         var compiler = _cblang$builder.builder();
         var out = compiler.parse({ content: input, ctx: ctx });
         _assert.assert.equal(out, 'shane - osbourne - Mansfield');
+    });
+    it('can render multiple nested references in blocks', function () {
+        var input = '{#person}{names.first} - {names.last}{/person}';
+        var ctx = {
+            person: {
+                names: {
+                    first: 'shane',
+                    last: 'osbourne'
+                }
+            }
+        };
+        var compiler = _cblang$builder.builder();
+        var out = compiler.parse({ content: input, ctx: ctx });
+        _assert.assert.equal(out, 'shane - osbourne');
     });
 });
