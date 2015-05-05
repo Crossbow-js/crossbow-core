@@ -38,10 +38,8 @@ export default {
             if (node.identifier.paths) {
                 console.log('paths', node.identifier.paths);
             } else {
-                curr = compiler.getValue(node.identifier.value, true);
+                curr = compiler.getValue(ctx.concat(node.identifier.value), true);
             }
-
-            console.log(curr);
 
             if (typeof curr === 'undefined') {
                 return ''; // no context
@@ -82,7 +80,7 @@ export default {
                 //    }, '');
                 //    return out;
                 //}
-                return compiler.process({ast: node.bodies});
+                return compiler.process({ast: node.bodies, ctx: ctx.concat(node.identifier.value)});
             }
         }
     },
@@ -101,7 +99,8 @@ export default {
                 }
                 //console.log('paths', node.identifier.paths);
             } else {
-                value = compiler.getValue(node.identifier.value);
+                //console.log(ctx.concat(node.identifier.value));
+                value = compiler.getValue(ctx.concat(node.identifier.value));
             }
         }
 

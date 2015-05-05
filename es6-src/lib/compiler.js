@@ -27,7 +27,7 @@ export default class Compiler {
         compiler._original = content;
         compiler._ctx      = Immutable.fromJS(ctx);
         compiler._ctxPath  = [];
-        return compiler.process({ast, ctx, compiler});
+        return compiler.process({ast, ctx: [], compiler});
     }
 
     /**
@@ -64,13 +64,13 @@ export default class Compiler {
             paths = [paths];
         }
 
-        let newpath = compiler._ctxPath.concat(paths);
+        //let newpath = compiler._ctxPath.concat(paths);
 
-        if (advancePointer) {
-            compiler._ctxPath = newpath;
-        }
+        //if (advancePointer) {
+        //    compiler._ctxPath = newpath;
+        //}
 
-        let curr = compiler._ctx.getIn(newpath);
+        let curr = compiler._ctx.getIn(paths);
 
         if (typeof curr !== 'undefined') {
             if (Immutable.Map.isMap(curr) || Immutable.List.isList(curr)) {
