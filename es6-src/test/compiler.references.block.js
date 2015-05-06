@@ -78,4 +78,52 @@ describe('Compiling references blocks', () => {
         let out = compiler.parse({content: input, ctx});
         assert.equal(out, 'shane - osbourne');
     });
+    it('can render block from a path lookup with array notation', () => {
+        const input = `{#people[0]}{first} - {last}{/people[0]}`;
+        const ctx = {
+            people: [
+                {
+                    first: 'shane',
+                    last:  'osbourne'
+                }
+            ]
+        };
+        let compiler = builder();
+        let out = compiler.parse({content: input, ctx});
+        assert.equal(out, 'shane - osbourne');
+    });
+    it('can render block from a multi path lookup with array notation', () => {
+        const input = `{#list.people[0]}{first} - {last}{/list.people[0]}`;
+        const ctx = {
+            list: {
+                people: [
+                    {
+                        first: 'shane',
+                        last:  'osbourne'
+                    }
+                ]
+            }
+        };
+        let compiler = builder();
+        let out = compiler.parse({content: input, ctx});
+        assert.equal(out, 'shane - osbourne');
+    });
+    it('can render block from a multi path lookup with array notation nested', () => {
+        const input = `{#list.people[0]}{#names}{first} - {last}{/names}{/list.people[0]}`;
+        const ctx = {
+            list: {
+                people: [
+                    {
+                        names: {
+                            first: 'shane',
+                            last:  'osbourne'
+                        }
+                    }
+                ]
+            }
+        };
+        let compiler = builder();
+        let out = compiler.parse({content: input, ctx});
+        assert.equal(out, 'shane - osbourne');
+    });
 });

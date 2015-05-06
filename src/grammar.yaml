@@ -86,7 +86,7 @@ raw_sec_tag_start
 
 sec_tag_start
   = ld t:[#?^<+@%] ws* n:identifier c:context p:params
-  { return withPosition({type: t, identifier: n, params: p}) }
+  { return withPosition({type: t, identifier: n, params: p, context: c}) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    end_tag is defined as matching an opening brace followed by a slash plus 0 or more white spaces plus identifier followed
@@ -105,7 +105,7 @@ raw_end_tag "raw end tag"
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 context
   = n:(":" n:identifier {return n})?
-  { return n ? ["context", n] : ["context"] }
+  { return n ? n : {} }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
   params is defined as matching white space followed by = and identfier or inline
@@ -221,7 +221,7 @@ key "key"
   { return h + t.join('') }
 
 array "array"
-  = i:( lb a:( n:([0-9]+) {return n.join('')} / identifier) rb  {return a; }) nk: array_part? { if(nk) { nk.unshift(i); } else {nk = [i] } return nk; }
+  = i:( lb a:( n:([0-9]+) {return parseInt(n.join(''), 10)} / identifier) rb  {return a; }) nk: array_part? { if(nk) { nk.unshift(i); } else {nk = [i] } return nk; }
 
 array_part "array_part"
   = d:("." k:key {return k})+ a:(array)? { if (a) { return d.concat(a); } else { return d; } }

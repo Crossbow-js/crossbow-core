@@ -1,14 +1,20 @@
 [
     {
-        "type": "#",
+        "type": "@",
         "identifier": {
             "type": "key",
-            "paths": [
-                "names",
-                "shane"
-            ]
+            "value": "loop"
         },
         "params": [],
+        "context": {
+            "type": "key",
+            "value": "$pkg.shae.0",
+            "paths": [
+                "$pkg",
+                "shae",
+                0
+            ]
+        },
         "loc": {
             "start": {
                 "offset": 0,
@@ -16,28 +22,46 @@
                 "column": 1
             },
             "end": {
-                "offset": 28,
+                "offset": 39,
                 "line": 1,
-                "column": 29
+                "column": 40
             }
         },
-        "bodies": [],
+        "bodies": [
+            {
+                "type": "reference",
+                "identifier": {
+                    "type": "key",
+                    "value": "version"
+                },
+                "modifiers": [],
+                "loc": {
+                    "start": {
+                        "offset": 23,
+                        "line": 1,
+                        "column": 24
+                    },
+                    "end": {
+                        "offset": 32,
+                        "line": 1,
+                        "column": 33
+                    }
+                }
+            }
+        ],
         "end": {
             "type": "key",
-            "paths": [
-                "names",
-                "shane"
-            ],
+            "value": "loop",
             "loc": {
                 "start": {
-                    "offset": 14,
+                    "offset": 32,
                     "line": 1,
-                    "column": 15
+                    "column": 33
                 },
                 "end": {
-                    "offset": 28,
+                    "offset": 39,
                     "line": 1,
-                    "column": 29
+                    "column": 40
                 }
             }
         }

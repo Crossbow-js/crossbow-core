@@ -33,4 +33,9 @@ describe('Compiling references', function () {
         var out = _cblang$builder2['default']({ content: 'hello {person.name} {person.age}', ctx: ctx });
         _assert.assert.equal(out, 'hello shane 20');
     });
+    it('can add reference from ctx with array notation', function () {
+        var ctx = { people: ['shane', 'kittie'] };
+        var out = _cblang$builder2['default']({ content: 'hello {people[0]} & {people[1]}', ctx: ctx });
+        _assert.assert.equal(out, 'hello shane & kittie');
+    });
 });

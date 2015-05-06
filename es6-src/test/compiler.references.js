@@ -21,4 +21,9 @@ describe('Compiling references', () => {
         let out = cblang({content: 'hello {person.name} {person.age}', ctx});
         assert.equal(out, 'hello shane 20');
     });
+    it('can add reference from ctx with array notation', () => {
+        const ctx = {people: ['shane', 'kittie']};
+        let out = cblang({content: 'hello {people[0]} & {people[1]}', ctx});
+        assert.equal(out, 'hello shane & kittie');
+    });
 });

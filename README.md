@@ -45,6 +45,8 @@ function `pad` with the args `10` & `-`;
 - [x] Filters/modifiers should accept params eg: `{post.excerpt|trunc~200}`.
 - [ ] Configurable left / right delimeters
 - [x] every node should report detailed location info
+- [x] path notation for references: `{name}` `{person.name}` etc
+- [x] array notation for references: `{people[0].name}` etc
 
 ## Todo - Compiler
 

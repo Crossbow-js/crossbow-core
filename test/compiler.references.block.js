@@ -90,4 +90,46 @@ describe('Compiling references blocks', function () {
         var out = compiler.parse({ content: input, ctx: ctx });
         _assert.assert.equal(out, 'shane - osbourne');
     });
+    it('can render block from a path lookup with array notation', function () {
+        var input = '{#people[0]}{first} - {last}{/people[0]}';
+        var ctx = {
+            people: [{
+                first: 'shane',
+                last: 'osbourne'
+            }]
+        };
+        var compiler = _cblang$builder.builder();
+        var out = compiler.parse({ content: input, ctx: ctx });
+        _assert.assert.equal(out, 'shane - osbourne');
+    });
+    it('can render block from a multi path lookup with array notation', function () {
+        var input = '{#list.people[0]}{first} - {last}{/list.people[0]}';
+        var ctx = {
+            list: {
+                people: [{
+                    first: 'shane',
+                    last: 'osbourne'
+                }]
+            }
+        };
+        var compiler = _cblang$builder.builder();
+        var out = compiler.parse({ content: input, ctx: ctx });
+        _assert.assert.equal(out, 'shane - osbourne');
+    });
+    it('can render block from a multi path lookup with array notation nested', function () {
+        var input = '{#list.people[0]}{#names}{first} - {last}{/names}{/list.people[0]}';
+        var ctx = {
+            list: {
+                people: [{
+                    names: {
+                        first: 'shane',
+                        last: 'osbourne'
+                    }
+                }]
+            }
+        };
+        var compiler = _cblang$builder.builder();
+        var out = compiler.parse({ content: input, ctx: ctx });
+        _assert.assert.equal(out, 'shane - osbourne');
+    });
 });
