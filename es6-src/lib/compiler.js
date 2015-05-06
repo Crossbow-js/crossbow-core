@@ -90,15 +90,14 @@ export default class Compiler {
 
         let compiler = this;
         let lookup;
+        let paths = node.identifier.paths;
+        let value = node.identifier.value;
 
         if (node.identifier.type === 'key') {
-            if (node.identifier.paths) {
-                if (node.identifier.paths[0] === false) {
-                    // todo - change grammer/ast to have better descriptions for this path
-                    lookup = node.identifier.paths.slice(1)[0];
-                }
+            if (paths && paths.length) {
+                lookup = paths;
             } else {
-                lookup = node.identifier.value;
+                lookup = value;
             }
         }
 

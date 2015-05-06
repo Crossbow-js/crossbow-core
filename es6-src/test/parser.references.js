@@ -22,7 +22,7 @@ describe('References', () => {
         assert.equal(ast[1].type, 'reference');
         assert.equal(ast[1].identifier.type,  'key');
         assert.equal(ast[1].identifier.value, 'person.namez');
-        assert.equal(ast[1].identifier.paths[1][0], 'person');
-        assert.equal(ast[1].identifier.paths[1][1], 'namez');
+        assert.equal(ast[1].identifier.paths[0], 'person');
+        assert.equal(ast[1].identifier.paths[1], 'namez');
     });
 });

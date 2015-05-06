@@ -113,7 +113,7 @@ module.exports = (function() {
         peg$c54 = function(p) {
             var arr = {}
             arr.paths = p;
-            arr.path = p[1].join('.').replace(/,line,\d+,col,\d+/g,'');
+            arr.path = p.join('.').replace(/,line,\d+,col,\d+/g,'');
             return {type: 'key', value: arr.path, paths: p};
             return arr;
           },
@@ -142,9 +142,8 @@ module.exports = (function() {
             d = d[0];
             if (k && d) {
               d.unshift(k);
-              return withPosition([false, d])
             }
-            return withPosition([true, d])
+            return d;
           },
         peg$c73 = function(d) {
             if (d.length > 0) {

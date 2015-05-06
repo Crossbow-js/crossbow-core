@@ -31,7 +31,7 @@ describe('References', function () {
         _assert.assert.equal(ast[1].type, 'reference');
         _assert.assert.equal(ast[1].identifier.type, 'key');
         _assert.assert.equal(ast[1].identifier.value, 'person.namez');
-        _assert.assert.equal(ast[1].identifier.paths[1][0], 'person');
-        _assert.assert.equal(ast[1].identifier.paths[1][1], 'namez');
+        _assert.assert.equal(ast[1].identifier.paths[0], 'person');
+        _assert.assert.equal(ast[1].identifier.paths[1], 'namez');
     });
 });

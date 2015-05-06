@@ -5,7 +5,7 @@ var md = fs.readFileSync('./examples/loop.html', 'utf-8');
 
 var start = microtime.now();
 console.time('cb time:     ');
-var out = parser.parse(md);
+var out = parser.parse('{#names.shane}{/names.shane}');
 console.log('cb micro time:', microtime.now() - start);
 console.timeEnd('cb time:     ');
 

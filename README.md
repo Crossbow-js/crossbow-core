@@ -55,7 +55,7 @@ function `pad` with the args `10` & `-`;
 - [x] Raw input should nuke whitespace if a tag is the only item on a line. 
 - [x] Helper blocks have access to AST & compiler.
 - [x] Iterator for arrays `{#names}{first}{/names}`
-- [ ] Iterator for object with keys/valus
+- [ ] Iterator for object with keys/values `{@loop:pkg}{$key} - {value}{/loop}`
 - [x] Path lookup for references
 - [ ] **Reverse** Path lookup for references
 - [ ] Index lookup for references
