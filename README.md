@@ -49,8 +49,8 @@ function `pad` with the args `10` & `-`;
 - [x] Helper blocks have access RAW input via `{@helper}content{/@helper}`
 - [x] Helper blocks have access to ast via `{@helper}content{/helper}`
 - [x] Filters/modifiers should accept params eg: `{post.excerpt|trunc~200}`.
-- [ ] Configurable left / right delimeters
-- [ ] Inverse blocks with `{else:}`
+- [ ] Configurable left / right delimiters
+- [x] Inverse blocks with `{else:}`
 - [x] Every node should report detailed location info
 - [x] Path notation for references: `{name}` `{person.name}` etc
 - [x] Array notation for references: `{people[0].name}` etc
@@ -67,4 +67,4 @@ function `pad` with the args `10` & `-`;
 - [ ] Iterator for object with keys/values `{@loop:pkg}{$key} - {value}{/loop}`
 - [x] Path lookup for references
 - [ ] **Reverse** Path lookup for references
-- [ ] Index lookup for references
+- [x] Index lookup for references

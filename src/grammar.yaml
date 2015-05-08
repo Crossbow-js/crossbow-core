@@ -46,8 +46,9 @@ section "section"
      return true;
    }
    {
-    t.bodies = b;
-    t.end    = n;
+    t.bodies  = b;
+    t.inverse = e;
+    t.end     = n;
     return withPosition(t)
    }
   // self-closing format
@@ -118,8 +119,8 @@ params "params"
    bodies is defined as matching a opening brace followed by key and closing brace, plus body 0 or more times.
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 bodies "bodies"
-  = p:(ld ":" k:key rd v:body {return ["param", ["literal", k], v]})*
-  { return ["bodies"].concat(p) }
+  = p:(ld ":" k:key rd v:body {return {identifier: {type: 'key', value: k}, bodies: v}})*
+  { return p }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    reference is defined as matching a opening brace followed by an identifier plus one or more filters and a closing brace

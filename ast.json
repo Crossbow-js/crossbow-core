@@ -3,17 +3,12 @@
         "type": "@",
         "identifier": {
             "type": "key",
-            "value": "loop"
+            "value": "if"
         },
         "params": [],
         "context": {
             "type": "key",
-            "value": "$pkg.shae.0",
-            "paths": [
-                "$pkg",
-                "shae",
-                0
-            ]
+            "value": "something"
         },
         "loc": {
             "start": {
@@ -22,46 +17,56 @@
                 "column": 1
             },
             "end": {
-                "offset": 39,
+                "offset": 51,
                 "line": 1,
-                "column": 40
+                "column": 52
             }
         },
         "bodies": [
             {
-                "type": "reference",
+                "type": "buffer",
+                "value": "true"
+            }
+        ],
+        "inverse": [
+            {
                 "identifier": {
                     "type": "key",
-                    "value": "version"
+                    "value": "else"
                 },
-                "modifiers": [],
-                "loc": {
-                    "start": {
-                        "offset": 23,
-                        "line": 1,
-                        "column": 24
-                    },
-                    "end": {
-                        "offset": 32,
-                        "line": 1,
-                        "column": 33
+                "bodies": [
+                    {
+                        "type": "buffer",
+                        "value": "false"
                     }
-                }
+                ]
+            },
+            {
+                "identifier": {
+                    "type": "key",
+                    "value": "else"
+                },
+                "bodies": [
+                    {
+                        "type": "buffer",
+                        "value": "Aww yeah"
+                    }
+                ]
             }
         ],
         "end": {
             "type": "key",
-            "value": "loop",
+            "value": "if",
             "loc": {
                 "start": {
-                    "offset": 32,
+                    "offset": 46,
                     "line": 1,
-                    "column": 33
+                    "column": 47
                 },
                 "end": {
-                    "offset": 39,
+                    "offset": 51,
                     "line": 1,
-                    "column": 40
+                    "column": 52
                 }
             }
         }
