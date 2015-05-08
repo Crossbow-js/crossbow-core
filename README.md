@@ -50,6 +50,7 @@ function `pad` with the args `10` & `-`;
 - [x] Helper blocks have access to ast via `{@helper}content{/helper}`
 - [x] Filters/modifiers should accept params eg: `{post.excerpt|trunc~200}`.
 - [ ] Configurable left / right delimeters
+- [ ] Inverse blocks with `{else:}`
 - [x] Every node should report detailed location info
 - [x] Path notation for references: `{name}` `{person.name}` etc
 - [x] Array notation for references: `{people[0].name}` etc
