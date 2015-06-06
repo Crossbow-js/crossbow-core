@@ -47,6 +47,21 @@ describe('@loop helper with $this', function () {
 
         _assert.assert.equal(out, '01');
     });
+    it('can access current loop index + 1', function () {
+
+        var input1 = '{@loop:names}{$idx1}{/loop}';
+
+        var compiler = _cblang$builder.builder();
+
+        var out = compiler.parse({
+            content: input1,
+            ctx: {
+                names: ['shane', 'kittie']
+            }
+        });
+
+        _assert.assert.equal(out, '12');
+    });
     it('can render a loop over an array from initial path lookup', function () {
 
         var input1 = '{@loop:info.names}{$this}{/loop}';

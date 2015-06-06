@@ -496,7 +496,7 @@
                 "column": 1
             },
             "end": {
-                "offset": 579,
+                "offset": 588,
                 "line": 37,
                 "column": 8
             }
@@ -516,11 +516,7 @@
                 "type": "reference",
                 "identifier": {
                     "type": "key",
-                    "value": "$this.first",
-                    "paths": [
-                        "$this",
-                        "first"
-                    ]
+                    "value": "$idx"
                 },
                 "modifiers": [],
                 "loc": {
@@ -530,9 +526,37 @@
                         "column": 11
                     },
                     "end": {
-                        "offset": 571,
+                        "offset": 564,
                         "line": 36,
-                        "column": 24
+                        "column": 17
+                    }
+                }
+            },
+            {
+                "type": "buffer",
+                "value": " - "
+            },
+            {
+                "type": "reference",
+                "identifier": {
+                    "type": "key",
+                    "value": "$this.first",
+                    "paths": [
+                        "$this",
+                        "first"
+                    ]
+                },
+                "modifiers": [],
+                "loc": {
+                    "start": {
+                        "offset": 567,
+                        "line": 36,
+                        "column": 20
+                    },
+                    "end": {
+                        "offset": 580,
+                        "line": 36,
+                        "column": 33
                     }
                 }
             },
@@ -549,12 +573,12 @@
             "value": "loop",
             "loc": {
                 "start": {
-                    "offset": 572,
+                    "offset": 581,
                     "line": 37,
                     "column": 1
                 },
                 "end": {
-                    "offset": 579,
+                    "offset": 588,
                     "line": 37,
                     "column": 8
                 }

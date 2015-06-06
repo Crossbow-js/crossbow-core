@@ -56,7 +56,19 @@ export default class Compiler {
         }, '');
     }
 
-    getValue (paths, advancePointer) {
+    /**
+     * Given an array of paths, lookup an item
+     * from the immutable configuration given.
+     *
+     * Eg: $this.names[0].first comes through as
+     *      ['$this', 'names', 0, 'first']
+     *
+     *      $this gets wiped as it always refers to the current item
+     *      and the rest of the array is used to find the value.
+     * @param paths
+     * @returns {*}
+     */
+    getValue (paths) {
 
         let compiler = this;
 
@@ -64,14 +76,29 @@ export default class Compiler {
             paths = [paths];
         }
 
+        /**
+         * Just nuke any mentions of $this
+         */
         paths = paths.filter(function (path) {
             return path !== '$this';
         });
 
+        /**
+         * Get the last (currently looking for) item
+         */
         let lastPathItem = paths[paths.length-1];
+        let secondLastPathItem = paths[paths.length-2];
 
+        /**
+         * Access the item via the paths
+         * @type {any|*}
+         */
         let curr = compiler._ctx.getIn(paths);
 
+        /**
+         * If curr is not undefined, either convert item to
+         * JS  (if needed), or just return the item
+         */
         if (typeof curr !== 'undefined') {
             if (Immutable.Map.isMap(curr) || Immutable.List.isList(curr)) {
                 return curr.toJS();
@@ -82,21 +109,30 @@ export default class Compiler {
              * If $this was given, simply return the paths all the way upto,
              * but not including it
              */
-            if (paths[paths.length-1] === "$this") {
+            if (lastPathItem === "$this") {
                 return compiler._ctx.getIn(paths.slice(0, paths.length-1));
             }
             /**
              * if $idx was given, check if the previous path was a number
              * and given that.
              */
-            if (lastPathItem === '$idx') {
-                if (typeof paths[paths.length-2] === 'number') {
-                    return paths[paths.length-2];
+            let idx = lastPathItem.match(/^\$idx(\d)?/);
+            if (idx && typeof secondLastPathItem === 'number') {
+                if (idx[1]) {
+                    return secondLastPathItem + parseInt(idx[1], 10);
+                } else {
+                    return secondLastPathItem;
                 }
             }
         }
     }
 
+    /**
+     * Helper to normalise value lookup paths
+     * coming from the AST
+     * @param node
+     * @returns {*}
+     */
     getLookupPath ({node}) {
         let contextNodePaths = node.paths;
         let lookup;

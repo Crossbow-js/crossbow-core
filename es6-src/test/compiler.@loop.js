@@ -41,6 +41,24 @@ describe('@loop helper with $this', () => {
 
         assert.equal(out, '01');
     });
+    it('can access current loop index + 1', () => {
+
+        const input1 = `{@loop:names}{$idx1}{/loop}`;
+
+        let compiler = builder();
+
+        let out = compiler.parse({
+            content: input1,
+            ctx: {
+                names: [
+                    'shane',
+                    'kittie'
+                ]
+            }
+        });
+
+        assert.equal(out, '12');
+    });
     it('can render a loop over an array from initial path lookup', () => {
 
         const input1 = `{@loop:info.names}{$this}{/loop}`;
