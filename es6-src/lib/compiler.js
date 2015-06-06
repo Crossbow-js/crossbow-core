@@ -64,11 +64,9 @@ export default class Compiler {
             paths = [paths];
         }
 
-        //let newpath = compiler._ctxPath.concat(paths);
-
-        //if (advancePointer) {
-        //    compiler._ctxPath = newpath;
-        //}
+        paths = paths.filter(function (path) {
+            return path !== '$this';
+        });
 
         let curr = compiler._ctx.getIn(paths);
 
@@ -77,7 +75,25 @@ export default class Compiler {
                 return curr.toJS();
             }
             return curr;
+        } else {
+            if (paths[paths.length-1] === "$this") {
+                return compiler._ctx.getIn(paths.slice(0, paths.length-1));
+            }
         }
+    }
+
+    getLookupPath ({node}) {
+        let contextNodePaths = node.paths;
+        let lookup;
+
+        if (node.type === 'key') {
+            if (contextNodePaths && contextNodePaths.length) {
+                lookup = contextNodePaths;
+            } else {
+                lookup = node.value;
+            }
+        }
+        return lookup;
     }
 
     /**
@@ -87,6 +103,13 @@ export default class Compiler {
      * @returns {{value: *, ctx: Array}}
      */
     resolveValue ({ctx, node}) {
+
+        if (!ctx) {
+            return {
+                value: undefined,
+                ctx: ctx
+            }
+        }
 
         let compiler = this;
         let lookup;

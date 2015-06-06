@@ -1,74 +1,590 @@
 [
     {
-        "type": "@",
+        "type": "buffer",
+        "value": "<!doctype html>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "<html lang=\"en\">"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "<head>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<meta charset=\"UTF-8\">"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<title>Document</title>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<style>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "        ",
+        "raw": "\n        "
+    },
+    {
+        "type": "buffer",
+        "value": "pre {"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "            ",
+        "raw": "\n            "
+    },
+    {
+        "type": "buffer",
+        "value": "background: grey;"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "        ",
+        "raw": "\n        "
+    },
+    {
+        "type": "buffer",
+        "value": "}"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "</style>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "</head>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "<body>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "<ul>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "        ",
+        "raw": "\n        "
+    },
+    {
+        "type": "#",
         "identifier": {
             "type": "key",
-            "value": "if"
+            "value": "names"
         },
         "params": [],
-        "context": {
-            "type": "key",
-            "value": "something"
-        },
+        "context": {},
         "loc": {
             "start": {
-                "offset": 0,
-                "line": 1,
-                "column": 1
+                "offset": 206,
+                "line": 14,
+                "column": 9
             },
             "end": {
-                "offset": 51,
-                "line": 1,
-                "column": 52
+                "offset": 463,
+                "line": 24,
+                "column": 17
             }
         },
         "bodies": [
             {
-                "type": "buffer",
-                "value": "true"
-            }
-        ],
-        "inverse": [
-            {
-                "identifier": {
-                    "type": "key",
-                    "value": "else"
-                },
-                "bodies": [
-                    {
-                        "type": "buffer",
-                        "value": "false"
-                    }
-                ]
+                "type": "format",
+                "eol": "\n",
+                "ws": "        ",
+                "raw": "\n        "
             },
             {
+                "type": "buffer",
+                "value": "<li>"
+            },
+            {
+                "type": "reference",
                 "identifier": {
                     "type": "key",
-                    "value": "else"
+                    "value": "first"
+                },
+                "modifiers": [
+                    {
+                        "type": "filter",
+                        "value": "ucfirst"
+                    }
+                ],
+                "loc": {
+                    "start": {
+                        "offset": 227,
+                        "line": 15,
+                        "column": 13
+                    },
+                    "end": {
+                        "offset": 242,
+                        "line": 15,
+                        "column": 28
+                    }
+                }
+            },
+            {
+                "type": "buffer",
+                "value": " - "
+            },
+            {
+                "type": "reference",
+                "identifier": {
+                    "type": "key",
+                    "value": "last"
+                },
+                "modifiers": [
+                    {
+                        "type": "filter",
+                        "value": "ucfirst"
+                    }
+                ],
+                "loc": {
+                    "start": {
+                        "offset": 245,
+                        "line": 15,
+                        "column": 31
+                    },
+                    "end": {
+                        "offset": 259,
+                        "line": 15,
+                        "column": 45
+                    }
+                }
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "            ",
+                "raw": "\n            "
+            },
+            {
+                "type": "buffer",
+                "value": "<ul>"
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "                ",
+                "raw": "\n                "
+            },
+            {
+                "type": "#",
+                "identifier": {
+                    "type": "key",
+                    "value": "pets"
+                },
+                "params": [],
+                "context": {},
+                "loc": {
+                    "start": {
+                        "offset": 293,
+                        "line": 17,
+                        "column": 17
+                    },
+                    "end": {
+                        "offset": 414,
+                        "line": 21,
+                        "column": 24
+                    }
                 },
                 "bodies": [
                     {
+                        "type": "format",
+                        "eol": "\n",
+                        "ws": "                ",
+                        "raw": "\n                "
+                    },
+                    {
                         "type": "buffer",
-                        "value": "Aww yeah"
+                        "value": "<li>"
+                    },
+                    {
+                        "type": "format",
+                        "eol": "\n",
+                        "ws": "                    ",
+                        "raw": "\n                    "
+                    },
+                    {
+                        "type": "buffer",
+                        "value": "<a href=\""
+                    },
+                    {
+                        "type": "reference",
+                        "identifier": {
+                            "type": "key",
+                            "value": "url"
+                        },
+                        "modifiers": [],
+                        "loc": {
+                            "start": {
+                                "offset": 351,
+                                "line": 19,
+                                "column": 30
+                            },
+                            "end": {
+                                "offset": 356,
+                                "line": 19,
+                                "column": 35
+                            }
+                        }
+                    },
+                    {
+                        "type": "buffer",
+                        "value": "\">"
+                    },
+                    {
+                        "type": "reference",
+                        "identifier": {
+                            "type": "key",
+                            "value": "name"
+                        },
+                        "modifiers": [],
+                        "loc": {
+                            "start": {
+                                "offset": 358,
+                                "line": 19,
+                                "column": 37
+                            },
+                            "end": {
+                                "offset": 364,
+                                "line": 19,
+                                "column": 43
+                            }
+                        }
+                    },
+                    {
+                        "type": "buffer",
+                        "value": "</a>"
+                    },
+                    {
+                        "type": "format",
+                        "eol": "\n",
+                        "ws": "                ",
+                        "raw": "\n                "
+                    },
+                    {
+                        "type": "buffer",
+                        "value": "</li>"
+                    },
+                    {
+                        "type": "format",
+                        "eol": "\n",
+                        "ws": "                ",
+                        "raw": "\n                "
                     }
-                ]
+                ],
+                "inverse": [],
+                "end": {
+                    "type": "key",
+                    "value": "pets",
+                    "loc": {
+                        "start": {
+                            "offset": 407,
+                            "line": 21,
+                            "column": 17
+                        },
+                        "end": {
+                            "offset": 414,
+                            "line": 21,
+                            "column": 24
+                        }
+                    }
+                }
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "            ",
+                "raw": "\n            "
+            },
+            {
+                "type": "buffer",
+                "value": "</ul>"
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "        ",
+                "raw": "\n        "
+            },
+            {
+                "type": "buffer",
+                "value": "</li>"
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "        ",
+                "raw": "\n        "
             }
         ],
+        "inverse": [],
         "end": {
             "type": "key",
-            "value": "if",
+            "value": "names",
             "loc": {
                 "start": {
-                    "offset": 46,
-                    "line": 1,
-                    "column": 47
+                    "offset": 455,
+                    "line": 24,
+                    "column": 9
                 },
                 "end": {
-                    "offset": 51,
-                    "line": 1,
-                    "column": 52
+                    "offset": 463,
+                    "line": 24,
+                    "column": 17
                 }
             }
         }
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "    ",
+        "raw": "\n    "
+    },
+    {
+        "type": "buffer",
+        "value": "</ul>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "\n",
+        "raw": "\n\n"
+    },
+    {
+        "type": "@",
+        "identifier": {
+            "type": "key",
+            "value": "hl"
+        },
+        "params": [
+            {
+                "key": "lang",
+                "value": {
+                    "type": "string",
+                    "value": "js",
+                    "loc": {
+                        "start": {
+                            "offset": 485,
+                            "line": 27,
+                            "column": 11
+                        },
+                        "end": {
+                            "offset": 489,
+                            "line": 27,
+                            "column": 15
+                        }
+                    }
+                }
+            }
+        ],
+        "raw": "line 1\nline 2\nline 3\nline 4\nline 5\n",
+        "end": {
+            "type": "key",
+            "value": "hl",
+            "loc": {
+                "start": {
+                    "offset": 526,
+                    "line": 33,
+                    "column": 1
+                },
+                "end": {
+                    "offset": 532,
+                    "line": 33,
+                    "column": 7
+                }
+            }
+        },
+        "loc": {
+            "start": {
+                "offset": 475,
+                "line": 27,
+                "column": 1
+            },
+            "end": {
+                "offset": 532,
+                "line": 33,
+                "column": 7
+            }
+        }
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "\n",
+        "raw": "\n\n"
+    },
+    {
+        "type": "@",
+        "identifier": {
+            "type": "key",
+            "value": "loop"
+        },
+        "params": [],
+        "context": {
+            "type": "key",
+            "value": "names"
+        },
+        "loc": {
+            "start": {
+                "offset": 534,
+                "line": 35,
+                "column": 1
+            },
+            "end": {
+                "offset": 579,
+                "line": 37,
+                "column": 8
+            }
+        },
+        "bodies": [
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "    ",
+                "raw": "\n    "
+            },
+            {
+                "type": "buffer",
+                "value": "name: "
+            },
+            {
+                "type": "reference",
+                "identifier": {
+                    "type": "key",
+                    "value": "$this.first",
+                    "paths": [
+                        "$this",
+                        "first"
+                    ]
+                },
+                "modifiers": [],
+                "loc": {
+                    "start": {
+                        "offset": 558,
+                        "line": 36,
+                        "column": 11
+                    },
+                    "end": {
+                        "offset": 571,
+                        "line": 36,
+                        "column": 24
+                    }
+                }
+            },
+            {
+                "type": "format",
+                "eol": "\n",
+                "ws": "",
+                "raw": "\n"
+            }
+        ],
+        "inverse": [],
+        "end": {
+            "type": "key",
+            "value": "loop",
+            "loc": {
+                "start": {
+                    "offset": 572,
+                    "line": 37,
+                    "column": 1
+                },
+                "end": {
+                    "offset": 579,
+                    "line": 37,
+                    "column": 8
+                }
+            }
+        }
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "\n",
+        "raw": "\n\n"
+    },
+    {
+        "type": "buffer",
+        "value": "</body>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "",
+        "raw": "\n"
+    },
+    {
+        "type": "buffer",
+        "value": "</html>"
+    },
+    {
+        "type": "format",
+        "eol": "\n",
+        "ws": "\n",
+        "raw": "\n\n"
     }
 ]
