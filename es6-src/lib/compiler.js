@@ -68,6 +68,8 @@ export default class Compiler {
             return path !== '$this';
         });
 
+        let lastPathItem = paths[paths.length-1];
+
         let curr = compiler._ctx.getIn(paths);
 
         if (typeof curr !== 'undefined') {
@@ -76,8 +78,21 @@ export default class Compiler {
             }
             return curr;
         } else {
+            /**
+             * If $this was given, simply return the paths all the way upto,
+             * but not including it
+             */
             if (paths[paths.length-1] === "$this") {
                 return compiler._ctx.getIn(paths.slice(0, paths.length-1));
+            }
+            /**
+             * if $idx was given, check if the previous path was a number
+             * and given that.
+             */
+            if (lastPathItem === '$idx') {
+                if (typeof paths[paths.length-2] === 'number') {
+                    return paths[paths.length-2];
+                }
             }
         }
     }

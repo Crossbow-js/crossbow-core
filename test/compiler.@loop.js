@@ -16,7 +16,7 @@ var _sinon = require('sinon');
 
 var _sinon2 = _interopRequireDefault(_sinon);
 
-describe('@loop helper', function () {
+describe('@loop helper with $this', function () {
     it('can render a loop over an array', function () {
 
         var input1 = '{@loop:names}{$this}{/loop}';
@@ -31,6 +31,21 @@ describe('@loop helper', function () {
         });
 
         _assert.assert.equal(out, 'shanekittie');
+    });
+    it('can access current loop index', function () {
+
+        var input1 = '{@loop:names}{$idx}{/loop}';
+
+        var compiler = _cblang$builder.builder();
+
+        var out = compiler.parse({
+            content: input1,
+            ctx: {
+                names: ['shane', 'kittie']
+            }
+        });
+
+        _assert.assert.equal(out, '01');
     });
     it('can render a loop over an array from initial path lookup', function () {
 

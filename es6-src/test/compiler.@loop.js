@@ -4,7 +4,7 @@ import {writeFileSync} from 'fs';
 import {assert} from 'chai';
 import sinon from 'sinon';
 
-describe('@loop helper', () => {
+describe('@loop helper with $this', () => {
     it('can render a loop over an array', () => {
 
         const input1 = `{@loop:names}{$this}{/loop}`;
@@ -22,6 +22,24 @@ describe('@loop helper', () => {
         });
 
         assert.equal(out, 'shanekittie');
+    });
+    it('can access current loop index', () => {
+
+        const input1 = `{@loop:names}{$idx}{/loop}`;
+
+        let compiler = builder();
+
+        let out = compiler.parse({
+            content: input1,
+            ctx: {
+                names: [
+                    'shane',
+                    'kittie'
+                ]
+            }
+        });
+
+        assert.equal(out, '01');
     });
     it('can render a loop over an array from initial path lookup', () => {
 
