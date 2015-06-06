@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import Immutable from 'immutable';
+
 export default {
     hl ({node, ctx, compiler}) {
         if (!node.raw) {
@@ -20,6 +23,10 @@ export default {
         if (Array.isArray(value)) {
             value.forEach(function (value, i) {
                 out.push(compiler.process({ast: node.bodies, ctx: freshctx.concat(i)}));
+            });
+        } else if (_.isObject(value)) {
+            Object.keys(value).forEach(function (key) {
+                out.push(compiler.process({ast: node.bodies, ctx: freshctx.concat(key)}));
             });
         }
 

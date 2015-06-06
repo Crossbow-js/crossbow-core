@@ -65,8 +65,8 @@ function `pad` with the args `10` & `-`;
 - [x] Helper blocks have access to AST & compiler.
 - [x] Iterator for arrays `{#names}{first}{/names}`
 - [x] @loop helper for arrays with current item accessed via `$this` `{@loop:names}{$this}{/loop}`
-- [ ] @loop helper for arrays with current index accessed via `$idx` `{@loop:names}{$idx}-{$this}{/loop}`
-- [ ] Iterator for object with keys/values `{@loop:pkg}{$key} - {value}{/loop}`
+- [x] @loop helper for arrays with current index accessed via `$idx` `{@loop:names}{$idx}-{$this}{/loop}`
+- [x] @loop helper for object with keys/values `{@loop:pkg}{$key} - {$value}{/loop}`
 - [x] Path lookup for references
 - [ ] **Reverse** Path lookup for references
 - [x] Index lookup for references

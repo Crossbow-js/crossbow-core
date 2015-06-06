@@ -80,7 +80,7 @@ export default class Compiler {
          * Just nuke any mentions of $this
          */
         paths = paths.filter(function (path) {
-            return path !== '$this';
+            return path !== '$this' && path !== '$value';
         });
 
         /**
@@ -123,6 +123,10 @@ export default class Compiler {
                 } else {
                     return secondLastPathItem;
                 }
+            }
+
+            if (lastPathItem === '$key') {
+                return secondLastPathItem;
             }
         }
     }
