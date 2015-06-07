@@ -496,7 +496,7 @@
                 "column": 1
             },
             "end": {
-                "offset": 588,
+                "offset": 644,
                 "line": 37,
                 "column": 8
             }
@@ -561,6 +561,95 @@
                 }
             },
             {
+                "type": "buffer",
+                "value": " ("
+            },
+            {
+                "type": "reference",
+                "identifier": {
+                    "type": "key",
+                    "value": "$.site.title",
+                    "paths": [
+                        "$",
+                        "site",
+                        "title"
+                    ]
+                },
+                "modifiers": [],
+                "loc": {
+                    "start": {
+                        "offset": 582,
+                        "line": 36,
+                        "column": 35
+                    },
+                    "end": {
+                        "offset": 596,
+                        "line": 36,
+                        "column": 49
+                    }
+                }
+            },
+            {
+                "type": "buffer",
+                "value": " - "
+            },
+            {
+                "type": "@",
+                "identifier": {
+                    "type": "key",
+                    "value": "loop"
+                },
+                "params": [],
+                "context": {
+                    "type": "key",
+                    "value": "$.site.navigation",
+                    "paths": [
+                        "$",
+                        "site",
+                        "navigation"
+                    ]
+                },
+                "loc": {
+                    "start": {
+                        "offset": 599,
+                        "line": 36,
+                        "column": 52
+                    },
+                    "end": {
+                        "offset": 635,
+                        "line": 36,
+                        "column": 88
+                    }
+                },
+                "bodies": [
+                    {
+                        "type": "buffer",
+                        "value": "anyt"
+                    }
+                ],
+                "inverse": [],
+                "end": {
+                    "type": "key",
+                    "value": "loop",
+                    "loc": {
+                        "start": {
+                            "offset": 628,
+                            "line": 36,
+                            "column": 81
+                        },
+                        "end": {
+                            "offset": 635,
+                            "line": 36,
+                            "column": 88
+                        }
+                    }
+                }
+            },
+            {
+                "type": "buffer",
+                "value": ")"
+            },
+            {
                 "type": "format",
                 "eol": "\n",
                 "ws": "",
@@ -573,12 +662,12 @@
             "value": "loop",
             "loc": {
                 "start": {
-                    "offset": 581,
+                    "offset": 637,
                     "line": 37,
                     "column": 1
                 },
                 "end": {
-                    "offset": 588,
+                    "offset": 644,
                     "line": 37,
                     "column": 8
                 }

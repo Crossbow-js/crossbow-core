@@ -100,4 +100,25 @@ describe('@loop helper with $this', function () {
 
         _assert.assert.equal(out, 'shanekittie');
     });
+    it('can render a loop over an array with ROOT path access', function () {
+
+        var input1 = '{@loop:$.site.nav}{$this.url}{/loop}';
+
+        var compiler = _cblang$builder.builder();
+
+        var out = compiler.parse({
+            content: input1,
+            ctx: {
+                site: {
+                    nav: [{
+                        url: '/css'
+                    }, {
+                        url: '/js'
+                    }]
+                }
+            }
+        });
+
+        _assert.assert.equal(out, '/css/js');
+    });
 });

@@ -84,6 +84,14 @@ export default class Compiler {
         });
 
         /**
+         * If $. given, reset to root
+         */
+        let root = paths.indexOf('$');
+        if (root > -1) {
+            paths = paths.slice(root + 1);
+        }
+
+        /**
          * Get the last (currently looking for) item
          */
         let lastPathItem = paths[paths.length-1];

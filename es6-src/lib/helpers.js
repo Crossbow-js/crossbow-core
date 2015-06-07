@@ -13,20 +13,18 @@ export default {
 
     loop ({node, ctx, compiler}) {
 
-        let lookup   = compiler.getLookupPath({node: node.context});
-        let freshctx = ctx.concat(lookup);
-        let value    = compiler.getValue(freshctx);
+        let val = compiler.resolveValue({node: node.context, ctx: ctx});
 
         let out      = [];
         let sep      = '';
 
-        if (Array.isArray(value)) {
-            value.forEach(function (value, i) {
-                out.push(compiler.process({ast: node.bodies, ctx: freshctx.concat(i)}));
+        if (Array.isArray(val.value)) {
+            val.value.forEach(function (value, i) {
+                out.push(compiler.process({ast: node.bodies, ctx: val.ctx.concat(i)}));
             });
-        } else if (_.isObject(value)) {
-            Object.keys(value).forEach(function (key) {
-                out.push(compiler.process({ast: node.bodies, ctx: freshctx.concat(key)}));
+        } else if (_.isObject(val.value)) {
+            Object.keys(val.value).forEach(function (key) {
+                out.push(compiler.process({ast: node.bodies, ctx: val.ctx.concat(key)}));
             });
         }
 

@@ -61,9 +61,10 @@ function `pad` with the args `10` & `-`;
 - [x] Allow helpers to be registered 
 - [x] Allow filters to be registered 
 - [ ] Allow modifiers to be registered 
+- [x] Allow root access to data via `$` - eg: `$.site` from any block
 - [x] Raw input should nuke whitespace if a tag is the only item on a line. 
 - [x] Helper blocks have access to AST & compiler.
-- [x] Iterator for arrays `{#names}{first}{/names}`
+- [x] Iterator for arrays `{#names}{first}{/names}`.
 - [x] @loop helper for arrays with current item accessed via `$this` `{@loop:names}{$this}{/loop}`
 - [x] @loop helper for arrays with current index accessed via `$idx` `{@loop:names}{$idx}-{$this}{/loop}`
 - [x] @loop helper for object with keys/values `{@loop:pkg}{$key} - {$value}{/loop}`

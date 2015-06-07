@@ -85,7 +85,7 @@ module.exports = (function() {
         peg$c25 = ":",
         peg$c26 = { type: "literal", value: ":", description: "\":\"" },
         peg$c27 = function(n) {return n},
-        peg$c28 = function(n) { return n ? n : {} },
+        peg$c28 = function(n) { return n ? {identifier: n} : {} },
         peg$c29 = { type: "other", description: "params" },
         peg$c30 = "=",
         peg$c31 = { type: "literal", value: "=", description: "\"=\"" },

@@ -103,5 +103,29 @@ describe('@loop helper with $this', () => {
 
         assert.equal(out, 'shanekittie');
     });
+    it('can render a loop over an array with ROOT path access', () => {
+
+        const input1 = `{@loop:$.site.nav}{$this.url}{/loop}`;
+
+        let compiler = builder();
+
+        let out = compiler.parse({
+            content: input1,
+            ctx: {
+                site: {
+                    nav: [
+                        {
+                            url: '/css'
+                        },
+                        {
+                            url: '/js'
+                        }
+                    ]
+                }
+            }
+        });
+
+        assert.equal(out, '/css/js');
+    });
 
 });

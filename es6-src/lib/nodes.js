@@ -58,8 +58,8 @@ export default {
     reference: function referenceNode({node, ctx, compiler}) {
 
         var modifiers = node.modifiers || [];
-        let curr = compiler.resolveValue({ctx, node});
-        let outValue = curr.value;
+        let curr      = compiler.resolveValue({ctx, node});
+        let outValue  = curr.value;
 
         if (typeof curr.value === 'undefined') {
             compiler.error(`Failed to access ${node.identifier.value}. An empty string will be used instead`);
