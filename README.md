@@ -70,5 +70,5 @@ function `pad` with the args `10` & `-`;
 - [x] @loop helper for arrays with current index accessed via `$idx` `{@loop:names}{$idx}-{$this}{/loop}`
 - [x] @loop helper for object with keys/values `{@loop:pkg}{$key} - {$value}{/loop}`
 - [x] Path lookup for references
-- [ ] **Reverse** Path lookup for references
+- [x] **Reverse** Path lookup for references
 - [x] Index lookup for references

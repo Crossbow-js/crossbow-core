@@ -168,27 +168,4 @@ describe('@loop helper with $this', () => {
 
         assert.equal(out, 'Crossbow - /cssCrossbow - /js');
     });
-    it('can access previous value via mulit ../../', () => {
-
-        const input1 = `{#site}{@loop:nav}{../../title} - {.}{/loop}{/site}`;
-
-        let compiler = builder();
-
-        let out = compiler.parse({
-            content: input1,
-            ctx: {
-                site: {
-                    title: 'Crossbow',
-                    nav: {
-                        items: [
-                            "/css",
-                            "/js"
-                        ]
-                    }
-                }
-            }
-        });
-
-        assert.equal(out, 'Crossbow - /cssCrossbow - /js');
-    });
 });

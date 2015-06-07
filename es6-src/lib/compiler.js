@@ -95,9 +95,59 @@ export default class Compiler {
             paths = paths.slice(root + 1);
         }
 
+        /**
+         * Check if ../ has been used to reverse out of the
+         * current context
+         */
         let prev = paths.indexOf('../');
+        let curr;
+
         if (prev > -1) {
-            paths.splice(prev - 2, 3);
+
+            /**
+             * The starting point is the first occurence of ../
+             * EG: ['site', 'nav', '../'] would be index 2, so we deduct
+             * that 1 and end up with the index pointing at the 'nav' item
+             */
+            let startingpoint = prev - 1;
+
+            /**
+             * Afters is any paths following the ../
+             * EG: ['site', 'nav', '../', 'title']
+             *  =  ['title']
+             */
+            let afters = paths.slice(prev + 1);
+
+            /**
+             * Now loop backwards through the paths
+             * and check if any of them, combined with the 'afters' above
+             * match the pattern.
+             * EG: ['site', 'nav', 0, '../', 'title']
+             *    .. would result in the following lookups, until a valid value was found
+             * ['site', 'nav', '0', 'title']
+             * ['site', 'nav', 'title']
+             * ['site', 'title'] // match!
+             */
+            while (startingpoint > -1) {
+
+                let lookup = paths.slice(0, startingpoint).concat(afters);
+                let value  = compiler._ctx.getIn(lookup);
+
+                if (typeof value !== 'undefined') {
+                    curr = value;
+                    break;
+                } else {
+                    startingpoint -= 1;
+                }
+            }
+
+        } else {
+
+            /**
+             * Here, there was no match in the paths array
+             * for '../', meaning a regular lookup should occur
+             */
+            curr = compiler._ctx.getIn(paths);
         }
 
         /**
@@ -105,12 +155,6 @@ export default class Compiler {
          */
         let lastPathItem = paths[paths.length-1];
         let secondLastPathItem = paths[paths.length-2];
-
-        /**
-         * Access the item via the paths
-         * @type {any|*}
-         */
-        let curr = compiler._ctx.getIn(paths);
 
         /**
          * If curr is not undefined, either convert item to
