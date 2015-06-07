@@ -15,8 +15,16 @@ fs.writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 4));
 
 var cb = require('./');
 var builder = cb.builder();
+
+builder.filters.md = function (opts) {
+    console.log(opts.args);
+    console.log(opts.value);
+    console.log(arguments);
+};
+
 var ctx = {
     site: {
+        description: '##Crossbow',
         title: 'Crossbow',
         navigation: [
             {
