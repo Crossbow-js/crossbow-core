@@ -74,8 +74,6 @@ export default class Compiler {
 
         let compiler = this;
 
-        console.log(paths);
-
         if (!Array.isArray(paths)) {
             paths = [paths];
         }

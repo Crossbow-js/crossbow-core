@@ -19,6 +19,6 @@ Hello world
 
         let out = compiler.parse({content: input1});
 
-        assert.equal(out, '\nHello world\n');
+        assert.equal(out, '\nHello world');
     });
 });

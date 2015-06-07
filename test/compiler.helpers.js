@@ -33,6 +33,6 @@ describe('Adding helpers to the compiler', function () {
 
         var out = compiler.parse({ content: input1 });
 
-        _assert.assert.equal(out, '\nHello world\n');
+        _assert.assert.equal(out, '\nHello world');
     });
 });

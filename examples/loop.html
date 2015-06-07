@@ -36,6 +36,15 @@ line 5
 name: {$idx} - {$this.first} ({$.site.title} - {@loop:$.site.navigation}<a href="{$value.url}"></a>{$this.label}{/loop})
 {/loop}
 
+{#site}
+<h1>{title}</h1>
+<ul>
+{@loop:navigation}
+<li><a href="{$this.url}" title="{$.site.title}">{$this.label}</a></li>
+{/loop}
+</ul>
+{/site}
+
 </body>
 </html>
 

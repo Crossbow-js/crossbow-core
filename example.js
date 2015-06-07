@@ -54,5 +54,6 @@ var ctx = {
 };
 
 var output = builder.parse({content: md, ctx: ctx});
+console.log(output);
 
 fs.writeFileSync('./examples/loop.output.html', output);

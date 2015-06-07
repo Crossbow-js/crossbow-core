@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Immutable from 'immutable';
+import {formattingFn} from './ast-transforms';
 
 export default {
     hl ({node, ctx, compiler}) {
