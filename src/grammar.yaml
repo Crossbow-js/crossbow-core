@@ -203,15 +203,16 @@ path "path"
     d = d[0];
     if (k && d) {
       d.unshift(k);
+
     }
     return d;
   }
   / "." d:(array_part / array)*
   {
     if (d.length > 0) {
-      return withPosition([true, d[0]])
+      return [true, d[0]];
     }
-    return withPosition([true, []])
+    return ['.'];
   }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
@@ -225,7 +226,13 @@ array "array"
   = i:( lb a:( n:([0-9]+) {return parseInt(n.join(''), 10)} / identifier) rb  {return a; }) nk: array_part? { if(nk) { nk.unshift(i); } else {nk = [i] } return nk; }
 
 array_part "array_part"
-  = d:("." k:key {return k})+ a:(array)? { if (a) { return d.concat(a); } else { return d; } }
+  = d:("." k:key {return k})+ a:(array)? {
+    if (a) {
+      return d.concat(a);
+    } else {
+      return d;
+    }
+  }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    inline params is defined as matching two double quotes or double quotes plus literal followed by closing double quotes or
@@ -234,7 +241,7 @@ array_part "array_part"
 inline "inline"
   = '"' '"'                 { return withPosition({type: 'string', value: ''}) }
   / '"' l:literal '"'       { return withPosition({type: 'string', value: l}) }
-  / '"' p:inline_part+ '"'  { return withPosition({type: 'body', value: p}) }
+  / '"' p:inline_part+ '"'  { return withPosition({type: 'body',   value: p}) }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
   inline_part is defined as matching a special or reference or literal

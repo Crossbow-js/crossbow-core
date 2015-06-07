@@ -3,6 +3,7 @@ import filters from './filters';
 import nodes   from './nodes';
 import {formattingPass} from './ast-transforms';
 import parser  from '../src/parser';
+import {writeFileSync}  from 'fs';
 import Immutable  from 'immutable';
 
 export default class Compiler {
@@ -24,6 +25,7 @@ export default class Compiler {
 
         let compiler       = this;
         let ast            = parser.parse(content);
+        writeFileSync('ast.json', JSON.stringify(ast, null, 4));
         compiler._original = content;
         compiler._ctx      = Immutable.fromJS(ctx);
         compiler._ctxPath  = [];
@@ -80,7 +82,7 @@ export default class Compiler {
          * Just nuke any mentions of $this
          */
         paths = paths.filter(function (path) {
-            return path !== '$this' && path !== '$value';
+            return path !== '$this' && path !== '$value' && path !== '.';
         });
 
         /**

@@ -142,14 +142,15 @@ module.exports = (function() {
             d = d[0];
             if (k && d) {
               d.unshift(k);
+
             }
             return d;
           },
         peg$c72 = function(d) {
             if (d.length > 0) {
-              return withPosition([true, d[0]])
+              return [true, d[0]];
             }
-            return withPosition([true, []])
+            return ['.'];
           },
         peg$c73 = { type: "other", description: "key" },
         peg$c74 = /^[a-zA-Z_$]/,
@@ -163,13 +164,19 @@ module.exports = (function() {
         peg$c82 = function(i, nk) { if(nk) { nk.unshift(i); } else {nk = [i] } return nk; },
         peg$c83 = { type: "other", description: "array_part" },
         peg$c84 = function(k) {return k},
-        peg$c85 = function(d, a) { if (a) { return d.concat(a); } else { return d; } },
+        peg$c85 = function(d, a) {
+            if (a) {
+              return d.concat(a);
+            } else {
+              return d;
+            }
+          },
         peg$c86 = { type: "other", description: "inline" },
         peg$c87 = "\"",
         peg$c88 = { type: "literal", value: "\"", description: "\"\\\"\"" },
         peg$c89 = function() { return withPosition({type: 'string', value: ''}) },
         peg$c90 = function(l) { return withPosition({type: 'string', value: l}) },
-        peg$c91 = function(p) { return withPosition({type: 'body', value: p}) },
+        peg$c91 = function(p) { return withPosition({type: 'body',   value: p}) },
         peg$c92 = function(l) { return {type: 'buffer', value: l} },
         peg$c93 = { type: "other", description: "buffer" },
         peg$c94 = function(eol, ws) { return {type: 'format', eol: eol, ws: ws.join(''), raw: eol + ws.join('')} },

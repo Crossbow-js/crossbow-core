@@ -1,135 +1,5 @@
 [
     {
-        "type": "buffer",
-        "value": "<!doctype html>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "",
-        "raw": "\n"
-    },
-    {
-        "type": "buffer",
-        "value": "<html lang=\"en\">"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "",
-        "raw": "\n"
-    },
-    {
-        "type": "buffer",
-        "value": "<head>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "    ",
-        "raw": "\n    "
-    },
-    {
-        "type": "buffer",
-        "value": "<meta charset=\"UTF-8\">"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "    ",
-        "raw": "\n    "
-    },
-    {
-        "type": "buffer",
-        "value": "<title>Document</title>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "    ",
-        "raw": "\n    "
-    },
-    {
-        "type": "buffer",
-        "value": "<style>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "        ",
-        "raw": "\n        "
-    },
-    {
-        "type": "buffer",
-        "value": "pre {"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "            ",
-        "raw": "\n            "
-    },
-    {
-        "type": "buffer",
-        "value": "background: grey;"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "        ",
-        "raw": "\n        "
-    },
-    {
-        "type": "buffer",
-        "value": "}"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "    ",
-        "raw": "\n    "
-    },
-    {
-        "type": "buffer",
-        "value": "</style>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "",
-        "raw": "\n"
-    },
-    {
-        "type": "buffer",
-        "value": "</head>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "",
-        "raw": "\n"
-    },
-    {
-        "type": "buffer",
-        "value": "<body>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "    ",
-        "raw": "\n    "
-    },
-    {
-        "type": "buffer",
-        "value": "<ul>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "        ",
-        "raw": "\n        "
-    },
-    {
         "type": "#",
         "identifier": {
             "type": "key",
@@ -139,432 +9,40 @@
         "context": {},
         "loc": {
             "start": {
-                "offset": 206,
-                "line": 14,
-                "column": 9
+                "offset": 0,
+                "line": 1,
+                "column": 1
             },
             "end": {
-                "offset": 463,
-                "line": 24,
-                "column": 17
+                "offset": 44,
+                "line": 1,
+                "column": 45
             }
         },
         "bodies": [
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "        ",
-                "raw": "\n        "
-            },
-            {
-                "type": "buffer",
-                "value": "<li>"
-            },
             {
                 "type": "reference",
                 "identifier": {
                     "type": "key",
                     "value": "first"
                 },
-                "modifiers": [
-                    {
-                        "type": "filter",
-                        "value": "ucfirst"
-                    }
-                ],
-                "loc": {
-                    "start": {
-                        "offset": 227,
-                        "line": 15,
-                        "column": 13
-                    },
-                    "end": {
-                        "offset": 242,
-                        "line": 15,
-                        "column": 28
-                    }
-                }
-            },
-            {
-                "type": "buffer",
-                "value": " - "
-            },
-            {
-                "type": "reference",
-                "identifier": {
-                    "type": "key",
-                    "value": "last"
-                },
-                "modifiers": [
-                    {
-                        "type": "filter",
-                        "value": "ucfirst"
-                    }
-                ],
-                "loc": {
-                    "start": {
-                        "offset": 245,
-                        "line": 15,
-                        "column": 31
-                    },
-                    "end": {
-                        "offset": 259,
-                        "line": 15,
-                        "column": 45
-                    }
-                }
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "            ",
-                "raw": "\n            "
-            },
-            {
-                "type": "buffer",
-                "value": "<ul>"
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "                ",
-                "raw": "\n                "
-            },
-            {
-                "type": "#",
-                "identifier": {
-                    "type": "key",
-                    "value": "pets"
-                },
-                "params": [],
-                "context": {},
-                "loc": {
-                    "start": {
-                        "offset": 293,
-                        "line": 17,
-                        "column": 17
-                    },
-                    "end": {
-                        "offset": 414,
-                        "line": 21,
-                        "column": 24
-                    }
-                },
-                "bodies": [
-                    {
-                        "type": "format",
-                        "eol": "\n",
-                        "ws": "                ",
-                        "raw": "\n                "
-                    },
-                    {
-                        "type": "buffer",
-                        "value": "<li>"
-                    },
-                    {
-                        "type": "format",
-                        "eol": "\n",
-                        "ws": "                    ",
-                        "raw": "\n                    "
-                    },
-                    {
-                        "type": "buffer",
-                        "value": "<a href=\""
-                    },
-                    {
-                        "type": "reference",
-                        "identifier": {
-                            "type": "key",
-                            "value": "url"
-                        },
-                        "modifiers": [],
-                        "loc": {
-                            "start": {
-                                "offset": 351,
-                                "line": 19,
-                                "column": 30
-                            },
-                            "end": {
-                                "offset": 356,
-                                "line": 19,
-                                "column": 35
-                            }
-                        }
-                    },
-                    {
-                        "type": "buffer",
-                        "value": "\">"
-                    },
-                    {
-                        "type": "reference",
-                        "identifier": {
-                            "type": "key",
-                            "value": "name"
-                        },
-                        "modifiers": [],
-                        "loc": {
-                            "start": {
-                                "offset": 358,
-                                "line": 19,
-                                "column": 37
-                            },
-                            "end": {
-                                "offset": 364,
-                                "line": 19,
-                                "column": 43
-                            }
-                        }
-                    },
-                    {
-                        "type": "buffer",
-                        "value": "</a>"
-                    },
-                    {
-                        "type": "format",
-                        "eol": "\n",
-                        "ws": "                ",
-                        "raw": "\n                "
-                    },
-                    {
-                        "type": "buffer",
-                        "value": "</li>"
-                    },
-                    {
-                        "type": "format",
-                        "eol": "\n",
-                        "ws": "                ",
-                        "raw": "\n                "
-                    }
-                ],
-                "inverse": [],
-                "end": {
-                    "type": "key",
-                    "value": "pets",
-                    "loc": {
-                        "start": {
-                            "offset": 407,
-                            "line": 21,
-                            "column": 17
-                        },
-                        "end": {
-                            "offset": 414,
-                            "line": 21,
-                            "column": 24
-                        }
-                    }
-                }
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "            ",
-                "raw": "\n            "
-            },
-            {
-                "type": "buffer",
-                "value": "</ul>"
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "        ",
-                "raw": "\n        "
-            },
-            {
-                "type": "buffer",
-                "value": "</li>"
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "        ",
-                "raw": "\n        "
-            }
-        ],
-        "inverse": [],
-        "end": {
-            "type": "key",
-            "value": "names",
-            "loc": {
-                "start": {
-                    "offset": 455,
-                    "line": 24,
-                    "column": 9
-                },
-                "end": {
-                    "offset": 463,
-                    "line": 24,
-                    "column": 17
-                }
-            }
-        }
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "    ",
-        "raw": "\n    "
-    },
-    {
-        "type": "buffer",
-        "value": "</ul>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "\n",
-        "raw": "\n\n"
-    },
-    {
-        "type": "@",
-        "identifier": {
-            "type": "key",
-            "value": "hl"
-        },
-        "params": [
-            {
-                "key": "lang",
-                "value": {
-                    "type": "string",
-                    "value": "js",
-                    "loc": {
-                        "start": {
-                            "offset": 485,
-                            "line": 27,
-                            "column": 11
-                        },
-                        "end": {
-                            "offset": 489,
-                            "line": 27,
-                            "column": 15
-                        }
-                    }
-                }
-            }
-        ],
-        "raw": "line 1\nline 2\nline 3\nline 4\nline 5\n",
-        "end": {
-            "type": "key",
-            "value": "hl",
-            "loc": {
-                "start": {
-                    "offset": 526,
-                    "line": 33,
-                    "column": 1
-                },
-                "end": {
-                    "offset": 532,
-                    "line": 33,
-                    "column": 7
-                }
-            }
-        },
-        "loc": {
-            "start": {
-                "offset": 475,
-                "line": 27,
-                "column": 1
-            },
-            "end": {
-                "offset": 532,
-                "line": 33,
-                "column": 7
-            }
-        }
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "\n",
-        "raw": "\n\n"
-    },
-    {
-        "type": "@",
-        "identifier": {
-            "type": "key",
-            "value": "loop"
-        },
-        "params": [],
-        "context": {
-            "identifier": {
-                "type": "key",
-                "value": "names"
-            }
-        },
-        "loc": {
-            "start": {
-                "offset": 534,
-                "line": 35,
-                "column": 1
-            },
-            "end": {
-                "offset": 676,
-                "line": 37,
-                "column": 8
-            }
-        },
-        "bodies": [
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "",
-                "raw": "\n"
-            },
-            {
-                "type": "buffer",
-                "value": "name: "
-            },
-            {
-                "type": "reference",
-                "identifier": {
-                    "type": "key",
-                    "value": "$idx"
-                },
                 "modifiers": [],
                 "loc": {
                     "start": {
-                        "offset": 554,
-                        "line": 36,
-                        "column": 7
+                        "offset": 8,
+                        "line": 1,
+                        "column": 9
                     },
                     "end": {
-                        "offset": 560,
-                        "line": 36,
-                        "column": 13
-                    }
-                }
-            },
-            {
-                "type": "buffer",
-                "value": " - "
-            },
-            {
-                "type": "reference",
-                "identifier": {
-                    "type": "key",
-                    "value": "$this.first",
-                    "paths": [
-                        "$this",
-                        "first"
-                    ]
-                },
-                "modifiers": [],
-                "loc": {
-                    "start": {
-                        "offset": 563,
-                        "line": 36,
+                        "offset": 15,
+                        "line": 1,
                         "column": 16
-                    },
-                    "end": {
-                        "offset": 576,
-                        "line": 36,
-                        "column": 29
                     }
                 }
             },
             {
                 "type": "buffer",
-                "value": " ("
+                "value": " loves "
             },
             {
                 "type": "reference",
@@ -580,180 +58,34 @@
                 "modifiers": [],
                 "loc": {
                     "start": {
-                        "offset": 578,
-                        "line": 36,
-                        "column": 31
+                        "offset": 22,
+                        "line": 1,
+                        "column": 23
                     },
                     "end": {
-                        "offset": 592,
-                        "line": 36,
-                        "column": 45
+                        "offset": 36,
+                        "line": 1,
+                        "column": 37
                     }
                 }
-            },
-            {
-                "type": "buffer",
-                "value": " - "
-            },
-            {
-                "type": "@",
-                "identifier": {
-                    "type": "key",
-                    "value": "loop"
-                },
-                "params": [],
-                "context": {
-                    "identifier": {
-                        "type": "key",
-                        "value": "$.site.navigation",
-                        "paths": [
-                            "$",
-                            "site",
-                            "navigation"
-                        ]
-                    }
-                },
-                "loc": {
-                    "start": {
-                        "offset": 595,
-                        "line": 36,
-                        "column": 48
-                    },
-                    "end": {
-                        "offset": 667,
-                        "line": 36,
-                        "column": 120
-                    }
-                },
-                "bodies": [
-                    {
-                        "type": "buffer",
-                        "value": "<a href=\""
-                    },
-                    {
-                        "type": "reference",
-                        "identifier": {
-                            "type": "key",
-                            "value": "$value.url",
-                            "paths": [
-                                "$value",
-                                "url"
-                            ]
-                        },
-                        "modifiers": [],
-                        "loc": {
-                            "start": {
-                                "offset": 629,
-                                "line": 36,
-                                "column": 82
-                            },
-                            "end": {
-                                "offset": 641,
-                                "line": 36,
-                                "column": 94
-                            }
-                        }
-                    },
-                    {
-                        "type": "buffer",
-                        "value": "\"></a>"
-                    },
-                    {
-                        "type": "reference",
-                        "identifier": {
-                            "type": "key",
-                            "value": "$this.label",
-                            "paths": [
-                                "$this",
-                                "label"
-                            ]
-                        },
-                        "modifiers": [],
-                        "loc": {
-                            "start": {
-                                "offset": 647,
-                                "line": 36,
-                                "column": 100
-                            },
-                            "end": {
-                                "offset": 660,
-                                "line": 36,
-                                "column": 113
-                            }
-                        }
-                    }
-                ],
-                "inverse": [],
-                "end": {
-                    "type": "key",
-                    "value": "loop",
-                    "loc": {
-                        "start": {
-                            "offset": 660,
-                            "line": 36,
-                            "column": 113
-                        },
-                        "end": {
-                            "offset": 667,
-                            "line": 36,
-                            "column": 120
-                        }
-                    }
-                }
-            },
-            {
-                "type": "buffer",
-                "value": ")"
-            },
-            {
-                "type": "format",
-                "eol": "\n",
-                "ws": "",
-                "raw": "\n"
             }
         ],
         "inverse": [],
         "end": {
             "type": "key",
-            "value": "loop",
+            "value": "names",
             "loc": {
                 "start": {
-                    "offset": 669,
-                    "line": 37,
-                    "column": 1
+                    "offset": 36,
+                    "line": 1,
+                    "column": 37
                 },
                 "end": {
-                    "offset": 676,
-                    "line": 37,
-                    "column": 8
+                    "offset": 44,
+                    "line": 1,
+                    "column": 45
                 }
             }
         }
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "\n",
-        "raw": "\n\n"
-    },
-    {
-        "type": "buffer",
-        "value": "</body>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "",
-        "raw": "\n"
-    },
-    {
-        "type": "buffer",
-        "value": "</html>"
-    },
-    {
-        "type": "format",
-        "eol": "\n",
-        "ws": "\n",
-        "raw": "\n\n"
     }
 ]

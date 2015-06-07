@@ -121,7 +121,7 @@ describe('@loop helper with $this', function () {
 
         _assert.assert.equal(out, '/css/js');
     });
-    it.skip('can access current value via a .', function () {
+    it('can access current value via a .', function () {
 
         var input1 = '{@loop:$.site.nav}{.}{/loop}';
 

@@ -127,7 +127,7 @@ describe('@loop helper with $this', () => {
 
         assert.equal(out, '/css/js');
     });
-    it.skip('can access current value via a .', () => {
+    it('can access current value via a .', () => {
 
         const input1 = `{@loop:$.site.nav}{.}{/loop}`;
 
@@ -138,8 +138,8 @@ describe('@loop helper with $this', () => {
             ctx: {
                 site: {
                     nav: [
-                        "/css",
-                        "/js"
+                        '/css',
+                        '/js'
                     ]
                 }
             }
