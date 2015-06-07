@@ -21,7 +21,11 @@ var ctx = {
         navigation: [
             {
                 url: '/css',
-                label: 'aww yis'
+                label: 'CSS'
+            },
+            {
+                url: '/js',
+                label: 'JS'
             }
         ]
     },

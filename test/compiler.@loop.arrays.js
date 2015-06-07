@@ -121,4 +121,21 @@ describe('@loop helper with $this', function () {
 
         _assert.assert.equal(out, '/css/js');
     });
+    it.skip('can access current value via a .', function () {
+
+        var input1 = '{@loop:$.site.nav}{.}{/loop}';
+
+        var compiler = _cblang$builder.builder();
+
+        var out = compiler.parse({
+            content: input1,
+            ctx: {
+                site: {
+                    nav: ['/css', '/js']
+                }
+            }
+        });
+
+        _assert.assert.equal(out, '/css/js');
+    });
 });

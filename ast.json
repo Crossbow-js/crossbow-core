@@ -486,8 +486,10 @@
         },
         "params": [],
         "context": {
-            "type": "key",
-            "value": "names"
+            "identifier": {
+                "type": "key",
+                "value": "names"
+            }
         },
         "loc": {
             "start": {
@@ -496,7 +498,7 @@
                 "column": 1
             },
             "end": {
-                "offset": 644,
+                "offset": 676,
                 "line": 37,
                 "column": 8
             }
@@ -505,8 +507,8 @@
             {
                 "type": "format",
                 "eol": "\n",
-                "ws": "    ",
-                "raw": "\n    "
+                "ws": "",
+                "raw": "\n"
             },
             {
                 "type": "buffer",
@@ -521,14 +523,14 @@
                 "modifiers": [],
                 "loc": {
                     "start": {
-                        "offset": 558,
+                        "offset": 554,
                         "line": 36,
-                        "column": 11
+                        "column": 7
                     },
                     "end": {
-                        "offset": 564,
+                        "offset": 560,
                         "line": 36,
-                        "column": 17
+                        "column": 13
                     }
                 }
             },
@@ -549,14 +551,14 @@
                 "modifiers": [],
                 "loc": {
                     "start": {
-                        "offset": 567,
+                        "offset": 563,
                         "line": 36,
-                        "column": 20
+                        "column": 16
                     },
                     "end": {
-                        "offset": 580,
+                        "offset": 576,
                         "line": 36,
-                        "column": 33
+                        "column": 29
                     }
                 }
             },
@@ -578,14 +580,14 @@
                 "modifiers": [],
                 "loc": {
                     "start": {
-                        "offset": 582,
+                        "offset": 578,
                         "line": 36,
-                        "column": 35
+                        "column": 31
                     },
                     "end": {
-                        "offset": 596,
+                        "offset": 592,
                         "line": 36,
-                        "column": 49
+                        "column": 45
                     }
                 }
             },
@@ -601,30 +603,84 @@
                 },
                 "params": [],
                 "context": {
-                    "type": "key",
-                    "value": "$.site.navigation",
-                    "paths": [
-                        "$",
-                        "site",
-                        "navigation"
-                    ]
+                    "identifier": {
+                        "type": "key",
+                        "value": "$.site.navigation",
+                        "paths": [
+                            "$",
+                            "site",
+                            "navigation"
+                        ]
+                    }
                 },
                 "loc": {
                     "start": {
-                        "offset": 599,
+                        "offset": 595,
                         "line": 36,
-                        "column": 52
+                        "column": 48
                     },
                     "end": {
-                        "offset": 635,
+                        "offset": 667,
                         "line": 36,
-                        "column": 88
+                        "column": 120
                     }
                 },
                 "bodies": [
                     {
                         "type": "buffer",
-                        "value": "anyt"
+                        "value": "<a href=\""
+                    },
+                    {
+                        "type": "reference",
+                        "identifier": {
+                            "type": "key",
+                            "value": "$value.url",
+                            "paths": [
+                                "$value",
+                                "url"
+                            ]
+                        },
+                        "modifiers": [],
+                        "loc": {
+                            "start": {
+                                "offset": 629,
+                                "line": 36,
+                                "column": 82
+                            },
+                            "end": {
+                                "offset": 641,
+                                "line": 36,
+                                "column": 94
+                            }
+                        }
+                    },
+                    {
+                        "type": "buffer",
+                        "value": "\"></a>"
+                    },
+                    {
+                        "type": "reference",
+                        "identifier": {
+                            "type": "key",
+                            "value": "$this.label",
+                            "paths": [
+                                "$this",
+                                "label"
+                            ]
+                        },
+                        "modifiers": [],
+                        "loc": {
+                            "start": {
+                                "offset": 647,
+                                "line": 36,
+                                "column": 100
+                            },
+                            "end": {
+                                "offset": 660,
+                                "line": 36,
+                                "column": 113
+                            }
+                        }
                     }
                 ],
                 "inverse": [],
@@ -633,14 +689,14 @@
                     "value": "loop",
                     "loc": {
                         "start": {
-                            "offset": 628,
+                            "offset": 660,
                             "line": 36,
-                            "column": 81
+                            "column": 113
                         },
                         "end": {
-                            "offset": 635,
+                            "offset": 667,
                             "line": 36,
-                            "column": 88
+                            "column": 120
                         }
                     }
                 }
@@ -662,12 +718,12 @@
             "value": "loop",
             "loc": {
                 "start": {
-                    "offset": 637,
+                    "offset": 669,
                     "line": 37,
                     "column": 1
                 },
                 "end": {
-                    "offset": 644,
+                    "offset": 676,
                     "line": 37,
                     "column": 8
                 }
