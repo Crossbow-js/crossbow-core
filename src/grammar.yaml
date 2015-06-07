@@ -206,13 +206,14 @@ path "path"
     }
     return d;
   }
-  / "../" k:key? d:(array_part / array)*
+  / prev:(p:"../" {return '../'})+ k:key? d:(array_part / array)*
   {
     if (k) {
       if (d.length) {
-        return ['../'].concat(k).concat(d[0]);
+        return prev.concat(k).concat(d[0]);
       } else {
-        return ['../', k];
+        prev.push(k)
+        return prev;
       }
     }
     return false;
