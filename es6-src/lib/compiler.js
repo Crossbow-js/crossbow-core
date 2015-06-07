@@ -7,6 +7,7 @@ import {writeFileSync}  from 'fs';
 import Immutable  from 'immutable';
 
 export default class Compiler {
+
     constructor (opts) {
         this.opts = opts;
         this.helpers = helpers;
@@ -37,7 +38,6 @@ export default class Compiler {
      * by visiting each node
      * @param ast
      * @param ctx
-     * @param compiler
      * @returns {*}
      */
     process ({ast, ctx}) {

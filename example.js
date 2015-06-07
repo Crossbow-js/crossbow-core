@@ -7,11 +7,11 @@ var md = fs.readFileSync('./examples/loop.html', 'utf-8');
 
 //var start = microtime.now();
 //console.time('cb time:     ');
-var out = parser.parse(md);
+//var out = parser.parse(md);
 //console.log('cb micro time:', microtime.now() - start);
 //console.timeEnd('cb time:     ');
 
-fs.writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 4));
+//fs.writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 4));
 
 var cb = require('./');
 var builder = cb.builder();
@@ -61,7 +61,31 @@ var ctx = {
     ]
 };
 
-var output = builder.parse({content: md, ctx: ctx});
-console.log(output);
+try {
+    var output = builder.parse({content: md, ctx: ctx});
+    console.log(output);
+} catch (e) {
+    console.error('There\'s a syntax error on line', e.location.start.line);
+    console.error('Error:', e.location);
+    console.error(e.message);
+
+    //var lines = content.split('\n');
+    //var linebefore = e.location.start.line - 1;
+    //var lineafter  = e.location.start.line + 1;
+    //var sliced = lines.slice(e.location.start.line - 3, e.location.start.line - 1);
+    //console.log(e);
+    //console.log(lines);
+    //sliced.push(lines[e.location.start.line - 1]);
+    //console.log(lines[e.location.start.line - 1].length);
+    //var dashes = '-------------------------------------'.split('');
+    //dashes.splice(e.location.start.column - 2, 1, '^');
+    //sliced.push(dashes.join(''));
+    //sliced = sliced.concat(lines.slice(e.location.start.line, e.location.start.line + 2 ));
+    //
+    //console.error('There\'s a problem with your syntax');
+    //console.log(sliced.join('\n'));
+
+    //console.log(content.slice(e.location.start.offset - 20, e.location.start.offset + 20));
+}
 
 fs.writeFileSync('./examples/loop.output.html', output);

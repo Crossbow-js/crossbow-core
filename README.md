@@ -72,3 +72,8 @@ function `pad` with the args `10` & `-`;
 - [x] Path lookup for references
 - [x] **Reverse** Path lookup for references
 - [x] Index lookup for references
+
+## Todo - Errors 
+
+- [ ] good errors for missing closing tag on sections
+- [ ] good errors for missing closing tag on raw sections
