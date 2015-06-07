@@ -138,4 +138,22 @@ describe('@loop helper with $this', function () {
 
         _assert.assert.equal(out, '/css/js');
     });
+    it('can access previous value via ../', function () {
+
+        var input1 = '{#site}{@loop:nav}{../title} - {.}{/loop}{/site}';
+
+        var compiler = _cblang$builder.builder();
+
+        var out = compiler.parse({
+            content: input1,
+            ctx: {
+                site: {
+                    title: 'Crossbow',
+                    nav: ['/css', '/js']
+                }
+            }
+        });
+
+        _assert.assert.equal(out, 'Crossbow - /cssCrossbow - /js');
+    });
 });

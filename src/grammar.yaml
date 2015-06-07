@@ -170,7 +170,6 @@ identifier "identifier"
     arr.paths = p;
     arr.path = p.join('.').replace(/,line,\d+,col,\d+/g,'');
     return {type: 'key', value: arr.path, paths: p};
-    return arr;
   }
   / k:key
   {
@@ -206,6 +205,17 @@ path "path"
 
     }
     return d;
+  }
+  / "../" k:key? d:(array_part / array)*
+  {
+    if (k) {
+      if (d.length) {
+        return ['../'].concat(k).concat(d[0]);
+      } else {
+        return ['../', k];
+      }
+    }
+    return false;
   }
   / "." d:(array_part / array)*
   {

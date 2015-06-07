@@ -74,6 +74,8 @@ export default class Compiler {
 
         let compiler = this;
 
+        console.log(paths);
+
         if (!Array.isArray(paths)) {
             paths = [paths];
         }
@@ -91,6 +93,11 @@ export default class Compiler {
         let root = paths.indexOf('$');
         if (root > -1) {
             paths = paths.slice(root + 1);
+        }
+
+        let prev = paths.indexOf('../');
+        if (prev > -1) {
+            paths.splice(prev - 2, 3);
         }
 
         /**

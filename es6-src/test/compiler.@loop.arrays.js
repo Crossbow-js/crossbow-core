@@ -147,4 +147,25 @@ describe('@loop helper with $this', () => {
 
         assert.equal(out, '/css/js');
     });
+    it('can access previous value via ../', () => {
+
+        const input1 = `{#site}{@loop:nav}{../title} - {.}{/loop}{/site}`;
+
+        let compiler = builder();
+
+        let out = compiler.parse({
+            content: input1,
+            ctx: {
+                site: {
+                    title: 'Crossbow',
+                    nav: [
+                        '/css',
+                        '/js'
+                    ]
+                }
+            }
+        });
+
+        assert.equal(out, 'Crossbow - /cssCrossbow - /js');
+    });
 });
