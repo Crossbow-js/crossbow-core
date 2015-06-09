@@ -1,7 +1,8 @@
 var parser = require("./src/parser");
-var microtime = require("microtime");
+//var microtime = require("microtime");
 var dust = require("dustjs-linkedin");
 var Handlebars = require("handlebars");
+var cb = require("./lib/index")["default"];
 var md = require("fs").readFileSync('./bench/index.md', 'utf-8');
 
 ///** Handlebars **/
@@ -13,17 +14,23 @@ fn({});
 console.timeEnd('H time:      ');
 
 //var start = microtime.now();
+
+//console.time('parse time:     ');
+//var out = parser.parse(md);
+//console.timeEnd('parse time:     ');
 console.time('cb time:     ');
-var out = parser.parse(md);
+//console.log(cb);
+var out = cb({content: md});
+//console.log(out);
 //console.log('cb micro time:', microtime.now() - start);
 console.timeEnd('cb time:     ');
 
-require("fs").writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 2));
+//require("fs").writeFileSync(__dirname + '/ast.json', JSON.stringify(out, null, 2));
 
 
 /** Dust **/
 console.time('d time:      ');
-//start = microtime.now();
+////start = microtime.now();
 dust.renderSource(md, {}, function (err, out) {
     //console.log('d micro time :', microtime.now() - start);
     console.timeEnd('d time:      ');

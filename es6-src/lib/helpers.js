@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Immutable from 'immutable';
 import {formattingFn} from './ast-transforms';
 
@@ -23,7 +22,7 @@ export default {
             val.value.forEach(function (value, i) {
                 out.push(compiler.process({ast: node.bodies, ctx: val.ctx.concat(i)}));
             });
-        } else if (_.isObject(val.value)) {
+        } else if (typeof val.value === 'object') {
             Object.keys(val.value).forEach(function (key) {
                 out.push(compiler.process({ast: node.bodies, ctx: val.ctx.concat(key)}));
             });

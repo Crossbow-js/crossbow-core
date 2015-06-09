@@ -5,8 +5,8 @@
   function withPosition(arr) {
 
     arr.loc = location();
-    return arr;
 
+    return arr;
 
     return arr.concat([['line', line()], ['col', column()]]);
   }
@@ -30,11 +30,24 @@ body
    part is defined as anything that matches with raw or comment or section or partial or special or reference or buffer
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 part
-  = raw / raw_section / section / reference / buffer
+  = raw / raw_section / closed_section / section / reference / buffer
+
+/*--------------------------------------
+  Self closing section, {@hl src="snippet.js" /}
+--------------------------------------*/
+closed_section =
+  t:sec_tag_start ws* "/" rd
+  {
+    return withPosition(t)
+  }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
    section is defined as matching with with sec_tag_start followed by 0 or more white spaces plus a closing brace plus body
    plus bodies plus end_tag or sec_tag_start followed by a slash and closing brace
+
+   {@hl lang="js"}
+       // bodies
+   {/hl}
 ---------------------------------------------------------------------------------------------------------------------------------------*/
 section "section"
   = t:opening_tag b:body e:bodies n:end_tag?
@@ -51,12 +64,6 @@ section "section"
     t.end     = n;
     return withPosition(t)
    }
-  // self-closing format
-  / t:sec_tag_start ws* "/" rd
-  {
-    t.push(["bodies"]);
-    return withPosition(t)
-  }
 
 opening_tag
   = t:sec_tag_start ws* rd:rd?
@@ -67,6 +74,14 @@ opening_tag
       return true;
     } { return t }
 
+/*-------------------------------------------------------------------------------------------------------------------------------------
+   A raw section is defined as matching with with raw_sec_tag_start followed by 0 or more white spaces plus a closing brace plus body
+   plus bodies plus raw_end_tag or sec_tag_start followed by a slash and closing brace
+
+   {@hl lang="js"}
+       // bodies
+   {/@hl}
+---------------------------------------------------------------------------------------------------------------------------------------*/
 raw_section "raw section"
   = t:raw_sec_tag_start ws* rd f:eol? r:raw_block* n:raw_end_tag
    &{

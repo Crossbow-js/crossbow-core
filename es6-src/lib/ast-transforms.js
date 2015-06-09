@@ -40,9 +40,9 @@ function formattingPass ({ast, ctx, compiler}) {
             }
         }
 
-        if (item.raw && item.type !== '@') {
-            item.bodies = parser.parse(item.raw);
-        }
+        //if (item.raw && item.type !== '@') {
+        //    item.bodies = parser.parse(item.raw);
+        //}
 
         return item;
     });
