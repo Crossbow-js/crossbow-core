@@ -32,6 +32,7 @@
   "license": "ISC",
   "dependencies": {
     "immutable": "^3.7.2",
+    "jison": "^0.4.15",
     "pegjs": "git://github.com/pegjs/pegjs.git"
   }
 }
