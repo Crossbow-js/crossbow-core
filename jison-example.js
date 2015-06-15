@@ -1,14 +1,14 @@
-var parser = require("./src/jison-parse");
+var parser = require("./src/jison-parse").parser;
 var fs = require("fs");
 var md = fs.readFileSync('./examples/loop.html', 'utf-8');
 
 var AST = require('./lib/compiler/ast');
-var WhitespaceControl = require('./lib/compiler/ws');
-var helpers = require('./lib/compiler/helpers');
-var utils = require('../lib/compiler/utils');
+//var Helpers = require('./lib/compiler/helpers');
+//var utils = require('./lib/compiler/utils');
 
-var yy = {};
-utils.extend(yy, Helpers, AST);
+var yy = AST;
+//utils.extend(yy, Helpers, AST);
+console.log(yy);
 
 function parse(input, options) {
     // Just return if an already-compiled AST was passed in.
@@ -16,11 +16,29 @@ function parse(input, options) {
 
     parser.yy = yy;
 
-    // Altering the shared object here, but this is ok as parser is a sync operation
-    yy.locInfo = function(locInfo) {
-        return new yy.SourceLocation(options && options.srcName, locInfo);
+    function SourceLocation(source, locInfo) {
+        this.source = source;
+        this.start = {
+            line: locInfo.first_line,
+            column: locInfo.first_column
+        };
+        this.end = {
+            line: locInfo.last_line,
+            column: locInfo.last_column
+        };
+    }
+
+    parser.yy.locInfo = function (locInfo) {
+        return new SourceLocation(options && options.srcName, locInfo);
     };
 
-    var strip = new WhitespaceControl();
-    return strip.accept(parser.parse(input));
+    // Altering the shared object here, but this is ok as parser is a sync operation
+    //yy.locInfo = function(locInfo) {
+    //    return new yy.SourceLocation(options && options.srcName, locInfo);
+    //};
+
+    //console.log(parser.yy.locInfo);
+    return parser.parse(input);
 }
+
+console.log(parse('shane'));
