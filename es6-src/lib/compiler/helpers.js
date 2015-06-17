@@ -1,4 +1,4 @@
-import Exception from '../exception';
+import Exception from './exception';
 
 export function SourceLocation(source, locInfo) {
     this.source = source;

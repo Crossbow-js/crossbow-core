@@ -1,10 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var AST = {
-  Program: function Program(statements, blockParams, strip, locInfo) {
+let AST = {
+  Program: function(statements, blockParams, strip, locInfo) {
     this.loc = locInfo;
     this.type = 'Program';
     this.body = statements;
@@ -13,7 +8,7 @@ var AST = {
     this.strip = strip;
   },
 
-  MustacheStatement: function MustacheStatement(path, params, hash, escaped, strip, locInfo) {
+  MustacheStatement: function(path, params, hash, escaped, strip, locInfo) {
     this.loc = locInfo;
     this.type = 'MustacheStatement';
 
@@ -25,7 +20,7 @@ var AST = {
     this.strip = strip;
   },
 
-  BlockStatement: function BlockStatement(path, params, hash, program, inverse, openStrip, inverseStrip, closeStrip, locInfo) {
+  BlockStatement: function(path, params, hash, program, inverse, openStrip, inverseStrip, closeStrip, locInfo) {
     this.loc = locInfo;
     this.type = 'BlockStatement';
 
@@ -40,7 +35,7 @@ var AST = {
     this.closeStrip = closeStrip;
   },
 
-  HelperBlockStatement: function HelperBlockStatement(path, params, hash, program, inverse, openStrip, inverseStrip, closeStrip, locInfo) {
+  HelperBlockStatement: function(path, params, hash, program, inverse, openStrip, inverseStrip, closeStrip, locInfo) {
 
     this.loc = locInfo;
     this.type = 'HelperBlockStatement';
@@ -56,7 +51,7 @@ var AST = {
     this.closeStrip = closeStrip;
   },
 
-  PartialStatement: function PartialStatement(name, params, hash, strip, locInfo) {
+  PartialStatement: function(name, params, hash, strip, locInfo) {
     this.loc = locInfo;
     this.type = 'PartialStatement';
 
@@ -68,7 +63,7 @@ var AST = {
     this.strip = strip;
   },
 
-  HelperStatement: function HelperStatement(name, params, hash, strip, locInfo) {
+  HelperStatement: function(name, params, hash, strip, locInfo) {
     this.loc = locInfo;
     this.type = 'HelperStatement';
 
@@ -80,13 +75,13 @@ var AST = {
     this.strip = strip;
   },
 
-  ContentStatement: function ContentStatement(string, locInfo) {
+  ContentStatement: function(string, locInfo) {
     this.loc = locInfo;
     this.type = 'ContentStatement';
     this.original = this.value = string;
   },
 
-  CommentStatement: function CommentStatement(comment, strip, locInfo) {
+  CommentStatement: function(comment, strip, locInfo) {
     this.loc = locInfo;
     this.type = 'CommentStatement';
     this.value = comment;
@@ -94,7 +89,7 @@ var AST = {
     this.strip = strip;
   },
 
-  SubExpression: function SubExpression(path, params, hash, locInfo) {
+  SubExpression: function(path, params, hash, locInfo) {
     this.loc = locInfo;
 
     this.type = 'SubExpression';
@@ -103,7 +98,7 @@ var AST = {
     this.hash = hash;
   },
 
-  PathExpression: function PathExpression(data, depth, parts, original, locInfo) {
+  PathExpression: function(data, depth, parts, original, locInfo) {
     this.loc = locInfo;
     this.type = 'PathExpression';
 
@@ -113,42 +108,45 @@ var AST = {
     this.depth = depth;
   },
 
-  StringLiteral: function StringLiteral(string, locInfo) {
+  StringLiteral: function(string, locInfo) {
     this.loc = locInfo;
     this.type = 'StringLiteral';
-    this.original = this.value = string;
+    this.original =
+    this.value = string;
   },
 
-  NumberLiteral: function NumberLiteral(number, locInfo) {
+  NumberLiteral: function(number, locInfo) {
     this.loc = locInfo;
     this.type = 'NumberLiteral';
-    this.original = this.value = Number(number);
+    this.original =
+      this.value = Number(number);
   },
 
-  BooleanLiteral: function BooleanLiteral(bool, locInfo) {
+  BooleanLiteral: function(bool, locInfo) {
     this.loc = locInfo;
     this.type = 'BooleanLiteral';
-    this.original = this.value = bool === 'true';
+    this.original =
+      this.value = bool === 'true';
   },
 
-  UndefinedLiteral: function UndefinedLiteral(locInfo) {
+  UndefinedLiteral: function(locInfo) {
     this.loc = locInfo;
     this.type = 'UndefinedLiteral';
     this.original = this.value = undefined;
   },
 
-  NullLiteral: function NullLiteral(locInfo) {
+  NullLiteral: function(locInfo) {
     this.loc = locInfo;
     this.type = 'NullLiteral';
     this.original = this.value = null;
   },
 
-  Hash: function Hash(pairs, locInfo) {
+  Hash: function(pairs, locInfo) {
     this.loc = locInfo;
     this.type = 'Hash';
     this.pairs = pairs;
   },
-  HashPair: function HashPair(key, value, locInfo) {
+  HashPair: function(key, value, locInfo) {
     this.loc = locInfo;
     this.type = 'HashPair';
     this.key = key;
@@ -160,23 +158,23 @@ var AST = {
     // a mustache is definitely a helper if:
     // * it is an eligible helper, and
     // * it has at least one parameter or hash segment
-    helperExpression: function helperExpression(node) {
+    helperExpression: function(node) {
       return !!(node.type === 'SubExpression' || node.params.length || node.hash);
     },
 
-    scopedId: function scopedId(path) {
-      return /^\.|this\b/.test(path.original);
+    scopedId: function(path) {
+      return (/^\.|this\b/).test(path.original);
     },
 
     // an ID is simple if it only has one part, and that part is not
     // `..` or `this`.
-    simpleId: function simpleId(path) {
+    simpleId: function(path) {
       return path.parts.length === 1 && !AST.helpers.scopedId(path) && !path.depth;
     }
   }
 };
 
+
 // Must be exported as an object rather than the root of the module as the jison lexer
 // must modify the object to operate properly.
-exports['default'] = AST;
-module.exports = exports['default'];
+export default AST;

@@ -1,4 +1,4 @@
-import Exception from '../exception';
+import Exception from './exception';
 import AST from './ast';
 
 function Visitor() {

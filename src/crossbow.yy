@@ -14,6 +14,7 @@ program
 
 statement
   : mustache -> $1
+  | helperBlock -> $1
   | block -> $1
   | rawBlock -> $1
   | partial -> $1
@@ -33,6 +34,11 @@ openRawBlock
   : OPEN_RAW_BLOCK helperName param* hash? CLOSE_RAW_BLOCK -> { path: $2, params: $3, hash: $4 }
   ;
 
+helperBlock
+  : openHelperBlock program inverseChain? closeBlock -> yy.prepareHelperBlock($1, $2, $3, $4, false, @$)
+  | openInverse program inverseAndProgram? closeBlock -> yy.prepareHelperBlock($1, $2, $3, $4, true, @$)
+  ;
+
 block
   : openBlock program inverseChain? closeBlock -> yy.prepareBlock($1, $2, $3, $4, false, @$)
   | openInverse program inverseAndProgram? closeBlock -> yy.prepareBlock($1, $2, $3, $4, true, @$)
@@ -40,6 +46,10 @@ block
 
 openBlock
   : OPEN_BLOCK helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
+  ;
+
+openHelperBlock
+  : OPEN_HELPER helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
   ;
 
 openInverse
@@ -67,6 +77,10 @@ inverseChain
 
 closeBlock
   : OPEN_ENDBLOCK helperName CLOSE -> {path: $2, strip: yy.stripFlags($1, $3)}
+  ;
+
+closeHelperBlock
+  : OPEN_HELPER_ENDBLOCK helperName CLOSE -> {path: $2, strip: yy.stripFlags($1, $3), raw:true}
   ;
 
 mustache

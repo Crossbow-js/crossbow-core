@@ -3,12 +3,12 @@ var fs = require("fs");
 var md = fs.readFileSync('./examples/loop.html', 'utf-8');
 
 var AST = require('./lib/compiler/ast');
-//var Helpers = require('./lib/compiler/helpers');
-//var utils = require('./lib/compiler/utils');
+var Helpers = require('./lib/compiler/helpers');
+var utils = require('./lib/compiler/utils');
 
 var yy = AST;
-//utils.extend(yy, Helpers, AST);
-console.log(yy);
+utils.extend(yy, Helpers, AST);
+//console.log(yy);
 
 function parse(input, options) {
     // Just return if an already-compiled AST was passed in.
@@ -32,13 +32,14 @@ function parse(input, options) {
         return new SourceLocation(options && options.srcName, locInfo);
     };
 
-    // Altering the shared object here, but this is ok as parser is a sync operation
-    //yy.locInfo = function(locInfo) {
-    //    return new yy.SourceLocation(options && options.srcName, locInfo);
-    //};
-
     //console.log(parser.yy.locInfo);
     return parser.parse(input);
 }
 
-console.log(parse('shane'));
+var ast = parse('Hello {{greeting}}' +
+'Hi there\n' +
+'This is inside a block' +
+'oh and another\n' +
+'');
+fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
+//console.log(ast);
