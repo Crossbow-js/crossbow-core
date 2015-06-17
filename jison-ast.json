@@ -5,8 +5,8 @@
             "column": 0
         },
         "end": {
-            "line": 3,
-            "column": 0
+            "line": 1,
+            "column": 41
         }
     },
     "type": "Program",
@@ -19,21 +19,6 @@
                 },
                 "end": {
                     "line": 1,
-                    "column": 6
-                }
-            },
-            "type": "ContentStatement",
-            "value": "Hello ",
-            "original": "Hello "
-        },
-        {
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 6
-                },
-                "end": {
-                    "line": 1,
                     "column": 18
                 }
             },
@@ -42,7 +27,7 @@
                 "loc": {
                     "start": {
                         "line": 1,
-                        "column": 8
+                        "column": 2
                     },
                     "end": {
                         "line": 1,
@@ -51,11 +36,19 @@
                 },
                 "type": "PathExpression",
                 "data": false,
-                "original": "greeting",
+                "original": "thing.shane",
                 "parts": [
-                    "greeting"
+                    "thing",
+                    "shane"
                 ],
-                "depth": 0
+                "depth": 0,
+                "filters": [
+                    [
+                        {
+                            "id": "md"
+                        }
+                    ]
+                ]
             },
             "params": [],
             "escaped": true,
@@ -71,13 +64,63 @@
                     "column": 18
                 },
                 "end": {
-                    "line": 3,
-                    "column": 0
+                    "line": 1,
+                    "column": 19
                 }
             },
             "type": "ContentStatement",
-            "value": "Hi there\nThis is inside a blockoh and another\n",
-            "original": "Hi there\nThis is inside a blockoh and another\n"
+            "value": " ",
+            "original": " "
+        },
+        {
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 19
+                },
+                "end": {
+                    "line": 1,
+                    "column": 41
+                }
+            },
+            "type": "MustacheStatement",
+            "path": {
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 21
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 39
+                    }
+                },
+                "type": "PathExpression",
+                "data": false,
+                "original": "another",
+                "parts": [
+                    "another"
+                ],
+                "depth": 0,
+                "filters": [
+                    [
+                        {
+                            "id": "json"
+                        }
+                    ],
+                    [
+                        {
+                            "id": "shane"
+                        }
+                    ]
+                ]
+            },
+            "params": [],
+            "escaped": true,
+            "strip": {
+                "open": false,
+                "close": false
+            }
         }
     ],
     "blockParams": null,

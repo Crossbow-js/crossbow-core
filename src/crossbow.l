@@ -52,5 +52,11 @@ ID    [^\s!"#%-,\.\/;->@\[-\^`\{-~]+/{LOOKAHEAD}
 <mu>"{{"  return 'OPEN'
 <mu>"}}"  this.popState(); return 'CLOSE';
 <mu>{ID}  return 'ID'
+<mu>"="                          return 'EQUALS';
+<mu>".."                         return 'ID';
+<mu>"|"                          return 'PIPE';
+<mu>"."/{LOOKAHEAD}              return 'ID';
+<mu>[\/.]                        return 'SEP';
+<mu>\s+                          // ignore whitespace
 
 <INITIAL,mu><<EOF>>              return 'EOF';

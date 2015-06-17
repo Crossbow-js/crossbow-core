@@ -36,10 +36,6 @@ function parse(input, options) {
     return parser.parse(input);
 }
 
-var ast = parse('Hello {{greeting}}' +
-'Hi there\n' +
-'This is inside a block' +
-'oh and another\n' +
-'');
+var ast = parse('{{thing.shane|md}} {{another|json|shane}}');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);

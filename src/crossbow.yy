@@ -135,7 +135,12 @@ dataName
   ;
 
 path
-  : pathSegments -> yy.preparePath(false, $1, @$)
+  : pathSegments filter* -> yy.preparePath(false, $1, $2, @$)
+  | pathSegments -> yy.preparePath(false, $1, @$)
+  ;
+
+filter
+  : PIPE ID -> [{id: $2}]
   ;
 
 pathSegments

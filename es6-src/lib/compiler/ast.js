@@ -98,14 +98,15 @@ let AST = {
     this.hash = hash;
   },
 
-  PathExpression: function(data, depth, parts, original, locInfo) {
+  PathExpression: function(data, depth, parts, filters, original, locInfo) {
     this.loc = locInfo;
     this.type = 'PathExpression';
 
-    this.data = data;
+    this.data     = data;
     this.original = original;
-    this.parts = parts;
-    this.depth = depth;
+    this.parts    = parts;
+    this.depth    = depth;
+    this.filters  = filters;
   },
 
   StringLiteral: function(string, locInfo) {
