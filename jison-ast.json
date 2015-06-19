@@ -6,7 +6,7 @@
         },
         "end": {
             "line": 1,
-            "column": 41
+            "column": 40
         }
     },
     "type": "Program",
@@ -19,7 +19,7 @@
                 },
                 "end": {
                     "line": 1,
-                    "column": 18
+                    "column": 28
                 }
             },
             "type": "MustacheStatement",
@@ -31,7 +31,7 @@
                     },
                     "end": {
                         "line": 1,
-                        "column": 16
+                        "column": 26
                     }
                 },
                 "type": "PathExpression",
@@ -45,7 +45,13 @@
                 "filters": [
                     [
                         {
-                            "id": "md"
+                            "part": "lodash",
+                            "original": "lodash"
+                        },
+                        {
+                            "part": "trunc",
+                            "original": "trunc",
+                            "separator": "."
                         }
                     ]
                 ]
@@ -61,11 +67,11 @@
             "loc": {
                 "start": {
                     "line": 1,
-                    "column": 18
+                    "column": 28
                 },
                 "end": {
                     "line": 1,
-                    "column": 19
+                    "column": 29
                 }
             },
             "type": "ContentStatement",
@@ -76,11 +82,11 @@
             "loc": {
                 "start": {
                     "line": 1,
-                    "column": 19
+                    "column": 29
                 },
                 "end": {
                     "line": 1,
-                    "column": 41
+                    "column": 40
                 }
             },
             "type": "MustacheStatement",
@@ -88,11 +94,11 @@
                 "loc": {
                     "start": {
                         "line": 1,
-                        "column": 21
+                        "column": 31
                     },
                     "end": {
                         "line": 1,
-                        "column": 39
+                        "column": 38
                     }
                 },
                 "type": "PathExpression",
@@ -102,18 +108,7 @@
                     "another"
                 ],
                 "depth": 0,
-                "filters": [
-                    [
-                        {
-                            "id": "json"
-                        }
-                    ],
-                    [
-                        {
-                            "id": "shane"
-                        }
-                    ]
-                ]
+                "filters": null
             },
             "params": [],
             "escaped": true,
