@@ -34,7 +34,6 @@ export function stripComment(comment) {
 
 export function preparePath(data, parts, filters, locInfo) {
 
-    console.log(filters);
     locInfo = this.locInfo(locInfo);
 
     let original = data ? '@' : '',

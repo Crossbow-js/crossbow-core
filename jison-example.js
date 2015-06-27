@@ -36,6 +36,6 @@ function parse(input, options) {
     return parser.parse(input);
 }
 
-var ast = parse('{{thing.shane|lodash.trunc}} {{another}}');
+var ast = parse('Before\n    {{thing}}\nafter');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);

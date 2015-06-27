@@ -1,123 +1,33 @@
 {
-    "loc": {
-        "start": {
-            "line": 1,
-            "column": 0
-        },
-        "end": {
-            "line": 1,
-            "column": 40
-        }
-    },
-    "type": "Program",
-    "body": [
+    "bodies": [
         {
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 0
-                },
-                "end": {
-                    "line": 1,
-                    "column": 28
-                }
-            },
-            "type": "MustacheStatement",
-            "path": {
-                "loc": {
-                    "start": {
-                        "line": 1,
-                        "column": 2
-                    },
-                    "end": {
-                        "line": 1,
-                        "column": 26
-                    }
-                },
-                "type": "PathExpression",
-                "data": false,
-                "original": "thing.shane",
-                "parts": [
-                    "thing",
-                    "shane"
-                ],
-                "depth": 0,
-                "filters": [
-                    [
-                        {
-                            "part": "lodash",
-                            "original": "lodash"
-                        },
-                        {
-                            "part": "trunc",
-                            "original": "trunc",
-                            "separator": "."
-                        }
+            "type": "content",
+            "value": "Before\n    "
+        },
+        {
+            "type": "mustache",
+            "id": [
+                {
+                    "type": "path",
+                    "paths": [
+                        "thing"
                     ]
-                ]
-            },
-            "params": [],
-            "escaped": true,
-            "strip": {
-                "open": false,
-                "close": false
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 4
+                },
+                "end": {
+                    "line": 2,
+                    "column": 13
+                }
             }
         },
         {
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 28
-                },
-                "end": {
-                    "line": 1,
-                    "column": 29
-                }
-            },
-            "type": "ContentStatement",
-            "value": " ",
-            "original": " "
-        },
-        {
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 29
-                },
-                "end": {
-                    "line": 1,
-                    "column": 40
-                }
-            },
-            "type": "MustacheStatement",
-            "path": {
-                "loc": {
-                    "start": {
-                        "line": 1,
-                        "column": 31
-                    },
-                    "end": {
-                        "line": 1,
-                        "column": 38
-                    }
-                },
-                "type": "PathExpression",
-                "data": false,
-                "original": "another",
-                "parts": [
-                    "another"
-                ],
-                "depth": 0,
-                "filters": null
-            },
-            "params": [],
-            "escaped": true,
-            "strip": {
-                "open": false,
-                "close": false
-            }
+            "type": "content",
+            "value": "\nafter"
         }
-    ],
-    "blockParams": null,
-    "strip": {}
+    ]
 }
