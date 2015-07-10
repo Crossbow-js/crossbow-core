@@ -93,7 +93,7 @@ case 3: case 4: case 5: case 6: case 7: case 19: case 24: case 25: case 29: case
 this.$ = $$[$0];
 break;
 case 8:
-this.$ = new yy.CommentStatement(yy.stripComment($$[$0]), yy.stripFlags($$[$0], $$[$0]), yy.locInfo(this._$));
+this.$ = {type: 'comment', value: yy.stripComment($$[$0]), strip: yy.stripFlags($$[$0], $$[$0]), loc: yy.locInfo(this._$)};
 break;
 case 9:
 this.$ = {type: 'buffer', value: $$[$0], loc: yy.locInfo(this._$)};
@@ -132,31 +132,31 @@ case 21: case 22:
 this.$ = yy.prepareMustache($$[$0-3], $$[$0-2], $$[$0-1], $$[$0-4], yy.stripFlags($$[$0-4], $$[$0]), this._$);
 break;
 case 23:
-this.$ = new yy.PartialStatement($$[$0-3], $$[$0-2], $$[$0-1], yy.stripFlags($$[$0-4], $$[$0]), yy.locInfo(this._$));
+this.$ = {type: 'partial', name: $$[$0-3], params: $$[$0-2], hash: $$[$0-1], strip: yy.stripFlags($$[$0-4], $$[$0]), loc: yy.locInfo(this._$) };
 break;
 case 26:
-this.$ = new yy.SubExpression($$[$0-3], $$[$0-2], $$[$0-1], yy.locInfo(this._$));
+this.$ = { type: 'sexpr', path: $$[$0-3], params: $$[$0-2], hash: $$[$0-1], loc: yy.locInfo(this._$) };
 break;
 case 27:
-this.$ = new yy.Hash($$[$0], yy.locInfo(this._$));
+this.$ = { type: 'hash', pairs: $$[$0], loc: yy.locInfo(this._$) };
 break;
 case 28:
-this.$ = new yy.HashPair(yy.id($$[$0-2]), $$[$0], yy.locInfo(this._$));
+this.$ = {type: 'hashpair', key: yy.id($$[$0-2]), value: $$[$0], loc: yy.locInfo(this._$)};
 break;
 case 31:
-this.$ = new yy.StringLiteral($$[$0], yy.locInfo(this._$));
+this.$ =    {type: 'string', value: $$[$0], loc: yy.locInfo(this._$)};
 break;
 case 32:
-this.$ = new yy.NumberLiteral($$[$0], yy.locInfo(this._$));
+this.$ =    {type: 'number', value: $$[$0], loc: yy.locInfo(this._$)};
 break;
 case 33:
-this.$ = new yy.BooleanLiteral($$[$0], yy.locInfo(this._$));
+this.$ =   {type: 'boolean', value: $$[$0], loc: yy.locInfo(this._$)};
 break;
 case 34:
-this.$ = new yy.UndefinedLiteral(yy.locInfo(this._$));
+this.$ = {type: 'undefined', value: $$[$0], loc: yy.locInfo(this._$)};
 break;
 case 35:
-this.$ = new yy.NullLiteral(yy.locInfo(this._$));
+this.$ =      {type: 'null', value: $$[$0], loc: yy.locInfo(this._$)};
 break;
 case 38:
 this.$ = yy.preparePath(true, $$[$0], this._$);

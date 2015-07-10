@@ -16,6 +16,7 @@
             }
         },
         {
+            "type": "mustache",
             "loc": {
                 "start": {
                     "line": 1,
@@ -26,11 +27,17 @@
                     "column": 24
                 }
             },
-            "type": "MustacheStatement",
             "path": {
-                "type": "PathExpression",
                 "data": false,
-                "original": {
+                "depth": 0,
+                "parts": [
+                    {
+                        "part": "content",
+                        "original": "content"
+                    }
+                ],
+                "original": "content",
+                "loc": {
                     "start": {
                         "line": 1,
                         "column": 15
@@ -39,12 +46,7 @@
                         "line": 1,
                         "column": 22
                     }
-                },
-                "parts": [
-                    "content"
-                ],
-                "depth": 0,
-                "filters": "content"
+                }
             },
             "params": [],
             "escaped": true,

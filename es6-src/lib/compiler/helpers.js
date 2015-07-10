@@ -60,7 +60,13 @@ export function preparePath(data, parts, locInfo) {
         }
     }
 
-    return new this.PathExpression(data, depth, dig, original, locInfo);
+    return {
+        data,
+        depth,
+        parts,
+        original,
+        loc: locInfo
+    }
 }
 
 export function prepareMustache(path, params, hash, open, strip, locInfo) {
@@ -68,7 +74,15 @@ export function prepareMustache(path, params, hash, open, strip, locInfo) {
     let escapeFlag = open.charAt(3) || open.charAt(2),
         escaped = escapeFlag !== '{' && escapeFlag !== '&';
 
-    return new this.MustacheStatement(path, params, hash, escaped, strip, this.locInfo(locInfo));
+    return {
+        type: "mustache",
+        loc: this.locInfo(locInfo),
+        path,
+        params,
+        hash,
+        escaped,
+        strip
+    }
 }
 
 export function prepareRawBlock(openRawBlock, content, close, locInfo) {

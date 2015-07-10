@@ -18,7 +18,7 @@ statement
   | rawBlock -> $1
   | partial -> $1
   | content -> $1
-  | COMMENT -> new yy.CommentStatement(yy.stripComment($1), yy.stripFlags($1, $1), yy.locInfo(@$))
+  | COMMENT -> {type: 'comment', value: yy.stripComment($1), strip: yy.stripFlags($1, $1), loc: yy.locInfo(@$)}
   ;
 
 content
@@ -77,7 +77,7 @@ mustache
   ;
 
 partial
-  : OPEN_PARTIAL partialName param* hash? CLOSE -> new yy.PartialStatement($2, $3, $4, yy.stripFlags($1, $5), yy.locInfo(@$))
+  : OPEN_PARTIAL partialName param* hash? CLOSE -> {type: 'partial', name: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5), loc: yy.locInfo(@$) }
   ;
 
 param
@@ -86,25 +86,25 @@ param
   ;
 
 sexpr
-  : OPEN_SEXPR helperName param* hash? CLOSE_SEXPR -> new yy.SubExpression($2, $3, $4, yy.locInfo(@$))
+  : OPEN_SEXPR helperName param* hash? CLOSE_SEXPR -> { type: 'sexpr', path: $2, params: $3, hash: $4, loc: yy.locInfo(@$) }
   ;
 
 hash
-  : hashSegment+ -> new yy.Hash($1, yy.locInfo(@$))
+  : hashSegment+ -> { type: 'hash', pairs: $1, loc: yy.locInfo(@$) }
   ;
 
 hashSegment
-  : ID EQUALS param -> new yy.HashPair(yy.id($1), $3, yy.locInfo(@$))
+  : ID EQUALS param -> {type: 'hashpair', key: yy.id($1), value: $3, loc: yy.locInfo(@$)}
   ;
 
 helperName
   : path -> $1
   | dataName -> $1
-  | STRING -> new yy.StringLiteral($1, yy.locInfo(@$))
-  | NUMBER -> new yy.NumberLiteral($1, yy.locInfo(@$))
-  | BOOLEAN -> new yy.BooleanLiteral($1, yy.locInfo(@$))
-  | UNDEFINED -> new yy.UndefinedLiteral(yy.locInfo(@$))
-  | NULL -> new yy.NullLiteral(yy.locInfo(@$))
+  | STRING ->    {type: 'string', value: $1, loc: yy.locInfo(@$)}
+  | NUMBER ->    {type: 'number', value: $1, loc: yy.locInfo(@$)}
+  | BOOLEAN ->   {type: 'boolean', value: $1, loc: yy.locInfo(@$)}
+  | UNDEFINED -> {type: 'undefined', value: $1, loc: yy.locInfo(@$)}
+  | NULL ->      {type: 'null', value: $1, loc: yy.locInfo(@$)}
   ;
 
 partialName
