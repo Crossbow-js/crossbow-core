@@ -1,19 +1,32 @@
 {
-    "bodies": [
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 3,
+            "column": 5
+        }
+    },
+    "type": "Program",
+    "body": [
         {
-            "type": "content",
-            "value": "Before\n    "
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 4
+                }
+            },
+            "type": "ContentStatement",
+            "value": "Before\n    ",
+            "original": "Before\n    "
         },
         {
-            "type": "mustache",
-            "id": [
-                {
-                    "type": "path",
-                    "paths": [
-                        "thing"
-                    ]
-                }
-            ],
             "loc": {
                 "start": {
                     "line": 2,
@@ -23,11 +36,50 @@
                     "line": 2,
                     "column": 13
                 }
+            },
+            "type": "MustacheStatement",
+            "path": {
+                "type": "PathExpression",
+                "data": false,
+                "original": {
+                    "start": {
+                        "line": 2,
+                        "column": 6
+                    },
+                    "end": {
+                        "line": 2,
+                        "column": 11
+                    }
+                },
+                "parts": [
+                    "thing"
+                ],
+                "depth": 0,
+                "filters": "thing"
+            },
+            "params": [],
+            "escaped": true,
+            "strip": {
+                "open": false,
+                "close": false
             }
         },
         {
-            "type": "content",
-            "value": "\nafter"
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 13
+                },
+                "end": {
+                    "line": 3,
+                    "column": 5
+                }
+            },
+            "type": "ContentStatement",
+            "value": "\nafter",
+            "original": "\nafter"
         }
-    ]
+    ],
+    "blockParams": null,
+    "strip": {}
 }
