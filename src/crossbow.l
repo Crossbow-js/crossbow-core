@@ -89,27 +89,27 @@ ID    [^\s!"#%-,\.\/;->@\[-\^`\{-~]+/{LOOKAHEAD}
 }
 <mu>"{{"{LEFT_STRIP}?            return 'OPEN';
 
-<mu>"="                          return 'EQUALS';
-<mu>".."                         return 'ID';
-<mu>"."/{LOOKAHEAD}              return 'ID';
-<mu>[\/.]                        return 'SEP';
-<mu>\s+                          // ignore whitespace
-<mu>"}"{RIGHT_STRIP}?"}}"        this.popState(); return 'CLOSE_UNESCAPED';
-<mu>{RIGHT_STRIP}?"}}"           this.popState(); return 'CLOSE';
-<mu>'"'("\\"["]|[^"])*'"'        yytext = strip(1,2).replace(/\\"/g,'"'); return 'STRING';
-<mu>"'"("\\"[']|[^'])*"'"        yytext = strip(1,2).replace(/\\'/g,"'"); return 'STRING';
-<mu>"@"                          return 'DATA';
-<mu>"true"/{LITERAL_LOOKAHEAD}   return 'BOOLEAN';
-<mu>"false"/{LITERAL_LOOKAHEAD}  return 'BOOLEAN';
+<mu>"="                             return 'EQUALS';
+<mu>".."                            return 'ID';
+<mu>"."/{LOOKAHEAD}                 return 'ID';
+<mu>[\/.]                           return 'SEP';
+<mu>\s+                             // ignore whitespace
+<mu>"}"{RIGHT_STRIP}?"}}"           this.popState(); return 'CLOSE_UNESCAPED';
+<mu>{RIGHT_STRIP}?"}}"              this.popState(); return 'CLOSE';
+<mu>'"'("\\"["]|[^"])*'"'           yytext = strip(1,2).replace(/\\"/g,'"'); return 'STRING';
+<mu>"'"("\\"[']|[^'])*"'"           yytext = strip(1,2).replace(/\\'/g,"'"); return 'STRING';
+<mu>"@"                             return 'DATA';
+<mu>"true"/{LITERAL_LOOKAHEAD}      return 'BOOLEAN';
+<mu>"false"/{LITERAL_LOOKAHEAD}     return 'BOOLEAN';
 <mu>"undefined"/{LITERAL_LOOKAHEAD} return 'UNDEFINED';
-<mu>"null"/{LITERAL_LOOKAHEAD}   return 'NULL';
+<mu>"null"/{LITERAL_LOOKAHEAD}      return 'NULL';
 <mu>\-?[0-9]+(?:\.[0-9]+)?/{LITERAL_LOOKAHEAD} return 'NUMBER';
-<mu>"as"\s+"|"                   return 'OPEN_BLOCK_PARAMS';
-<mu>"|"                          return 'CLOSE_BLOCK_PARAMS';
+<mu>"as"\s+"|"                      return 'OPEN_BLOCK_PARAMS';
+<mu>"|"                             return 'CLOSE_BLOCK_PARAMS';
 
-<mu>{ID}                         return 'ID';
+<mu>{ID}                            return 'ID';
 
-<mu>'['[^\]]*']'                 return 'ID';
-<mu>.                            return 'INVALID';
+<mu>'['[^\]]*']'                    return 'ID';
+<mu>.                               return 'INVALID';
 
-<INITIAL,mu><<EOF>>              return 'EOF';
+<INITIAL,mu><<EOF>>                 return 'EOF';

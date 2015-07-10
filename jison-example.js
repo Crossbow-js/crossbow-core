@@ -8,7 +8,6 @@ var utils = require('./lib/compiler/utils');
 
 var yy = AST;
 utils.extend(yy, Helpers, AST);
-//console.log(yy);
 
 function parse(input, options) {
     // Just return if an already-compiled AST was passed in.
@@ -36,6 +35,6 @@ function parse(input, options) {
     return parser.parse(input);
 }
 
-var ast = parse('Before\n    {{thing}}\nafter');
+var ast = parse('Before after {{content}}');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);

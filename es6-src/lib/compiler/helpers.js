@@ -32,7 +32,7 @@ export function stripComment(comment) {
         .replace(/-?-?~?\}\}$/, '');
 }
 
-export function preparePath(data, parts, filters, locInfo) {
+export function preparePath(data, parts, locInfo) {
 
     locInfo = this.locInfo(locInfo);
 
@@ -60,7 +60,7 @@ export function preparePath(data, parts, filters, locInfo) {
         }
     }
 
-    return new this.PathExpression(data, depth, dig, filters, original, locInfo);
+    return new this.PathExpression(data, depth, dig, original, locInfo);
 }
 
 export function prepareMustache(path, params, hash, open, strip, locInfo) {

@@ -9,7 +9,7 @@ root
   ;
 
 program
-  : statement* -> new yy.Program($1, null, {}, yy.locInfo(@$))
+  : statement* -> { type: 'program', body: $1, loc: yy.locInfo(@$) }
   ;
 
 statement
@@ -22,7 +22,7 @@ statement
   ;
 
 content
-  : CONTENT -> new yy.ContentStatement($1, yy.locInfo(@$))
+  : CONTENT -> {type: 'buffer', value: $1, loc: yy.locInfo(@$)}
   ;
 
 rawBlock
@@ -39,15 +39,15 @@ block
   ;
 
 openBlock
-  : OPEN_BLOCK helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
+  : OPEN_BLOCK helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
   ;
 
 openInverse
-  : OPEN_INVERSE helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
+  : OPEN_INVERSE helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
   ;
 
 openInverseChain
-  : OPEN_INVERSE_CHAIN helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
+  : OPEN_INVERSE_CHAIN helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
   ;
 
 inverseAndProgram
@@ -95,10 +95,6 @@ hash
 
 hashSegment
   : ID EQUALS param -> new yy.HashPair(yy.id($1), $3, yy.locInfo(@$))
-  ;
-
-blockParams
-  : OPEN_BLOCK_PARAMS ID+ CLOSE_BLOCK_PARAMS -> yy.id($2)
   ;
 
 helperName

@@ -1,40 +1,29 @@
 {
-    "loc": {
-        "start": {
-            "line": 1,
-            "column": 0
-        },
-        "end": {
-            "line": 3,
-            "column": 5
-        }
-    },
-    "type": "Program",
+    "type": "program",
     "body": [
         {
+            "type": "buffer",
+            "value": "Before after ",
             "loc": {
                 "start": {
                     "line": 1,
                     "column": 0
                 },
                 "end": {
-                    "line": 2,
-                    "column": 4
+                    "line": 1,
+                    "column": 13
                 }
-            },
-            "type": "ContentStatement",
-            "value": "Before\n    ",
-            "original": "Before\n    "
+            }
         },
         {
             "loc": {
                 "start": {
-                    "line": 2,
-                    "column": 4
+                    "line": 1,
+                    "column": 13
                 },
                 "end": {
-                    "line": 2,
-                    "column": 13
+                    "line": 1,
+                    "column": 24
                 }
             },
             "type": "MustacheStatement",
@@ -43,19 +32,19 @@
                 "data": false,
                 "original": {
                     "start": {
-                        "line": 2,
-                        "column": 6
+                        "line": 1,
+                        "column": 15
                     },
                     "end": {
-                        "line": 2,
-                        "column": 11
+                        "line": 1,
+                        "column": 22
                     }
                 },
                 "parts": [
-                    "thing"
+                    "content"
                 ],
                 "depth": 0,
-                "filters": "thing"
+                "filters": "content"
             },
             "params": [],
             "escaped": true,
@@ -63,23 +52,16 @@
                 "open": false,
                 "close": false
             }
-        },
-        {
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 13
-                },
-                "end": {
-                    "line": 3,
-                    "column": 5
-                }
-            },
-            "type": "ContentStatement",
-            "value": "\nafter",
-            "original": "\nafter"
         }
     ],
-    "blockParams": null,
-    "strip": {}
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 1,
+            "column": 24
+        }
+    }
 }
