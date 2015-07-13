@@ -35,6 +35,10 @@ function parse(input, options) {
     return parser.parse(input);
 }
 
-var ast = parse('Before after {{content}}');
+var ast = parse(''    +
+    '{{this.url}}\n' +
+    '    {{shane}}\n' +
+    '{{this.other}}'   +
+    '');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);

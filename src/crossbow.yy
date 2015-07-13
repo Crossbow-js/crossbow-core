@@ -113,11 +113,15 @@ partialName
   ;
 
 dataName
-  : DATA pathSegments -> yy.preparePath(true, $2, @$)
+  : DATA pathSegments -> yy.preparePath(true, $2, [], @$)
   ;
 
 path
-  : pathSegments -> yy.preparePath(false, $1, @$)
+  : pathSegments filter? -> yy.preparePath(false, $1, [], @$)
+  ;
+
+filter
+  : PIPE pathSegments -> $2
   ;
 
 pathSegments

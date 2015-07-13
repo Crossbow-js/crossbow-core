@@ -2,55 +2,134 @@
     "type": "program",
     "body": [
         {
-            "type": "buffer",
-            "value": "Before after ",
             "loc": {
                 "start": {
                     "line": 1,
                     "column": 0
                 },
                 "end": {
-                    "line": 1,
+                    "line": 3,
                     "column": 13
-                }
-            }
-        },
-        {
-            "type": "mustache",
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 13
-                },
-                "end": {
-                    "line": 1,
-                    "column": 24
                 }
             },
+            "type": "BlockStatement",
             "path": {
                 "data": false,
+                "filters": [],
                 "depth": 0,
                 "parts": [
                     {
-                        "part": "content",
-                        "original": "content"
+                        "part": "this",
+                        "original": "this"
+                    },
+                    {
+                        "part": "url",
+                        "original": "url",
+                        "separator": "."
                     }
                 ],
-                "original": "content",
+                "original": "this.url",
                 "loc": {
                     "start": {
                         "line": 1,
-                        "column": 15
+                        "column": 3
                     },
                     "end": {
                         "line": 1,
-                        "column": 22
+                        "column": 11
                     }
                 }
             },
             "params": [],
-            "escaped": true,
-            "strip": {
+            "program": {
+                "type": "program",
+                "body": [
+                    {
+                        "type": "buffer",
+                        "value": "\n    ",
+                        "loc": {
+                            "start": {
+                                "line": 1,
+                                "column": 13
+                            },
+                            "end": {
+                                "line": 2,
+                                "column": 4
+                            }
+                        }
+                    },
+                    {
+                        "type": "mustache",
+                        "loc": {
+                            "start": {
+                                "line": 2,
+                                "column": 4
+                            },
+                            "end": {
+                                "line": 2,
+                                "column": 13
+                            }
+                        },
+                        "path": {
+                            "data": false,
+                            "filters": [],
+                            "depth": 0,
+                            "parts": [
+                                {
+                                    "part": "shane",
+                                    "original": "shane"
+                                }
+                            ],
+                            "original": "shane",
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 11
+                                }
+                            }
+                        },
+                        "params": [],
+                        "escaped": true,
+                        "strip": {
+                            "open": false,
+                            "close": false
+                        }
+                    },
+                    {
+                        "type": "buffer",
+                        "value": "\n",
+                        "loc": {
+                            "start": {
+                                "line": 2,
+                                "column": 13
+                            },
+                            "end": {
+                                "line": 3,
+                                "column": 0
+                            }
+                        }
+                    }
+                ],
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 0
+                    },
+                    "end": {
+                        "line": 3,
+                        "column": 0
+                    }
+                }
+            },
+            "openStrip": {
+                "open": false,
+                "close": false
+            },
+            "closeStrip": {
                 "open": false,
                 "close": false
             }
@@ -62,8 +141,8 @@
             "column": 0
         },
         "end": {
-            "line": 1,
-            "column": 24
+            "line": 3,
+            "column": 13
         }
     }
 }
