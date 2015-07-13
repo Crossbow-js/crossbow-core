@@ -32,13 +32,11 @@ export function stripComment(comment) {
         .replace(/-?-?~?\}\}$/, '');
 }
 
-export function preparePath(data, parts, filters, locInfo) {
-
-
+export function preparePath(helper, parts, filters, locInfo) {
 
     locInfo = this.locInfo(locInfo);
 
-    let original = data ? '@' : '',
+    let original = helper ? '@' : '',
         dig = [],
         depth = 0,
         depthString = '';
@@ -63,7 +61,7 @@ export function preparePath(data, parts, filters, locInfo) {
     }
 
     return {
-        data,
+        helper,
         filters,
         depth,
         parts,

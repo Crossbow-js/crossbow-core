@@ -113,7 +113,7 @@ partialName
   ;
 
 dataName
-  : DATA pathSegments -> yy.preparePath(true, $2, [], @$)
+  : HELPER_START path -> yy.preparePath(true, $2, [], @$)
   ;
 
 path

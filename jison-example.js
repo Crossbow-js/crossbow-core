@@ -36,9 +36,9 @@ function parse(input, options) {
 }
 
 var ast = parse(''    +
-    '{{this.url}}\n' +
-    '    {{shane}}\n' +
-    '{{this.other}}'   +
+    '{{@hl lang="js"}}\n' +
+    '{{shane}}' +
+
     '');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);
