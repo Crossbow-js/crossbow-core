@@ -39,7 +39,8 @@ block
   ;
 
 openBlock
-  : OPEN_BLOCK helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
+  : OPEN_HELPER_BLOCK helperName param* hash? CLOSE -> { helper: true, path: $2, params: $3, hash: $4, strip: yy.stripFlags($1,$5) }
+  | OPEN_BLOCK helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
   ;
 
 openInverse

@@ -2,48 +2,32 @@
     "type": "program",
     "body": [
         {
-            "type": "mustache",
             "loc": {
                 "start": {
                     "line": 1,
                     "column": 0
                 },
                 "end": {
-                    "line": 1,
-                    "column": 17
+                    "line": 2,
+                    "column": 16
                 }
             },
+            "type": "BlockStatement",
             "path": {
-                "helper": true,
+                "helper": false,
                 "filters": [],
                 "depth": 0,
-                "parts": {
-                    "helper": false,
-                    "filters": [],
-                    "depth": 0,
-                    "parts": [
-                        {
-                            "part": "hl",
-                            "original": "hl"
-                        }
-                    ],
-                    "original": "hl",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 3
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 5
-                        }
+                "parts": [
+                    {
+                        "part": "hl",
+                        "original": "hl"
                     }
-                },
-                "original": "@",
+                ],
+                "original": "hl",
                 "loc": {
                     "start": {
                         "line": 1,
-                        "column": 2
+                        "column": 3
                     },
                     "end": {
                         "line": 1,
@@ -95,63 +79,81 @@
                     }
                 }
             },
-            "escaped": true,
-            "strip": {
-                "open": false,
-                "close": false
-            }
-        },
-        {
-            "type": "buffer",
-            "value": "\n",
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 17
-                },
-                "end": {
-                    "line": 2,
-                    "column": 0
-                }
-            }
-        },
-        {
-            "type": "mustache",
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 0
-                },
-                "end": {
-                    "line": 2,
-                    "column": 9
-                }
-            },
-            "path": {
-                "helper": false,
-                "filters": [],
-                "depth": 0,
-                "parts": [
+            "program": {
+                "type": "program",
+                "body": [
                     {
-                        "part": "shane",
-                        "original": "shane"
+                        "type": "buffer",
+                        "value": "\n",
+                        "loc": {
+                            "start": {
+                                "line": 1,
+                                "column": 17
+                            },
+                            "end": {
+                                "line": 2,
+                                "column": 0
+                            }
+                        }
+                    },
+                    {
+                        "type": "mustache",
+                        "loc": {
+                            "start": {
+                                "line": 2,
+                                "column": 0
+                            },
+                            "end": {
+                                "line": 2,
+                                "column": 9
+                            }
+                        },
+                        "path": {
+                            "helper": false,
+                            "filters": [],
+                            "depth": 0,
+                            "parts": [
+                                {
+                                    "part": "shane",
+                                    "original": "shane"
+                                }
+                            ],
+                            "original": "shane",
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 7
+                                }
+                            }
+                        },
+                        "params": [],
+                        "escaped": true,
+                        "strip": {
+                            "open": false,
+                            "close": false
+                        }
                     }
                 ],
-                "original": "shane",
                 "loc": {
                     "start": {
-                        "line": 2,
-                        "column": 2
+                        "line": 1,
+                        "column": 0
                     },
                     "end": {
                         "line": 2,
-                        "column": 7
+                        "column": 9
                     }
                 }
             },
-            "params": [],
-            "escaped": true,
-            "strip": {
+            "openStrip": {
+                "open": false,
+                "close": false
+            },
+            "closeStrip": {
                 "open": false,
                 "close": false
             }
@@ -164,7 +166,7 @@
         },
         "end": {
             "line": 2,
-            "column": 9
+            "column": 16
         }
     }
 }
