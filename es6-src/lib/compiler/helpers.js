@@ -131,9 +131,20 @@ export function prepareBlock(openBlock, program, inverseAndProgram, close, inver
         program = inverted;
     }
 
-    return new this.BlockStatement(
-        openBlock.path, openBlock.params, openBlock.hash,
-        program, inverse,
-        openBlock.strip, inverseStrip, close && close.strip,
-        this.locInfo(locInfo));
+    if (openBlock.helper) {
+        openBlock.path.helper = true;
+    }
+
+    return {
+        type: 'block',
+        path: openBlock.path,
+        params: openBlock.params,
+        hash: openBlock.hash,
+        program,
+        inverse,
+        openStrip: openBlock.strip,
+        inverseStrip: inverseStrip,
+        closeStrip: close.strip,
+        loc: this.locInfo(locInfo)
+    }
 }

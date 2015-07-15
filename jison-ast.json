@@ -2,19 +2,9 @@
     "type": "program",
     "body": [
         {
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 0
-                },
-                "end": {
-                    "line": 2,
-                    "column": 16
-                }
-            },
-            "type": "BlockStatement",
+            "type": "block",
             "path": {
-                "helper": false,
+                "helper": true,
                 "filters": [],
                 "depth": 0,
                 "parts": [
@@ -41,18 +31,18 @@
                 "pairs": [
                     {
                         "type": "hashpair",
-                        "key": "lang",
+                        "key": "src",
                         "value": {
                             "type": "string",
-                            "value": "js",
+                            "value": "shane",
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 11
+                                    "column": 10
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 15
+                                    "column": 17
                                 }
                             }
                         },
@@ -63,7 +53,7 @@
                             },
                             "end": {
                                 "line": 1,
-                                "column": 15
+                                "column": 17
                             }
                         }
                     }
@@ -75,7 +65,7 @@
                     },
                     "end": {
                         "line": 1,
-                        "column": 15
+                        "column": 17
                     }
                 }
             },
@@ -84,57 +74,16 @@
                 "body": [
                     {
                         "type": "buffer",
-                        "value": "\n",
+                        "value": " ",
                         "loc": {
                             "start": {
                                 "line": 1,
-                                "column": 17
+                                "column": 19
                             },
                             "end": {
-                                "line": 2,
-                                "column": 0
+                                "line": 1,
+                                "column": 20
                             }
-                        }
-                    },
-                    {
-                        "type": "mustache",
-                        "loc": {
-                            "start": {
-                                "line": 2,
-                                "column": 0
-                            },
-                            "end": {
-                                "line": 2,
-                                "column": 9
-                            }
-                        },
-                        "path": {
-                            "helper": false,
-                            "filters": [],
-                            "depth": 0,
-                            "parts": [
-                                {
-                                    "part": "shane",
-                                    "original": "shane"
-                                }
-                            ],
-                            "original": "shane",
-                            "loc": {
-                                "start": {
-                                    "line": 2,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 2,
-                                    "column": 7
-                                }
-                            }
-                        },
-                        "params": [],
-                        "escaped": true,
-                        "strip": {
-                            "open": false,
-                            "close": false
                         }
                     }
                 ],
@@ -144,8 +93,8 @@
                         "column": 0
                     },
                     "end": {
-                        "line": 2,
-                        "column": 9
+                        "line": 1,
+                        "column": 20
                     }
                 }
             },
@@ -156,6 +105,16 @@
             "closeStrip": {
                 "open": false,
                 "close": false
+            },
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 27
+                }
             }
         }
     ],
@@ -165,8 +124,8 @@
             "column": 0
         },
         "end": {
-            "line": 2,
-            "column": 16
+            "line": 1,
+            "column": 27
         }
     }
 }
