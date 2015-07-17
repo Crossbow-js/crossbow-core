@@ -35,6 +35,6 @@ function parse(input, options) {
     return parser.parse(input);
 }
 
-var ast = parse('{{@hl src="shane"}} {{/hl}}');
+var ast = parse('{{@hl3}}');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);
