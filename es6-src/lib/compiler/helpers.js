@@ -94,13 +94,19 @@ export function prepareRawBlock(openRawBlock, content, close, locInfo) {
     }
 
     locInfo = this.locInfo(locInfo);
-    let program = new this.Program([content], null, {}, locInfo);
 
-    return new this.BlockStatement(
-        openRawBlock.path, openRawBlock.params, openRawBlock.hash,
-        program, undefined,
-        {}, {}, {},
-        locInfo);
+    return {
+        type: 'raw',
+        path: openRawBlock.path,
+        params: openRawBlock.params,
+        hash: openRawBlock.hash,
+        program: {
+            body: [content],
+            type: 'program',
+            loc: locInfo
+        },
+        loc: locInfo
+    };
 }
 
 export function prepareBlock(openBlock, program, inverseAndProgram, close, inverted, locInfo) {
