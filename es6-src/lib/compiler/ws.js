@@ -1,10 +1,13 @@
 import Visitor from './visitor';
 
-function WhitespaceControl() {
+function WhitespaceControl(options = {}) {
+    this.options = options;
 }
 WhitespaceControl.prototype = new Visitor();
 
 WhitespaceControl.prototype.Program = function(program) {
+    const doStandalone = !this.options.ignoreStandalone;
+
     let isRoot = !this.isRootSeen;
     this.isRootSeen = true;
 
@@ -31,7 +34,7 @@ WhitespaceControl.prototype.Program = function(program) {
             omitLeft(body, i, true);
         }
 
-        if (inlineStandalone) {
+        if (doStandalone && inlineStandalone) {
             omitRight(body, i);
 
             if (omitLeft(body, i)) {
@@ -42,13 +45,13 @@ WhitespaceControl.prototype.Program = function(program) {
                 }
             }
         }
-        if (openStandalone) {
+        if (doStandalone && openStandalone) {
             omitRight((current.program || current.inverse).body);
 
             // Strip out the previous content node if it's whitespace only
             omitLeft(body, i);
         }
-        if (closeStandalone) {
+        if (doStandalone && closeStandalone) {
             // Always strip the next node
             omitRight(body, i);
 
@@ -58,69 +61,74 @@ WhitespaceControl.prototype.Program = function(program) {
 
     return program;
 };
-WhitespaceControl.prototype.BlockStatement = function(block) {
-    this.accept(block.program);
-    this.accept(block.inverse);
 
-    // Find the inverse program that is involed with whitespace stripping.
-    let program = block.program || block.inverse,
-        inverse = block.program && block.inverse,
-        firstInverse = inverse,
-        lastInverse = inverse;
+WhitespaceControl.prototype.BlockStatement =
+    WhitespaceControl.prototype.DecoratorBlock =
+        WhitespaceControl.prototype.PartialBlockStatement = function(block) {
+            this.accept(block.program);
+            this.accept(block.inverse);
 
-    if (inverse && inverse.chained) {
-        firstInverse = inverse.body[0].program;
+            // Find the inverse program that is involed with whitespace stripping.
+            let program = block.program || block.inverse,
+                inverse = block.program && block.inverse,
+                firstInverse = inverse,
+                lastInverse = inverse;
 
-        // Walk the inverse chain to find the last inverse that is actually in the chain.
-        while (lastInverse.chained) {
-            lastInverse = lastInverse.body[lastInverse.body.length - 1].program;
-        }
-    }
+            if (inverse && inverse.chained) {
+                firstInverse = inverse.body[0].program;
 
-    let strip = {
-        open: block.openStrip.open,
-        close: block.closeStrip.close,
+                // Walk the inverse chain to find the last inverse that is actually in the chain.
+                while (lastInverse.chained) {
+                    lastInverse = lastInverse.body[lastInverse.body.length - 1].program;
+                }
+            }
 
-        // Determine the standalone candiacy. Basically flag our content as being possibly standalone
-        // so our parent can determine if we actually are standalone
-        openStandalone: isNextWhitespace(program.body),
-        closeStandalone: isPrevWhitespace((firstInverse || program).body)
+            let strip = {
+                open: block.openStrip.open,
+                close: block.closeStrip.close,
+
+                // Determine the standalone candiacy. Basically flag our content as being possibly standalone
+                // so our parent can determine if we actually are standalone
+                openStandalone: isNextWhitespace(program.body),
+                closeStandalone: isPrevWhitespace((firstInverse || program).body)
+            };
+
+            if (block.openStrip.close) {
+                omitRight(program.body, null, true);
+            }
+
+            if (inverse) {
+                let inverseStrip = block.inverseStrip;
+
+                if (inverseStrip.open) {
+                    omitLeft(program.body, null, true);
+                }
+
+                if (inverseStrip.close) {
+                    omitRight(firstInverse.body, null, true);
+                }
+                if (block.closeStrip.open) {
+                    omitLeft(lastInverse.body, null, true);
+                }
+
+                // Find standalone else statments
+                if (!this.options.ignoreStandalone
+                    && isPrevWhitespace(program.body)
+                    && isNextWhitespace(firstInverse.body)) {
+                    omitLeft(program.body);
+                    omitRight(firstInverse.body);
+                }
+            } else if (block.closeStrip.open) {
+                omitLeft(program.body, null, true);
+            }
+
+            return strip;
+        };
+
+WhitespaceControl.prototype.Decorator =
+    WhitespaceControl.prototype.MustacheStatement = function(mustache) {
+        return mustache.strip;
     };
-
-    if (block.openStrip.close) {
-        omitRight(program.body, null, true);
-    }
-
-    if (inverse) {
-        let inverseStrip = block.inverseStrip;
-
-        if (inverseStrip.open) {
-            omitLeft(program.body, null, true);
-        }
-
-        if (inverseStrip.close) {
-            omitRight(firstInverse.body, null, true);
-        }
-        if (block.closeStrip.open) {
-            omitLeft(lastInverse.body, null, true);
-        }
-
-        // Find standalone else statments
-        if (isPrevWhitespace(program.body)
-            && isNextWhitespace(firstInverse.body)) {
-            omitLeft(program.body);
-            omitRight(firstInverse.body);
-        }
-    } else if (block.closeStrip.open) {
-        omitLeft(program.body, null, true);
-    }
-
-    return strip;
-};
-
-WhitespaceControl.prototype.MustacheStatement = function(mustache) {
-    return mustache.strip;
-};
 
 WhitespaceControl.prototype.PartialStatement =
     WhitespaceControl.prototype.CommentStatement = function(node) {

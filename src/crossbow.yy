@@ -9,7 +9,7 @@ root
   ;
 
 program
-  : statement* -> { type: 'program', body: $1, loc: yy.locInfo(@$) }
+  : statement* -> yy.prepareProgram($1)
   ;
 
 statement
@@ -17,16 +17,29 @@ statement
   | block -> $1
   | rawBlock -> $1
   | partial -> $1
+  | partialBlock -> $1
   | content -> $1
-  | COMMENT -> {type: 'comment', value: yy.stripComment($1), strip: yy.stripFlags($1, $1), loc: yy.locInfo(@$)}
-  ;
+  | COMMENT {
+    $$ = {
+      type: 'CommentStatement',
+      value: yy.stripComment($1),
+      strip: yy.stripFlags($1, $1),
+      loc: yy.locInfo(@$)
+    };
+  };
 
 content
-  : CONTENT -> {type: 'buffer', value: $1, loc: yy.locInfo(@$)}
-  ;
+  : CONTENT {
+    $$ = {
+      type: 'ContentStatement',
+      original: $1,
+      value: $1,
+      loc: yy.locInfo(@$)
+    };
+  };
 
 rawBlock
-  : openRawBlock content END_RAW_BLOCK -> yy.prepareRawBlock($1, $2, $3, @$)
+  : openRawBlock content+ END_RAW_BLOCK -> yy.prepareRawBlock($1, $2, $3, @$)
   ;
 
 openRawBlock
@@ -39,16 +52,15 @@ block
   ;
 
 openBlock
-  : OPEN_HELPER_BLOCK helperName param* hash? CLOSE -> { helper: true, path: $2, params: $3, hash: $4, strip: yy.stripFlags($1,$5) }
-  | OPEN_BLOCK helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
+  : OPEN_BLOCK helperName param* hash? blockParams? CLOSE -> { open: $1, path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
   ;
 
 openInverse
-  : OPEN_INVERSE helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
+  : OPEN_INVERSE helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
   ;
 
 openInverseChain
-  : OPEN_INVERSE_CHAIN helperName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
+  : OPEN_INVERSE_CHAIN helperName param* hash? blockParams? CLOSE -> { path: $2, params: $3, hash: $4, blockParams: $5, strip: yy.stripFlags($1, $6) }
   ;
 
 inverseAndProgram
@@ -58,7 +70,7 @@ inverseAndProgram
 inverseChain
   : openInverseChain program inverseChain? {
     var inverse = yy.prepareBlock($1, $2, $3, $3, false, @$),
-        program = new yy.Program([inverse], null, {}, yy.locInfo(@$));
+        program = yy.prepareProgram([inverse], $2.loc);
     program.chained = true;
 
     $$ = { strip: $1.strip, program: program, chain: true };
@@ -78,7 +90,23 @@ mustache
   ;
 
 partial
-  : OPEN_PARTIAL partialName param* hash? CLOSE -> {type: 'partial', name: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5), loc: yy.locInfo(@$) }
+  : OPEN_PARTIAL partialName param* hash? CLOSE {
+    $$ = {
+      type: 'PartialStatement',
+      name: $2,
+      params: $3,
+      hash: $4,
+      indent: '',
+      strip: yy.stripFlags($1, $5),
+      loc: yy.locInfo(@$)
+    };
+  }
+  ;
+partialBlock
+  : openPartialBlock program closeBlock -> yy.preparePartialBlock($1, $2, $3, @$)
+  ;
+openPartialBlock
+  : OPEN_PARTIAL_BLOCK partialName param* hash? CLOSE -> { path: $2, params: $3, hash: $4, strip: yy.stripFlags($1, $5) }
   ;
 
 param
@@ -87,25 +115,36 @@ param
   ;
 
 sexpr
-  : OPEN_SEXPR helperName param* hash? CLOSE_SEXPR -> { type: 'sexpr', path: $2, params: $3, hash: $4, loc: yy.locInfo(@$) }
-  ;
+  : OPEN_SEXPR helperName param* hash? CLOSE_SEXPR {
+    $$ = {
+      type: 'SubExpression',
+      path: $2,
+      params: $3,
+      hash: $4,
+      loc: yy.locInfo(@$)
+    };
+  };
 
 hash
-  : hashSegment+ -> { type: 'hash', pairs: $1, loc: yy.locInfo(@$) }
+  : hashSegment+ -> {type: 'Hash', pairs: $1, loc: yy.locInfo(@$)}
   ;
 
 hashSegment
-  : ID EQUALS param -> {type: 'hashpair', key: yy.id($1), value: $3, loc: yy.locInfo(@$)}
+  : ID EQUALS param -> {type: 'HashPair', key: yy.id($1), value: $3, loc: yy.locInfo(@$)}
+  ;
+
+blockParams
+  : OPEN_BLOCK_PARAMS ID+ CLOSE_BLOCK_PARAMS -> yy.id($2)
   ;
 
 helperName
   : path -> $1
   | dataName -> $1
-  | STRING ->    {type: 'string', value: $1, loc: yy.locInfo(@$)}
-  | NUMBER ->    {type: 'number', value: $1, loc: yy.locInfo(@$)}
-  | BOOLEAN ->   {type: 'boolean', value: $1, loc: yy.locInfo(@$)}
-  | UNDEFINED -> {type: 'undefined', value: $1, loc: yy.locInfo(@$)}
-  | NULL ->      {type: 'null', value: $1, loc: yy.locInfo(@$)}
+  | STRING -> {type: 'StringLiteral', value: $1, original: $1, loc: yy.locInfo(@$)}
+  | NUMBER -> {type: 'NumberLiteral', value: Number($1), original: Number($1), loc: yy.locInfo(@$)}
+  | BOOLEAN -> {type: 'BooleanLiteral', value: $1 === 'true', original: $1 === 'true', loc: yy.locInfo(@$)}
+  | UNDEFINED -> {type: 'UndefinedLiteral', original: undefined, value: undefined, loc: yy.locInfo(@$)}
+  | NULL -> {type: 'NullLiteral', original: null, value: null, loc: yy.locInfo(@$)}
   ;
 
 partialName
@@ -114,15 +153,11 @@ partialName
   ;
 
 dataName
-  : HELPER_START path -> yy.preparePath(true, $2, [], @$)
+  : DATA pathSegments -> yy.preparePath(true, $2, @$)
   ;
 
 path
-  : pathSegments filter? -> yy.preparePath(false, $1, [], @$)
-  ;
-
-filter
-  : PIPE pathSegments -> $2
+  : pathSegments -> yy.preparePath(false, $1, @$)
   ;
 
 pathSegments

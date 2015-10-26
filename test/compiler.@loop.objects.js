@@ -1,16 +1,16 @@
 'use strict';
 
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _cblang$builder = require('../lib/index.js');
+var _libIndexJs = require('../lib/index.js');
 
-var _cblang$builder2 = _interopRequireDefault(_cblang$builder);
+var _libIndexJs2 = _interopRequireDefault(_libIndexJs);
 
-var _parse = require('../src/parser.js');
+var _srcParserJs = require('../src/parser.js');
 
-var _writeFileSync = require('fs');
+var _fs = require('fs');
 
-var _assert = require('chai');
+var _chai = require('chai');
 
 var _sinon = require('sinon');
 
@@ -21,7 +21,7 @@ describe('@loop helper for object iteration', function () {
 
         var input1 = '{@loop:pkg}{$key} : {$value}{/loop}';
 
-        var compiler = _cblang$builder.builder();
+        var compiler = (0, _libIndexJs.builder)();
 
         var out = compiler.parse({
             content: input1,
@@ -32,6 +32,6 @@ describe('@loop helper for object iteration', function () {
             }
         });
 
-        _assert.assert.equal(out, 'version : 1.2');
+        _chai.assert.equal(out, 'version : 1.2');
     });
 });

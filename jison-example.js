@@ -35,6 +35,6 @@ function parse(input, options) {
     return parser.parse(input);
 }
 
-var ast = parse('{{@hl3}}');
+var ast = parse('{{$.name.snaae|(SHANE)}}');
 fs.writeFileSync('jison-ast.json', JSON.stringify(ast, null, 4));
 //console.log(ast);

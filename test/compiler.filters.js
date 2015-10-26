@@ -1,16 +1,16 @@
 'use strict';
 
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _cblang$builder = require('../lib/index.js');
+var _libIndexJs = require('../lib/index.js');
 
-var _cblang$builder2 = _interopRequireDefault(_cblang$builder);
+var _libIndexJs2 = _interopRequireDefault(_libIndexJs);
 
-var _parse = require('../src/parser.js');
+var _srcParserJs = require('../src/parser.js');
 
-var _writeFileSync = require('fs');
+var _fs = require('fs');
 
-var _assert = require('chai');
+var _chai = require('chai');
 
 var _sinon = require('sinon');
 
@@ -21,7 +21,7 @@ describe('Adding filters to the compiler', function () {
 
         var input1 = '{name|md}';
 
-        var compiler = _cblang$builder.builder();
+        var compiler = (0, _libIndexJs.builder)();
 
         compiler.filters.md = function (_ref) {
             var value = _ref.value;
@@ -35,13 +35,13 @@ describe('Adding filters to the compiler', function () {
 
         var out = compiler.parse({ content: input1, ctx: { name: 'kittie' } });
 
-        _assert.assert.equal(out, 'kittie - md');
+        _chai.assert.equal(out, 'kittie - md');
     });
     it('can add a filter that uses args', function () {
 
         var input1 = '{name|md~"osbourne"}';
 
-        var compiler = _cblang$builder.builder();
+        var compiler = (0, _libIndexJs.builder)();
 
         compiler.filters.md = function (_ref2) {
             var value = _ref2.value;
@@ -55,20 +55,20 @@ describe('Adding filters to the compiler', function () {
 
         var out = compiler.parse({ content: input1, ctx: { name: 'kittie' } });
 
-        _assert.assert.equal(out, 'kittie - osbourne');
+        _chai.assert.equal(out, 'kittie - osbourne');
     });
 
     it('using external module + filter', function () {
         var content = '{shane|ucfirst|lodash:pad~15,"--"}';
         var ctx = { shane: 'shane' };
-        var output = _cblang$builder2['default']({ content: content, ctx: ctx });
-        _assert.assert.equal(output, '-----Shane-----');
+        var output = (0, _libIndexJs2['default'])({ content: content, ctx: ctx });
+        _chai.assert.equal(output, '-----Shane-----');
     });
 
     it('Does not blow up/hang with whitespace inbetween params', function () {
         var content = '{shane|ucfirst|lodash:pad~ 15 , "--"  }';
         var ctx = { shane: 'shane' };
-        var output = _cblang$builder2['default']({ content: content, ctx: ctx });
-        _assert.assert.equal(output, '-----Shane-----');
+        var output = (0, _libIndexJs2['default'])({ content: content, ctx: ctx });
+        _chai.assert.equal(output, '-----Shane-----');
     });
 });

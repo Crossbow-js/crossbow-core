@@ -1,5 +1,15 @@
 import Exception from './exception';
 
+function validateClose(open, close) {
+    close = close.path ? close.path.original : close;
+
+    if (open.path.original !== close) {
+        let errorNode = {loc: open.path.loc};
+
+        throw new Exception(open.path.original + " doesn't match " + close, errorNode);
+    }
+}
+
 export function SourceLocation(source, locInfo) {
     this.source = source;
     this.start = {
@@ -32,11 +42,10 @@ export function stripComment(comment) {
         .replace(/-?-?~?\}\}$/, '');
 }
 
-export function preparePath(helper, parts, filters, locInfo) {
+export function preparePath(data, parts, loc) {
+    loc = this.locInfo(loc);
 
-    locInfo = this.locInfo(locInfo);
-
-    let original = helper ? '@' : '',
+    let original = data ? '@' : '',
         dig = [],
         depth = 0,
         depthString = '';
@@ -50,7 +59,7 @@ export function preparePath(helper, parts, filters, locInfo) {
 
         if (!isLiteral && (part === '..' || part === '.' || part === 'this')) {
             if (dig.length > 0) {
-                throw new Exception('Invalid path: ' + original, {loc: locInfo});
+                throw new Exception('Invalid path: ' + original, {loc});
             } else if (part === '..') {
                 depth++;
                 depthString += '../';
@@ -61,13 +70,13 @@ export function preparePath(helper, parts, filters, locInfo) {
     }
 
     return {
-        helper,
-        filters,
+        type: 'PathExpression',
+        data,
         depth,
-        parts,
+        parts: dig,
         original,
-        loc: locInfo
-    }
+        loc
+    };
 }
 
 export function prepareMustache(path, params, hash, open, strip, locInfo) {
@@ -75,47 +84,48 @@ export function prepareMustache(path, params, hash, open, strip, locInfo) {
     let escapeFlag = open.charAt(3) || open.charAt(2),
         escaped = escapeFlag !== '{' && escapeFlag !== '&';
 
+    let decorator = (/\*/.test(open));
     return {
-        type: "mustache",
-        loc: this.locInfo(locInfo),
+        type: decorator ? 'Decorator' : 'MustacheStatement',
         path,
         params,
         hash,
         escaped,
-        strip
-    }
+        strip,
+        loc: this.locInfo(locInfo)
+    };
 }
 
-export function prepareRawBlock(openRawBlock, content, close, locInfo) {
-    if (openRawBlock.path.original !== close) {
-        let errorNode = {loc: openRawBlock.path.loc};
-
-        throw new Exception(openRawBlock.path.original + " doesn't match " + close, errorNode);
-    }
+export function prepareRawBlock(openRawBlock, contents, close, locInfo) {
+    validateClose(openRawBlock, close);
 
     locInfo = this.locInfo(locInfo);
+    let program = {
+        type: 'Program',
+        body: contents,
+        strip: {},
+        loc: locInfo
+    };
 
     return {
-        type: 'raw',
+        type: 'BlockStatement',
         path: openRawBlock.path,
         params: openRawBlock.params,
         hash: openRawBlock.hash,
-        program: {
-            body: [content],
-            type: 'program',
-            loc: locInfo
-        },
+        program,
+        openStrip: {},
+        inverseStrip: {},
+        closeStrip: {},
         loc: locInfo
     };
 }
 
 export function prepareBlock(openBlock, program, inverseAndProgram, close, inverted, locInfo) {
-    // When we are chaining inverse calls, we will not have a close path
-    if (close && close.path && openBlock.path.original !== close.path.original) {
-        let errorNode = {loc: openBlock.path.loc};
-
-        throw new Exception(openBlock.path.original + ' doesn\'t match ' + close.path.original, errorNode);
+    if (close && close.path) {
+        validateClose(openBlock, close);
     }
+
+    let decorator = (/\*/.test(openBlock.open));
 
     program.blockParams = openBlock.blockParams;
 
@@ -123,6 +133,10 @@ export function prepareBlock(openBlock, program, inverseAndProgram, close, inver
         inverseStrip;
 
     if (inverseAndProgram) {
+        if (decorator) {
+            throw new Exception('Unexpected inverse block on decorator', inverseAndProgram);
+        }
+
         if (inverseAndProgram.chain) {
             inverseAndProgram.program.body[0].closeStrip = close.strip;
         }
@@ -137,20 +151,61 @@ export function prepareBlock(openBlock, program, inverseAndProgram, close, inver
         program = inverted;
     }
 
-    if (openBlock.helper) {
-        openBlock.path.helper = true;
-    }
-
     return {
-        type: 'block',
+        type: decorator ? 'DecoratorBlock' : 'BlockStatement',
         path: openBlock.path,
         params: openBlock.params,
         hash: openBlock.hash,
         program,
         inverse,
         openStrip: openBlock.strip,
-        inverseStrip: inverseStrip,
-        closeStrip: close.strip,
+        inverseStrip,
+        closeStrip: close && close.strip,
         loc: this.locInfo(locInfo)
+    };
+}
+
+export function prepareProgram(statements, loc) {
+    if (!loc && statements.length) {
+        const firstLoc = statements[0].loc,
+            lastLoc = statements[statements.length - 1].loc;
+
+        /* istanbul ignore else */
+        if (firstLoc && lastLoc) {
+            loc = {
+                source: firstLoc.source,
+                start: {
+                    line: firstLoc.start.line,
+                    column: firstLoc.start.column
+                },
+                end: {
+                    line: lastLoc.end.line,
+                    column: lastLoc.end.column
+                }
+            };
+        }
     }
+
+    return {
+        type: 'Program',
+        body: statements,
+        strip: {},
+        loc: loc
+    };
+}
+
+
+export function preparePartialBlock(open, program, close, locInfo) {
+    validateClose(open, close);
+
+    return {
+        type: 'PartialBlockStatement',
+        name: open.path,
+        params: open.params,
+        hash: open.hash,
+        program,
+        openStrip: open.strip,
+        closeStrip: close && close.strip,
+        loc: this.locInfo(locInfo)
+    };
 }

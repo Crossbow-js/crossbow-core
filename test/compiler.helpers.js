@@ -1,16 +1,16 @@
 'use strict';
 
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _cblang$builder = require('../lib/index.js');
+var _libIndexJs = require('../lib/index.js');
 
-var _cblang$builder2 = _interopRequireDefault(_cblang$builder);
+var _libIndexJs2 = _interopRequireDefault(_libIndexJs);
 
-var _parse = require('../src/parser.js');
+var _srcParserJs = require('../src/parser.js');
 
-var _writeFileSync = require('fs');
+var _fs = require('fs');
 
-var _assert = require('chai');
+var _chai = require('chai');
 
 var _sinon = require('sinon');
 
@@ -21,7 +21,7 @@ describe('Adding helpers to the compiler', function () {
 
         var input1 = '{@shane}\nHello world\n{/shane}';
 
-        var compiler = _cblang$builder.builder();
+        var compiler = (0, _libIndexJs.builder)();
 
         compiler.helpers.shane = function (_ref) {
             var node = _ref.node;
@@ -33,6 +33,6 @@ describe('Adding helpers to the compiler', function () {
 
         var out = compiler.parse({ content: input1 });
 
-        _assert.assert.equal(out, '\nHello world');
+        _chai.assert.equal(out, '\nHello world');
     });
 });

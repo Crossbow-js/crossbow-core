@@ -1,14 +1,14 @@
 'use strict';
 
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _cblang = require('../lib/index.js');
+var _libIndexJs = require('../lib/index.js');
 
-var _cblang2 = _interopRequireDefault(_cblang);
+var _libIndexJs2 = _interopRequireDefault(_libIndexJs);
 
-var _parse = require('../src/parser.js');
+var _srcParserJs = require('../src/parser.js');
 
-var _assert = require('chai');
+var _chai = require('chai');
 
 var input = 'Hey there';
 var input1 = '{@hl lang="js"}' + input + '{/hl}';
@@ -16,13 +16,13 @@ var input1 = '{@hl lang="js"}' + input + '{/hl}';
 describe('@Helpers - inline', function () {
     it('Can access data', function () {
 
-        var ast = _parse.parse('{@hl src="somefilepath.js" /}');
+        var ast = (0, _srcParserJs.parse)('{@hl src="somefilepath.js" /}');
 
-        _assert.assert.equal(ast[0].type, '@');
-        _assert.assert.equal(ast[0].identifier.type, 'key');
-        _assert.assert.equal(ast[0].identifier.value, 'hl');
-        _assert.assert.equal(ast[0].params[0].key, 'src');
-        _assert.assert.equal(ast[0].params[0].value.type, 'string');
-        _assert.assert.equal(ast[0].params[0].value.value, 'somefilepath.js');
+        _chai.assert.equal(ast[0].type, '@');
+        _chai.assert.equal(ast[0].identifier.type, 'key');
+        _chai.assert.equal(ast[0].identifier.value, 'hl');
+        _chai.assert.equal(ast[0].params[0].key, 'src');
+        _chai.assert.equal(ast[0].params[0].value.type, 'string');
+        _chai.assert.equal(ast[0].params[0].value.value, 'somefilepath.js');
     });
 });
